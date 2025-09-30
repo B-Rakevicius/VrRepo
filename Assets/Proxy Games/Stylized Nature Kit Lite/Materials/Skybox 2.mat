@@ -96,7 +96,11 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+<<<<<<< Updated upstream
     - _Exposure: 1.8
+=======
+    - _Exposure: 0.47
+>>>>>>> Stashed changes
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -108,7 +112,11 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+<<<<<<< Updated upstream
     - _Rotation: 15
+=======
+    - _Rotation: 40
+>>>>>>> Stashed changes
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -122,5 +130,11 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GroundColor: {r: 0.6745098, g: 0.9686275, b: 1, a: 1}
     - _SkyTint: {r: 0.15294118, g: 0.8588236, b: 0.8000001, a: 1}
+<<<<<<< Updated upstream
     - _Tint: {r: 0.38625842, g: 0.46438223, b: 0.5283019, a: 0.5019608}
   m_BuildTextureStacks: []
+=======
+    - _Tint: {r: 0.9056604, g: 0.9056604, b: 0.9056604, a: 0.5019608}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
+>>>>>>> Stashed changes

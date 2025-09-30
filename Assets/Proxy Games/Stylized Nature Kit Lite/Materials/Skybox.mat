@@ -62,12 +62,20 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+<<<<<<< Updated upstream
     - _AtmosphereThickness: 0.75
+=======
+    - _AtmosphereThickness: 0.99
+>>>>>>> Stashed changes
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+<<<<<<< Updated upstream
     - _Exposure: 1.5
+=======
+    - _Exposure: 1.46
+>>>>>>> Stashed changes
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -79,13 +87,25 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SunDisk: 2
+<<<<<<< Updated upstream
     - _SunSize: 0.03
     - _SunSizeConvergence: 2.5
+=======
+    - _SunSize: 0
+    - _SunSizeConvergence: 2.4
+>>>>>>> Stashed changes
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+<<<<<<< Updated upstream
     - _GroundColor: {r: 0.6745098, g: 0.9686275, b: 1, a: 1}
     - _SkyTint: {r: 0.15294118, g: 0.8588236, b: 0.8000001, a: 1}
   m_BuildTextureStacks: []
+=======
+    - _GroundColor: {r: 0.24670699, g: 0.6375549, b: 0.6792453, a: 1}
+    - _SkyTint: {r: 0.04481131, g: 0.5, b: 0.46206763, a: 1}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
+>>>>>>> Stashed changes
