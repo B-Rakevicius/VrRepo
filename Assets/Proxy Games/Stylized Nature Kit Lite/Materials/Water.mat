@@ -23,10 +23,7 @@ Material:
   disabledShaderPasses:
   - MOTIONVECTORS
   - DepthOnly
-<<<<<<< Updated upstream
   - SHADOWCASTER
-=======
->>>>>>> Stashed changes
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
@@ -125,20 +122,12 @@ Material:
     - _ZWrite: 0
     m_Colors:
     - _BaseColor: {r: 0.29803917, g: 0.5254902, b: 0.5568628, a: 0.43137255}
-<<<<<<< Updated upstream
     - _Color: {r: 0.29803914, g: 0.5254902, b: 0.5568628, a: 0.43137255}
-=======
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
->>>>>>> Stashed changes
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
-<<<<<<< Updated upstream
 --- !u!114 &7494818656888135373
-=======
---- !u!114 &3585715728189098160
->>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

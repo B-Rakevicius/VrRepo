@@ -105,11 +105,7 @@ Material:
     - _Metallic: 0
     - _Mode: 1
     - _OcclusionStrength: 1
-<<<<<<< Updated upstream
     - _Parallax: 0.005
-=======
-    - _Parallax: 0.02
->>>>>>> Stashed changes
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Smoothness: 0.1
@@ -123,22 +119,13 @@ Material:
     - _XRMotionVectorsPass: 1
     - _ZWrite: 1
     m_Colors:
-<<<<<<< Updated upstream
     - _BaseColor: {r: 0.23529401, g: 0.5647059, b: 0.0666666, a: 1}
     - _Color: {r: 0.23529398, g: 0.5647059, b: 0.06666657, a: 1}
-=======
-    - _BaseColor: {r: 0.23529407, g: 0.5647059, b: 0.06666665, a: 1}
-    - _Color: {r: 0.23529404, g: 0.5647059, b: 0.066666625, a: 1}
->>>>>>> Stashed changes
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
-<<<<<<< Updated upstream
 --- !u!114 &6462309983079143817
-=======
---- !u!114 &1511603325936687163
->>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
