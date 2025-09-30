@@ -2596,6 +2596,9 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 202364688, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 561011920}
+    - targetCorrespondingSourceObject: {fileID: 202364688, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 1289758870}
     - targetCorrespondingSourceObject: {fileID: 1670256625, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       insertIndex: -1
@@ -3635,6 +3638,84 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7746927824541037661, guid: 1f9036ec905b920479091aca9ba81305, type: 3}
   m_PrefabInstance: {fileID: 651969154}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &561011919
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 441087507}
+    m_Modifications:
+    - target: {fileID: 866741485160855124, guid: cb7ec4b38f4e9644f8e290744971c521, type: 3}
+      propertyPath: m_Name
+      value: PetalShotgun
+      objectReference: {fileID: 0}
+    - target: {fileID: 866741485160950388, guid: cb7ec4b38f4e9644f8e290744971c521, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 866741485160950388, guid: cb7ec4b38f4e9644f8e290744971c521, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 866741485160950388, guid: cb7ec4b38f4e9644f8e290744971c521, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 866741485160950388, guid: cb7ec4b38f4e9644f8e290744971c521, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 866741485160950388, guid: cb7ec4b38f4e9644f8e290744971c521, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.045
+      objectReference: {fileID: 0}
+    - target: {fileID: 866741485160950388, guid: cb7ec4b38f4e9644f8e290744971c521, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.107
+      objectReference: {fileID: 0}
+    - target: {fileID: 866741485160950388, guid: cb7ec4b38f4e9644f8e290744971c521, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 866741485160950388, guid: cb7ec4b38f4e9644f8e290744971c521, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 866741485160950388, guid: cb7ec4b38f4e9644f8e290744971c521, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 866741485160950388, guid: cb7ec4b38f4e9644f8e290744971c521, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 866741485160950388, guid: cb7ec4b38f4e9644f8e290744971c521, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 866741485160950388, guid: cb7ec4b38f4e9644f8e290744971c521, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 866741485160950388, guid: cb7ec4b38f4e9644f8e290744971c521, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 866741485160950388, guid: cb7ec4b38f4e9644f8e290744971c521, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cb7ec4b38f4e9644f8e290744971c521, type: 3}
+--- !u!4 &561011920 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 866741485160950388, guid: cb7ec4b38f4e9644f8e290744971c521, type: 3}
+  m_PrefabInstance: {fileID: 561011919}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &570853720
 PrefabInstance:
@@ -8512,7 +8593,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100080, guid: eb680be9ede179440be92403fc57cfa4, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400076, guid: eb680be9ede179440be92403fc57cfa4, type: 3}
       propertyPath: m_ConstrainProportionsScale
