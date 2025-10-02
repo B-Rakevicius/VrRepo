@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_Liquid_Capsule
-  m_Shader: {fileID: 4800000, guid: 99e47b5ae978c5449b45f31a3adef0cd, type: 3}
+  m_Shader: {fileID: 4800000, guid: 842a9ec21fc1060419d24607b9e1fa36, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -141,8 +141,8 @@ Material:
     - _UVScale: 7.2
     - _WobbleSpeed: 0.4
     - _WobbleSpeedScale: 1.04
-    - _WobbleX: 0
-    - _WobbleZ: -0
+    - _WobbleX: NaN
+    - _WobbleZ: NaN
     - _WorkflowMode: 1
     - _ZWrite: 1
     - __BubbleSmoothness: 0.01
