@@ -109,22 +109,23 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
-    - _Frequency: 0.63
+    - _Frequency: 0.52
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Iterations: 4
-    - _Lacunarity: 0.33
+    - _Lacunarity: 2.5
     - _Metallic: 0
+    - _NoiseScale: 28.7
     - _OcclusionStrength: 1
     - _Parallax: 0.005
-    - _Persistence: 0.708
+    - _Persistence: 0.501
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _Speed: 2.89
+    - _Speed: 0.37
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _StepSize: 0.05
