@@ -4,13 +4,9 @@ using UnityEngine;
 
 public class ShaderManager : MonoBehaviour
 {
-
     public static ShaderManager instance;
     public Shader damageShader;
     public Shader normalShader;
-    public Material whiteMountain, grayMountain, rockMountain, sandWater;
-    public Mesh aoeMesh;
-    
     private void Awake()
     {
         normalShader = Shader.Find("HDRP/Lit");

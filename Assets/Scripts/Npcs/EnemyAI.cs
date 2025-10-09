@@ -3,7 +3,6 @@ using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
 using Unity.VRTemplate;
-
 public class EnemyAI : MonoBehaviour
 {
     [Header("Movement Settings")]
@@ -39,7 +38,6 @@ public class EnemyAI : MonoBehaviour
             Debug.LogError("CharacterController is missing on enemy!");
         }
     }
-
     private void Update()
     {
         if (player == null) return;
@@ -69,22 +67,21 @@ public class EnemyAI : MonoBehaviour
         }
         controller.Move(velocity * Time.deltaTime);
     }
-
     private bool IsGrounded()
     {
         return Physics.Raycast(transform.position, Vector3.down, 1.1f, groundLayer);
     }
-
     public void TakeDamage(int damage, Vector3 hitDirection, float knockbackStrength = 0f)
     {
         //Debug.Log("taking damage here " + (damage + (0.01f*PointManager.Instance.dmgUp)));
-        // currentHealth -= (int)(damage + (0.01f * PointManager.Instance.dmgUp));   // old damage calculation with leveling system in use.
+
+        // currentHealth -= (int)(damage + (0.01f * PointManager.Instance.dmgUp));  
+        // old damage calculation with leveling system in use.
         currentHealth -= damage;
         if (knockbackStrength > 0)
         {
             ApplyKnockback(hitDirection, knockbackStrength);
         }
-
         if (currentHealth <= 0)
         {
             if (!isDying)
@@ -101,7 +98,6 @@ public class EnemyAI : MonoBehaviour
         knockback.y = 0;
         knockbackForce = knockback;
     }
-
     private void Die()
     {
         isDying = true;
@@ -111,8 +107,6 @@ public class EnemyAI : MonoBehaviour
 
         PointManager.Instance.addSlain();
     }
-
-
     private IEnumerator ApplyShadeAfterDelay(Transform enemy, float delay)
     {
         foreach (Renderer renderer in enemy.GetComponentsInChildren<Renderer>())
