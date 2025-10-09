@@ -24,13 +24,14 @@ public class EnemyAI : MonoBehaviour
     [Header("Knockback Settings")]
     public float knockbackResistance = 0.5f; // 0 = no resistance, 1 = full resistance
     private Vector3 knockbackForce;
-    private Transform player;
+    private Transform HayTarget;
     private Vector3 velocity;
     private CharacterController controller;
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        findClosestHay(out HayTarget);
+        //HayTarget = GameObject.FindGameObjectWithTag("Player").transform;
         controller = GetComponent<CharacterController>();
         currentHealth = maxHealth;
         if (controller == null)
@@ -38,10 +39,28 @@ public class EnemyAI : MonoBehaviour
             Debug.LogError("CharacterController is missing on enemy!");
         }
     }
+    private void findClosestHay(out Transform target)
+    {
+        Transform closestHay = null;
+        GameObject[] hayTargets = GameObject.FindGameObjectsWithTag("Hay");
+        float closestDistance = Mathf.Infinity;
+        Vector3 currentPosition = transform.position;
+
+        foreach (GameObject hay in hayTargets)
+        {
+            float distance = Vector3.Distance(hay.transform.position, currentPosition);
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestHay = hay.transform;
+            }
+        }
+        target = closestHay;
+    }
     private void Update()
     {
-        if (player == null) return;
-        Vector3 direction = (player.position - transform.position).normalized;
+        if (HayTarget == null) return;
+        Vector3 direction = (HayTarget.position - transform.position).normalized;
         direction.y = 0;
         if (knockbackForce.magnitude > 0.1f)
         {
@@ -53,7 +72,7 @@ public class EnemyAI : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
-        if (Vector3.Distance(transform.position, player.position) > stoppingDistance)
+        if (Vector3.Distance(transform.position, HayTarget.position) > stoppingDistance)
         {
             controller.Move(direction * speed * Time.deltaTime);
         }
