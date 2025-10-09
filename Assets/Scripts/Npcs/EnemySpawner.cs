@@ -14,7 +14,7 @@ public class EnemySpawner : MonoBehaviour
     public int maxEnemiesPerWave = 25;
     public LayerMask groundLayer;
     public int totalEnemies = 0;
-    private bool DontSpawnNow = true;
+    private bool DontSpawnNow = false;
     public float gameTimer = 0f;
 
     public float spawnBuffer = 0f;
@@ -67,13 +67,13 @@ public class EnemySpawner : MonoBehaviour
             {
                 enemyType = strongEnemyPrefab;
                 enemyCost = strongEnemyCost;
-                adjustEnemyType(enemyType, 3);
+                //adjustEnemyType(enemyType, 3);
             }
             else
             {
                 enemyType = enemyPrefab;
                 enemyCost = normalEnemyCost;
-                adjustEnemyType(enemyType, 1);
+                //adjustEnemyType(enemyType, 1);
             }
             if (availableBuffer >= enemyCost)
             {
