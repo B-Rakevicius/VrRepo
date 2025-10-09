@@ -1,15 +1,18 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Items;
 using UnityEditor.VersionControl;
 using UnityEngine;
 using System.Threading.Tasks;
+using Player;
 using Task = UnityEditor.VersionControl.Task;
 
 namespace Shop
 {
     public class ShopManager : MonoBehaviour
     {
+        public static ShopManager Instance;
         
         [SerializeField] private List<ItemData> items;
         
@@ -19,12 +22,26 @@ namespace Shop
         
         private int _currentRound;
 
-        public static event EventHandler<OnItemPoolReceivedEventArgs> OnItemPoolReceived;
+        public event EventHandler<OnItemPoolReceivedEventArgs> OnItemPoolReceived;
         public class OnItemPoolReceivedEventArgs : EventArgs
         {
             public List<ItemData> items { get; set; }
         }
 
+        private void Awake()
+        {
+            if (Instance != null && Instance != this)
+            {
+                Debug.Log("There is more than one ShopManager instance!");
+                Destroy(gameObject);
+            }
+            else
+            {
+                Instance = this;
+                DontDestroyOnLoad(this);
+            }
+        }
+        
         private void Start()
         {
             // Subscribe to GameManager events
@@ -57,7 +74,7 @@ namespace Shop
             // TODO: Create a shop falling animation. For now I will just instantiate it at fixed position.
             _spawnedShop = Instantiate(shopPrefab, shopSpawnPoint.position, shopSpawnPoint.rotation);
 
-            await System.Threading.Tasks.Task.Delay(1000);
+            await System.Threading.Tasks.Task.Delay(100);
             
             // Get item pool for current round
             GetItemPool();
@@ -68,6 +85,29 @@ namespace Shop
             List<ItemData> itemPool = items.FindAll(x => x.unlocksAt <= _currentRound);
             
             OnItemPoolReceived?.Invoke(this, new OnItemPoolReceivedEventArgs { items = itemPool });
+        }
+
+        public bool TryPurchase(List<Item> shoppingCartItems)
+        {
+            int totalPrice = shoppingCartItems.Sum(x => x.GetItemData().itemPrice);
+            
+            // Check if player has enough money
+            if (PlayerManager.Instance.HasEnoughMoney(totalPrice))
+            {
+                // Loop through all items and buy them. Also mark them as bought
+                foreach (Item item in shoppingCartItems)
+                {
+                    item.IsBought = true;
+                }
+                
+                PlayerManager.Instance.DeductMoney(totalPrice);
+                
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         
         

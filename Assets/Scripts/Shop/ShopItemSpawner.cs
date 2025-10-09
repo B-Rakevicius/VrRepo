@@ -12,12 +12,12 @@ namespace Shop
         
         private void Start()
         {
-            ShopManager.OnItemPoolReceived += ShopManager_ItemPoolReceived;
+            ShopManager.Instance.OnItemPoolReceived += ShopManager_ItemPoolReceived;
         }
 
         private void OnDestroy()
         {
-            ShopManager.OnItemPoolReceived -= ShopManager_ItemPoolReceived;
+            ShopManager.Instance.OnItemPoolReceived -= ShopManager_ItemPoolReceived;
         }
 
         private void ShopManager_ItemPoolReceived(object sender, ShopManager.OnItemPoolReceivedEventArgs e)

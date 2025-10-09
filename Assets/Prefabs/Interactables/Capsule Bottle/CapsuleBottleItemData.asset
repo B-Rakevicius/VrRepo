@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 57da5c17dff04b24fadd3851700f5b81, type: 3}
-  m_Name: TeddyGrenadeItemData
+  m_Name: CapsuleBottleItemData
   m_EditorClassIdentifier: 
-  itemName: Teddy Grenade
-  itemDescription: A powerful Teddy Bear. Your childhood nightmare.
-  itemPrice: 10
-  unlocksAt: 5
-  spawnChance: 100
-  itemPrefab: {fileID: 6288251467741337038, guid: 1f6342e3fd425274898c9776389379a4, type: 3}
+  itemName: Capsule Bottle
+  itemDescription: Looks like a healing item. Is it though?
+  itemPrice: 2
+  unlocksAt: 2
+  spawnChance: 70
+  isBought: 0
+  itemPrefab: {fileID: 3674322984025359195, guid: 80ee558f6ec042348a6e9e371641918f, type: 3}
