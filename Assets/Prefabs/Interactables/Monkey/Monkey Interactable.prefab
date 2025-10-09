@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 8663328936058891938}
   - component: {fileID: 8922391799359114929}
   - component: {fileID: 4154090665175883995}
+  - component: {fileID: -24469731291383818}
   m_Layer: 0
   m_Name: Monkey Interactable
   m_TagString: Untagged
@@ -319,6 +320,19 @@ MonoBehaviour:
   wobbleLimit: 0.05
   wobbleDecaySpeed: 5
   wobbleWaveSpeed: 5
+--- !u!114 &-24469731291383818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3674322984025359195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c89a687ccb0f501448a162f651701ed2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemData: {fileID: 11400000, guid: 66df33bbe2ffdb64a95e677dacf6e2ac, type: 2}
 --- !u!1 &5864001974739488074
 GameObject:
   m_ObjectHideFlags: 0
