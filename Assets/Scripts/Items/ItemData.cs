@@ -10,6 +10,7 @@ namespace Items
         public int itemPrice;
         public int unlocksAt;  // From which round item is available to buy.
         public float spawnChance;
+        public bool isBought;
         public GameObject itemPrefab;
     }
 }

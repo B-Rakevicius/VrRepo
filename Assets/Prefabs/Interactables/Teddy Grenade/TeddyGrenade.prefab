@@ -450,6 +450,7 @@ GameObject:
   - component: {fileID: 5880399364588906021}
   - component: {fileID: 8356173948621177211}
   - component: {fileID: 8818369767944996338}
+  - component: {fileID: 7816448160970390961}
   m_Layer: 0
   m_Name: TeddyGrenade
   m_TagString: Untagged
@@ -675,6 +676,19 @@ MonoBehaviour:
   m_MinimumScaleRatio: 0.25
   m_MaximumScaleRatio: 2
   m_ScaleMultiplier: 0.25
+--- !u!114 &7816448160970390961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6288251467741337038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c89a687ccb0f501448a162f651701ed2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemData: {fileID: 11400000, guid: bd3c2f9bebd6c3c4995b907a7453e157, type: 2}
 --- !u!1 &7111167971590267585
 GameObject:
   m_ObjectHideFlags: 0
