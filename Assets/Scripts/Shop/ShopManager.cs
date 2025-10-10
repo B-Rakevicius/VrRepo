@@ -14,19 +14,21 @@ namespace Shop
     {
         public static ShopManager Instance;
         
+        [Header("Shop Items Pool")]
+        [Tooltip("All available shop items to buy.")]
         [SerializeField] private List<ItemData> items;
         
+        [Header("Shop Prefab")]
         [SerializeField] private Transform shopPrefab;
-        [SerializeField] private Transform shopSpawnPoint;
-        private Transform _spawnedShop;
         
-        private int _currentRound;
+        private Transform _spawnedShop; // Keep the reference to be able to destroy the shop.
 
         public event EventHandler<OnItemPoolReceivedEventArgs> OnItemPoolReceived;
-        public class OnItemPoolReceivedEventArgs : EventArgs
-        {
+        public class OnItemPoolReceivedEventArgs : EventArgs {
             public List<ItemData> items { get; set; }
         }
+
+        public event EventHandler OnShopAnimationFinished;
 
         private void Awake()
         {
@@ -69,20 +71,17 @@ namespace Shop
 
         private async void SpawnShop()
         {
-            _currentRound = GameManager.Instance.currentRound;
-            
-            // TODO: Create a shop falling animation. For now I will just instantiate it at fixed position.
-            _spawnedShop = Instantiate(shopPrefab, shopSpawnPoint.position, shopSpawnPoint.rotation);
-
-            await System.Threading.Tasks.Task.Delay(100);
-            
-            // Get item pool for current round
-            GetItemPool();
+            _spawnedShop = Instantiate(shopPrefab);
+            bool finished = await _spawnedShop.GetComponent<ShopAnimator>().AnimateShopFall();
+            if (finished)
+            {
+                GetItemPool();
+            }
         }
 
         private void GetItemPool()
         {
-            List<ItemData> itemPool = items.FindAll(x => x.unlocksAt <= _currentRound);
+            List<ItemData> itemPool = items.FindAll(x => x.unlocksAt <= GameManager.Instance.currentRound);
             
             OnItemPoolReceived?.Invoke(this, new OnItemPoolReceivedEventArgs { items = itemPool });
         }
