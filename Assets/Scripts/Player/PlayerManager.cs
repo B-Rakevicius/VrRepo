@@ -38,4 +38,5 @@ namespace Player
             return amount <= currentMoney;
         }
     }
+
 }
