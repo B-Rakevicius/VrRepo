@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
-using Unity.Android.Gradle.Manifest;
+//using Unity.Android.Gradle.Manifest;
 public class LootManager : MonoBehaviour
 {
     public static LootManager Instance;
