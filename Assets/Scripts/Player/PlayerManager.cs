@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Player
@@ -9,6 +10,11 @@ namespace Player
         [SerializeField] private int health = 3;
         [SerializeField] private int currentMoney = 20;
 
+        public event EventHandler<OnMoneyChangedEventArgs> OnMoneyChanged;
+        public class OnMoneyChangedEventArgs : EventArgs
+        {
+            public int Money { get; set; }
+        }
 
         private void Awake()
         {
@@ -27,6 +33,13 @@ namespace Player
         public void DeductMoney(int amount)
         {
             currentMoney -= amount;
+            OnMoneyChanged?.Invoke(this, new OnMoneyChangedEventArgs { Money = currentMoney });
+        }
+
+        public void AddMoney(int amount)
+        {
+            currentMoney += amount;
+            OnMoneyChanged?.Invoke(this, new OnMoneyChangedEventArgs { Money = currentMoney });
         }
 
         /// <summary>
@@ -36,6 +49,11 @@ namespace Player
         public bool HasEnoughMoney(int amount)
         {
             return amount <= currentMoney;
+        }
+
+        public int GetCurrentMoney()
+        {
+            return currentMoney;
         }
     }
 
