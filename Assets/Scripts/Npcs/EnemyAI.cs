@@ -3,11 +3,12 @@ using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
 using Unity.VRTemplate;
+
 public class EnemyAI : MonoBehaviour
 {
     [Header("Movement Settings")]
-    public float speed = 3.5f;
-    public float stoppingDistance = 1.5f;
+    public float speed = 1.25f;
+    public float stoppingDistance = 0.75f;
     public float rotationSpeed = 5f;
     public float gravity = 10f;
     public LayerMask groundLayer;
@@ -28,10 +29,16 @@ public class EnemyAI : MonoBehaviour
     private Vector3 velocity;
     private CharacterController controller;
 
+    [Header("Eating Settings")]
+    public float eatingRange = 1.5f;
+    private float lastEatTime;
+    private float eatCooldown = 1.0f;
+    private bool isEating = false;
+    private GameObject currentHayTarget;
+    private bool isTargetingPlayer = false;
     private void Start()
     {
-        findClosestHay(out HayTarget);
-        //HayTarget = GameObject.FindGameObjectWithTag("Player").transform;
+        FindTarget();
         controller = GetComponent<CharacterController>();
         currentHealth = maxHealth;
         if (controller == null)
@@ -39,15 +46,15 @@ public class EnemyAI : MonoBehaviour
             Debug.LogError("CharacterController is missing on enemy!");
         }
     }
-    private void findClosestHay(out Transform target)
+    private void FindTarget()
     {
-        Transform closestHay = null;
         GameObject[] hayTargets = GameObject.FindGameObjectsWithTag("Hay");
+        Transform closestHay = null;
         float closestDistance = Mathf.Infinity;
         Vector3 currentPosition = transform.position;
-
         foreach (GameObject hay in hayTargets)
         {
+            if (hay == null) continue;
             float distance = Vector3.Distance(hay.transform.position, currentPosition);
             if (distance < closestDistance)
             {
@@ -55,24 +62,109 @@ public class EnemyAI : MonoBehaviour
                 closestHay = hay.transform;
             }
         }
-        target = closestHay;
+        if (closestHay != null)
+        {
+            HayTarget = closestHay;
+            isTargetingPlayer = false;
+        }
+        else
+        {
+            // If no hay found, target the player
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player != null)
+            {
+                HayTarget = player.transform;
+                isTargetingPlayer = true;
+                Debug.Log($"{this.name} is now targeting the player.");
+            }
+            else
+            {
+                HayTarget = null;
+                Debug.LogWarning("No hay and no player found.");
+            }
+        }
+    }
+    private void TryEatHay()
+    {
+        if (isEating) return;
+        if (HayTarget == null)
+        {
+            FindTarget();
+            return;
+        }
+        if (Time.time - lastEatTime < eatCooldown) return;
+
+        float distanceToTarget = Vector3.Distance(transform.position, HayTarget.position);
+        if (distanceToTarget <= eatingRange)
+        {
+            StartCoroutine(EatWithDelay(HayTarget.gameObject));
+        }
+    }
+    private IEnumerator EatWithDelay(GameObject target)
+    {
+        isEating = true;
+        currentHayTarget = target;
+        // Play preparation animations/sounds immediately
+        PlayEatingAnimation();
+        PlayEatingSound();
+        PlayEatingVFX();
+        yield return new WaitForSeconds(0.5f);
+        if (target != null)
+        {
+            if (!isTargetingPlayer)
+            {
+                HayScript hayScript = target.GetComponent<HayScript>();
+                if (hayScript != null)
+                {
+                    hayScript.TakeBite();
+                    Debug.Log($"{this.name} took a bite of hay. Remaining health: " + hayScript.currentHealth);
+                    if (hayScript.IsDestroyed())
+                    {
+                        Debug.Log("Hay eaten, switching targets.");
+                        FindTarget();
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning("No HayScript found, destroying impostor hay immediately.");
+                    Destroy(target);
+                    FindTarget();
+                }
+            }
+            else
+            {
+                Debug.Log($"{this.name} has eaten the player. gg ez no re.");
+                EndGame();
+            }
+        }
+        lastEatTime = Time.time;
+        isEating = false;
+        currentHayTarget = null;
+    }
+    private void EndGame()
+    {
+        //GameManager.Instance.GameOver();
+        // Destroy(HayTarget.gameObject);
+        // EndGameUIMethodMaybe();
     }
     private void Update()
     {
-        if (HayTarget == null) return;
+        TryEatHay();
+        if (HayTarget == null || isEating) return;
         Vector3 direction = (HayTarget.position - transform.position).normalized;
         direction.y = 0;
         if (knockbackForce.magnitude > 0.1f)
         {
             controller.Move(knockbackForce * Time.deltaTime);
-            knockbackForce = Vector3.Lerp(knockbackForce, Vector3.zero, Time.deltaTime * 5f); // Dampen over time
+            knockbackForce = Vector3.Lerp(knockbackForce, Vector3.zero, Time.deltaTime * 5f);
         }
         if (direction != Vector3.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
-        if (Vector3.Distance(transform.position, HayTarget.position) > stoppingDistance)
+        if (Vector3.Distance(transform.position, HayTarget.position) > stoppingDistance &&
+            Vector3.Distance(transform.position, HayTarget.position) > eatingRange/2)
         {
             controller.Move(direction * speed * Time.deltaTime);
         }
@@ -92,10 +184,6 @@ public class EnemyAI : MonoBehaviour
     }
     public void TakeDamage(int damage, Vector3 hitDirection, float knockbackStrength = 0f)
     {
-        //Debug.Log("taking damage here " + (damage + (0.01f*PointManager.Instance.dmgUp)));
-
-        // currentHealth -= (int)(damage + (0.01f * PointManager.Instance.dmgUp));  
-        // old damage calculation with leveling system in use.
         currentHealth -= damage;
         if (knockbackStrength > 0)
         {
@@ -121,9 +209,7 @@ public class EnemyAI : MonoBehaviour
     {
         isDying = true;
         LootManager.Instance.TryDropLoot(transform.position);
-
         Destroy(gameObject.transform.parent.gameObject);
-
         PointManager.Instance.addSlain();
     }
     private IEnumerator ApplyShadeAfterDelay(Transform enemy, float delay)
@@ -143,5 +229,18 @@ public class EnemyAI : MonoBehaviour
                 renderer.materials.ElementAt(i).shader = ShaderManager.instance.normalShader;
             }
         }
+    }
+    private void PlayEatingAnimation()
+    {
+
+    }
+    private void PlayEatingSound()
+    {
+
+    }
+
+    private void PlayEatingVFX()
+    {
+
     }
 }

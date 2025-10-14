@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5350145691066307264}
   - component: {fileID: 2114015014158105171}
   - component: {fileID: 5115187187974332328}
+  - component: {fileID: 542737484752583399}
   m_Layer: 0
   m_Name: Hay1
   m_TagString: Hay
@@ -108,3 +109,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.45, y: 0.35, z: 0.35}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &542737484752583399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 413126605898263460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8ca834fb6ad33c4abb8736b6439a88a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 3
+  meshRenderer: {fileID: 2114015014158105171}
+  healthMaterials:
+  - {fileID: 2100000, guid: 0212f16b80d696840994f8818dbb861f, type: 2}
+  - {fileID: 2100000, guid: ab0dcf0f499bb364eb9af82ab28bd6f6, type: 2}
+  - {fileID: 2100000, guid: 5891fd1532539df4cad523079c37d3bc, type: 2}

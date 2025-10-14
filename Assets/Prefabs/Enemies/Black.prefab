@@ -4894,18 +4894,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9577cc4359d94ca03f730e8c16076, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3.5
-  stoppingDistance: 1.5
+  speed: 1.25
+  stoppingDistance: 0.75
   rotationSpeed: 5
   gravity: 10
   groundLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   maxHealth: 10
   currentHealth: 0
   enemyRenderer: {fileID: 0}
   hitFlashDuration: 0.2
   knockbackResistance: 0.5
+  eatingRange: 1.5
 --- !u!143 &4777872531695475722
 CharacterController:
   m_ObjectHideFlags: 0

@@ -28,8 +28,12 @@ namespace Player
                 Instance = this;
                 DontDestroyOnLoad(this);
             }
+            FindHaySetHealth();
         }
-
+        private void FindHaySetHealth()
+        {
+            health = UnityEngine.Object.FindObjectsByType<HayScript>(FindObjectsSortMode.None).Length;
+        }
         public void DeductMoney(int amount)
         {
             currentMoney -= amount;
