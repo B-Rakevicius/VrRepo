@@ -1,3 +1,4 @@
+using Items;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -43,6 +44,15 @@ namespace Player
                     IXRSelectInteractable interactable = selectInteractor.interactablesSelected[0];
                     
                     Debug.Log($"Picked up: {interactable.transform.name}");
+
+                    if (interactable.transform.TryGetComponent(out VacuumCleaner vacuumCleaner))
+                    {
+                        vacuumCleaner.ActivateCleaner();
+                    }
+                    else
+                    {
+                        Debug.Log("Item is not a vacuum cleaner!");
+                    }
                 }
             }
         }
