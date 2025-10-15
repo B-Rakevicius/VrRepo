@@ -14,25 +14,42 @@ namespace Player
 
         // Reference to left hand interactor
         [SerializeField] private XRInteractionGroup m_InteractionGroup;
+        
+        // Interactable object
+        private IXRSelectInteractable m_Interactable;
+        
+        // Input values
+        private float m_ActivateVacuumValue;
+        
+        // Optimization booleans
+        private bool m_IsHolding;
 
         private void Awake()
         {
             m_InteractionGroup = GetComponent<XRInteractionGroup>();
         }
-        
-        private void Start()
+
+        private void Update()
         {
-            // Subscribe to input events
-            m_ActivateVacuum.action.started += Input_ActivateVacuum;
+            GatherInput();
         }
 
-        private void OnDestroy()
+        private void GatherInput()
         {
-            m_ActivateVacuum.action.started -= Input_ActivateVacuum;
+            m_ActivateVacuumValue = m_ActivateVacuum.action.ReadValue<float>();
+            
+            // We are holding the button. Try to do the cleaning.
+            if (m_ActivateVacuumValue > 0)
+            {
+                IsHoldingInteractable();
+                if (m_IsHolding)
+                {
+                    ActivateVacuum();
+                }
+            }
         }
-        
-        // Is called when Activate button is pressed on Left Controller
-        private void Input_ActivateVacuum(InputAction.CallbackContext obj)
+
+        private void IsHoldingInteractable()
         {
             IXRInteractor activeInteractor = m_InteractionGroup.activeInteractor;
             if (activeInteractor is IXRSelectInteractor selectInteractor)
@@ -41,19 +58,40 @@ namespace Player
                 if (selectInteractor.hasSelection)
                 {
                     // Get the interactable GameObject
-                    IXRSelectInteractable interactable = selectInteractor.interactablesSelected[0];
-                    
-                    Debug.Log($"Picked up: {interactable.transform.name}");
+                    m_Interactable = selectInteractor.interactablesSelected[0];
 
-                    if (interactable.transform.TryGetComponent(out VacuumCleaner vacuumCleaner))
-                    {
-                        vacuumCleaner.ActivateCleaner();
-                    }
-                    else
-                    {
-                        Debug.Log("Item is not a vacuum cleaner!");
-                    }
+                    Debug.Log($"Picked up: {m_Interactable.transform.name}");
+                    
+                    m_IsHolding = true;
                 }
+                else
+                {
+                    ResetInteractableRef();
+                }
+            }
+            else
+            {
+                ResetInteractableRef();
+            }
+        }
+
+        private void ResetInteractableRef()
+        {
+            Debug.Log("Not holding an interactable!");
+            m_IsHolding = false;
+            m_Interactable = null;
+        }
+
+        private void ActivateVacuum()
+        {
+            // If it's Vacuum Cleaner, activate it
+            if (m_Interactable.transform.TryGetComponent(out VacuumCleaner vacuumCleaner))
+            {
+                vacuumCleaner.ActivateCleaner();
+            }
+            else // It's a regular item or something else
+            {
+                Debug.Log("Item is not a vacuum cleaner!");
             }
         }
     }
