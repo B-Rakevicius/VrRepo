@@ -1,10 +1,19 @@
 using TMPro;
 using UnityEngine;
-
 public class RadioScript : MonoBehaviour
 {
     public TextMeshProUGUI textTL, textBL, textTMid, textTR, textBR;
-    private Transform endTL, endBL, endTMid, endTR, endBR;
+
+    [Header("Text Field Configuration")]
+    [SerializeField] private TextFieldCount textFieldCount = TextFieldCount.Five;
+    public enum TextFieldCount
+    {
+        One = 1,
+        Two = 2,
+        Three = 3,
+        Four = 4,
+        Five = 5
+    }
     private float animationDuration = 0.5f;
     private float fadeOutDuration = 0.2f;
     private Vector3[] targetPositions;
@@ -18,7 +27,6 @@ public class RadioScript : MonoBehaviour
     private CanvasGroup[] canvasGroups;
     private bool isPickedUp = false;
     private Vector3[] originalPositions;
-
     void Start()
     {
         InitializeCanvasGroups();
@@ -26,11 +34,38 @@ public class RadioScript : MonoBehaviour
         SaveOriginalScales();
         exitHoverHide();
         SetTextsEnabled(false);
+        UpdateUsableTextFieldsInfo();
     }
-
+    [Header("Usable Text Fields")]
+    [SerializeField, TextArea(1, 3)] private string usableTextFieldsInfo = "";
+    private void OnValidate()
+    {
+        UpdateUsableTextFieldsInfo();
+    }
+    private void UpdateUsableTextFieldsInfo()
+    {
+        switch (textFieldCount)
+        {
+            case TextFieldCount.One:
+                usableTextFieldsInfo = "TMid";
+                break;
+            case TextFieldCount.Two:
+                usableTextFieldsInfo = "TL, TR";
+                break;
+            case TextFieldCount.Three:
+                usableTextFieldsInfo = "TL, TMid, TR";
+                break;
+            case TextFieldCount.Four:
+                usableTextFieldsInfo = "TL, BL, TR, BR";
+                break;
+            case TextFieldCount.Five:
+                usableTextFieldsInfo = "TL, BL, TMid, TR, BR";
+                break;
+        }
+    }
     private void InitializeCanvasGroups()
     {
-        TextMeshProUGUI[] texts = { textTL, textBL, textTMid, textTR, textBR };
+        TextMeshProUGUI[] texts = GetActiveTexts();
         canvasGroups = new CanvasGroup[texts.Length];
 
         for (int i = 0; i < texts.Length; i++)
@@ -45,10 +80,9 @@ public class RadioScript : MonoBehaviour
             }
         }
     }
-
     private void SaveOriginalScales()
     {
-        TextMeshProUGUI[] texts = { textTL, textBL, textTMid, textTR, textBR };
+        TextMeshProUGUI[] texts = GetActiveTexts();
         originalScales = new Vector3[texts.Length];
         originalPositions = new Vector3[texts.Length];
 
@@ -61,26 +95,93 @@ public class RadioScript : MonoBehaviour
             }
         }
     }
-
     private void SetupPickupPositions()
     {
-        TextMeshProUGUI[] texts = { textTL, textBL, textTMid, textTR, textBR };
-        pickupPositions = new Vector3[5];
+        TextMeshProUGUI[] texts = GetActiveTexts();
+        pickupPositions = new Vector3[texts.Length];
 
-        // Set up pickup positions based on your specifications
-        if (textTL != null) pickupPositions[0] = new Vector3(0.13f, 0.25f, 0.171f);
-        if (textTMid != null) pickupPositions[2] = new Vector3(0f, 0.25f, 0.171f);
-        if (textTR != null) pickupPositions[3] = new Vector3(-0.13f, 0.25f, 0.171f);
-        if (textBL != null) pickupPositions[1] = new Vector3(-0.13f, 0.15f, 0.171f);
-        if (textBR != null) pickupPositions[4] = new Vector3(0.13f, 0.15f, 0.171f);
+        switch ((int)textFieldCount)
+        {
+            case 1:
+                if (texts.Length > 0 && texts[0] != null)
+                    pickupPositions[0] = new Vector3(0f, 0.25f, 0.171f);
+                break;
+
+            case 2:
+                if (texts.Length > 0 && texts[0] != null)
+                    pickupPositions[0] = new Vector3(0.13f, 0.25f, 0.171f); // TL
+                if (texts.Length > 1 && texts[1] != null)
+                    pickupPositions[1] = new Vector3(-0.13f, 0.25f, 0.171f); // TR
+                break;
+
+            case 3:
+                if (texts.Length > 0 && texts[0] != null)
+                    pickupPositions[0] = new Vector3(0.13f, 0.25f, 0.171f); // TL
+                if (texts.Length > 1 && texts[1] != null)
+                    pickupPositions[1] = new Vector3(0f, 0.25f, 0.171f); // TMid
+                if (texts.Length > 2 && texts[2] != null)
+                    pickupPositions[2] = new Vector3(-0.13f, 0.25f, 0.171f); // TR
+                break;
+
+            case 4:
+                if (texts.Length > 0 && texts[0] != null)
+                    pickupPositions[0] = new Vector3(0.13f, 0.25f, 0.171f); // TL
+                if (texts.Length > 1 && texts[1] != null)
+                    pickupPositions[1] = new Vector3(-0.13f, 0.15f, 0.171f); // BL
+                if (texts.Length > 2 && texts[2] != null)
+                    pickupPositions[2] = new Vector3(-0.13f, 0.25f, 0.171f); // TR
+                if (texts.Length > 3 && texts[3] != null)
+                    pickupPositions[3] = new Vector3(0.13f, 0.15f, 0.171f); // BR
+                break;
+
+            case 5:
+                if (texts.Length > 0 && texts[0] != null)
+                    pickupPositions[0] = new Vector3(0.13f, 0.25f, 0.171f); // TL
+                if (texts.Length > 1 && texts[1] != null)
+                    pickupPositions[1] = new Vector3(-0.13f, 0.15f, 0.171f); // BL
+                if (texts.Length > 2 && texts[2] != null)
+                    pickupPositions[2] = new Vector3(0f, 0.25f, 0.171f); // TMid
+                if (texts.Length > 3 && texts[3] != null)
+                    pickupPositions[3] = new Vector3(-0.13f, 0.25f, 0.171f); // TR
+                if (texts.Length > 4 && texts[4] != null)
+                    pickupPositions[4] = new Vector3(0.13f, 0.15f, 0.171f); // BR
+                break;
+        }
     }
-
+    private TextMeshProUGUI[] GetActiveTexts()
+    {
+        switch ((int)textFieldCount)
+        {
+            case 1:
+                return new TextMeshProUGUI[] { textTMid };
+            case 2:
+                return new TextMeshProUGUI[] { textTL, textTR };
+            case 3:
+                return new TextMeshProUGUI[] { textTL, textTMid, textTR };
+            case 4:
+                return new TextMeshProUGUI[] { textTL, textBL, textTR, textBR };
+            case 5:
+                return new TextMeshProUGUI[] { textTL, textBL, textTMid, textTR, textBR };
+            default:
+                return new TextMeshProUGUI[] { textTMid };
+        }
+    }
     private float timer = 0f;
     private float updateInterval = 0.3f;
-
     void Update()
     {
-        if (textTL.enabled == true)
+        TextMeshProUGUI[] activeTexts = GetActiveTexts();
+        bool anyTextEnabled = false;
+
+        foreach (var text in activeTexts)
+        {
+            if (text != null && text.enabled)
+            {
+                anyTextEnabled = true;
+                break;
+            }
+        }
+        if (anyTextEnabled)
         {
             timer += Time.deltaTime;
             if (timer >= updateInterval)
@@ -122,58 +223,46 @@ public class RadioScript : MonoBehaviour
             }
         }
     }
-
     private void updateTexts()
     {
-        // Your text update logic here
-    }
 
+    }
     public void onPickUp()
     {
         isPickedUp = true;
         SetupPickupPositions();
-
-        // Immediately move and scale texts for pickup view
-        TextMeshProUGUI[] texts = { textTL, textBL, textTMid, textTR, textBR };
+        TextMeshProUGUI[] texts = GetActiveTexts();
 
         for (int i = 0; i < texts.Length; i++)
         {
-            if (texts[i] != null && pickupPositions[i] != null)
+            if (texts[i] != null && i < pickupPositions.Length && pickupPositions[i] != null)
             {
                 texts[i].transform.localPosition = pickupPositions[i];
                 texts[i].transform.localScale = pickupScale;
             }
         }
-
-        // Show texts if they were visible before pickup
         if (isCurrentlyVisible || isAnimating)
         {
             SetTextsEnabled(true);
             SetAlpha(1f);
         }
     }
-
     public void onPutDown()
     {
         isPickedUp = false;
-
-        // Restore original scales and positions
-        TextMeshProUGUI[] texts = { textTL, textBL, textTMid, textTR, textBR };
+        TextMeshProUGUI[] texts = GetActiveTexts();
 
         for (int i = 0; i < texts.Length; i++)
         {
-            if (texts[i] != null)
+            if (texts[i] != null && i < originalScales.Length)
             {
                 texts[i].transform.localScale = originalScales[i];
                 texts[i].transform.localPosition = originalPositions[i];
             }
         }
-
-        // Fade out texts on put down
         if (!isCurrentlyVisible && !isAnimating) return;
         StartHoverMove(false);
     }
-
     public void onHoverShow()
     {
         if (isCurrentlyVisible) return;
@@ -181,8 +270,6 @@ public class RadioScript : MonoBehaviour
         updateTexts();
         SetTextsEnabled(true);
         SetAlpha(1f);
-
-        // If picked up, show texts immediately at pickup positions
         if (isPickedUp)
         {
             isCurrentlyVisible = true;
@@ -192,52 +279,44 @@ public class RadioScript : MonoBehaviour
             StartHoverMove(true);
         }
     }
-
     public void exitHoverHide()
     {
         if (!isCurrentlyVisible && !isAnimating) return;
-
-        // If picked up, don't hide on hover exit
         if (isPickedUp) return;
-
         StartHoverMove(false);
     }
-
     private void StartHoverMove(bool goingIn)
     {
-        // Don't animate position if picked up - just handle visibility
         if (isPickedUp && goingIn)
         {
             isCurrentlyVisible = true;
             return;
         }
-
         isAnimating = true;
         isShowing = goingIn;
         animationTimer = 0f;
     }
-
     private void CompleteAnimation(bool visible)
     {
         isAnimating = false;
         animationTimer = 0f;
         isCurrentlyVisible = visible;
-
         if (!visible)
         {
             SetTextsEnabled(false);
         }
     }
-
     private void SetTextsEnabled(bool enabled)
     {
-        textTL.enabled = enabled;
-        textBL.enabled = enabled;
-        textTMid.enabled = enabled;
-        textTR.enabled = enabled;
-        textBR.enabled = enabled;
+        TextMeshProUGUI[] texts = GetActiveTexts();
+        foreach (var text in texts)
+        {
+            if (text != null)
+            {
+                text.enabled = enabled;
+            }
+        }
     }
-
     private void SetAlpha(float alpha)
     {
         for (int i = 0; i < canvasGroups.Length; i++)
@@ -248,17 +327,13 @@ public class RadioScript : MonoBehaviour
             }
         }
     }
-
     private void AnimateTexts(float progress, bool showing)
     {
-        // Don't animate positions if picked up
         if (isPickedUp) return;
-
-        TextMeshProUGUI[] texts = { textTL, textBL, textTMid, textTR, textBR };
-
+        TextMeshProUGUI[] texts = GetActiveTexts();
         for (int i = 0; i < texts.Length; i++)
         {
-            if (texts[i] != null)
+            if (texts[i] != null && i < targetPositions.Length)
             {
                 if (showing)
                 {
@@ -267,33 +342,26 @@ public class RadioScript : MonoBehaviour
                 }
                 else
                 {
-                    // When hiding, move back to start position (only if not picked up)
                     texts[i].transform.localPosition = Vector3.Lerp(targetPositions[i], new Vector3(0f, 0.2f, 0f), progress);
                 }
             }
         }
     }
-
     private float EaseInOut(float t)
     {
         return t < 0.5f ? 2f * t * t : -1f + (4f - 2f * t) * t;
     }
-
     private void saveTextFinalCoords()
     {
-        TextMeshProUGUI[] texts = { textTL, textBL, textTMid, textTR, textBR };
-        targetPositions = new Vector3[5];
+        TextMeshProUGUI[] texts = GetActiveTexts();
+        targetPositions = new Vector3[texts.Length];
 
-        if (textTL != null) targetPositions[0] = textTL.transform.localPosition;
-        if (textBL != null) targetPositions[1] = textBL.transform.localPosition;
-        if (textTMid != null) targetPositions[2] = textTMid.transform.localPosition;
-        if (textTR != null) targetPositions[3] = textTR.transform.localPosition;
-        if (textBR != null) targetPositions[4] = textBR.transform.localPosition;
-
-        endTL = textTL?.transform;
-        endBL = textBL?.transform;
-        endTMid = textTMid?.transform;
-        endTR = textTR?.transform;
-        endBR = textBR?.transform;
+        for (int i = 0; i < texts.Length; i++)
+        {
+            if (texts[i] != null)
+            {
+                targetPositions[i] = texts[i].transform.localPosition;
+            }
+        }
     }
 }

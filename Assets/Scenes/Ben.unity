@@ -14852,6 +14852,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1720026050266331971, guid: 1cf3fea9a9453a6498595957e49a2584, type: 3}
+      propertyPath: textFieldCount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1720026050266331971, guid: 1cf3fea9a9453a6498595957e49a2584, type: 3}
+      propertyPath: usableTextFieldsInfo
+      value: TL, BL, TMid, TR, BR
+      objectReference: {fileID: 0}
     - target: {fileID: 8787092459106336950, guid: 1cf3fea9a9453a6498595957e49a2584, type: 3}
       propertyPath: m_HoverExited.m_PersistentCalls.m_Calls.Array.size
       value: 1
