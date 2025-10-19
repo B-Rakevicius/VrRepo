@@ -14852,6 +14852,62 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8787092459106336950, guid: 1cf3fea9a9453a6498595957e49a2584, type: 3}
+      propertyPath: m_HoverExited.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8787092459106336950, guid: 1cf3fea9a9453a6498595957e49a2584, type: 3}
+      propertyPath: m_HoverEntered.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8787092459106336950, guid: 1cf3fea9a9453a6498595957e49a2584, type: 3}
+      propertyPath: m_HoverExited.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8787092459106336950, guid: 1cf3fea9a9453a6498595957e49a2584, type: 3}
+      propertyPath: m_HoverEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8787092459106336950, guid: 1cf3fea9a9453a6498595957e49a2584, type: 3}
+      propertyPath: m_HoverExited.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2133657032}
+    - target: {fileID: 8787092459106336950, guid: 1cf3fea9a9453a6498595957e49a2584, type: 3}
+      propertyPath: m_HoverEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2133657032}
+    - target: {fileID: 8787092459106336950, guid: 1cf3fea9a9453a6498595957e49a2584, type: 3}
+      propertyPath: m_HoverExited.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8787092459106336950, guid: 1cf3fea9a9453a6498595957e49a2584, type: 3}
+      propertyPath: m_HoverEntered.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8787092459106336950, guid: 1cf3fea9a9453a6498595957e49a2584, type: 3}
+      propertyPath: m_HoverExited.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: exitHoverHide
+      objectReference: {fileID: 0}
+    - target: {fileID: 8787092459106336950, guid: 1cf3fea9a9453a6498595957e49a2584, type: 3}
+      propertyPath: m_HoverEntered.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: onHoverShow
+      objectReference: {fileID: 0}
+    - target: {fileID: 8787092459106336950, guid: 1cf3fea9a9453a6498595957e49a2584, type: 3}
+      propertyPath: m_HoverExited.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: RadioScript, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8787092459106336950, guid: 1cf3fea9a9453a6498595957e49a2584, type: 3}
+      propertyPath: m_HoverEntered.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: RadioScript, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8787092459106336950, guid: 1cf3fea9a9453a6498595957e49a2584, type: 3}
+      propertyPath: m_HoverExited.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8787092459106336950, guid: 1cf3fea9a9453a6498595957e49a2584, type: 3}
+      propertyPath: m_HoverEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -18560,6 +18616,17 @@ Transform:
   - {fileID: 131761362}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2133657032 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1720026050266331971, guid: 1cf3fea9a9453a6498595957e49a2584, type: 3}
+  m_PrefabInstance: {fileID: 1654425633}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0000e4a04d3f25444851deeb1aef51c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2142756451
 GameObject:
   m_ObjectHideFlags: 0
