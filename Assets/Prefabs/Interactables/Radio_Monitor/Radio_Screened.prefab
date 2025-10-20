@@ -138,6 +138,8 @@ MonoBehaviour:
   textTMid: {fileID: 4759733705831735253}
   textTR: {fileID: 6626298295705699011}
   textBR: {fileID: 3535914781930576034}
+  textFieldCount: 5
+  usableTextFieldsInfo: TL, BL, TMid, TR, BR
 --- !u!114 &8787092459106336950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -628,11 +630,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Sheep left: hitler
-
-    Hay left:
-
-'
+  m_text: "Sheep left: \nHay left:\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -843,7 +841,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Sheep left: burble alarm
+  m_text: 'Sheep left:
 
     Hay left:'
   m_isRightToLeft: 0

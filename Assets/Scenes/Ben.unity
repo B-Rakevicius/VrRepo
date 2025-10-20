@@ -731,6 +731,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd05d942801a0bc499c940a5a2b4bcc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inbetweenWaves: {fileID: 158986033}
 --- !u!4 &94352350
 Transform:
   m_ObjectHideFlags: 0
@@ -3198,13 +3199,12 @@ MonoBehaviour:
   player: {fileID: 471608509}
   spawnRadius: 50
   waveInterval: 5
+  spawnBuffer: 0
   maxEnemiesPerWave: 25
+  totalEnemies: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
-  totalEnemies: 0
-  gameTimer: 0
-  spawnBuffer: 0
   activeEnemies: []
 --- !u!4 &397912533 stripped
 Transform:
@@ -6317,7 +6317,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &694140240
 MeshCollider:
   m_ObjectHideFlags: 0
