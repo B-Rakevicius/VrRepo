@@ -145,7 +145,6 @@ public class EnemyAI : MonoBehaviour
     {
         GameManager.Instance.GameOver();
         // Destroy(HayTarget.gameObject);
-        // EndGameUIMethodMaybe();
     }
     private void Update()
     {

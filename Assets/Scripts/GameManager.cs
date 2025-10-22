@@ -41,11 +41,11 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         Debug.Log(" Implement game over here ");
-        // EndGameUIMethodMaybe();
+        // send call to UI Manager here to end game
     }
     /// <summary>
     /// Gets called from EnemySpawner when conditions are met.
-    /// No enemies alive and the wave spawning is paused.
+    /// No enemies alive and the wave counter is a multiple of 5 ( 5/10/15/...)
     /// </summary>
     public void SetInbetweenWavesState(bool shouldBeActive)
     {
