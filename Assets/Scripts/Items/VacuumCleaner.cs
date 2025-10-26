@@ -1,11 +1,14 @@
 using System.Collections.Generic;
 using System.Linq;
+using Player;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Items
 {
     public class VacuumCleaner : MonoBehaviour
     {
+
         [Header("Vacuum Settings")] 
         [SerializeField] private Transform suctionPoint;
         [SerializeField] private float suctionRange = 10f;
@@ -13,10 +16,34 @@ namespace Items
         [SerializeField] private float suctionStrength = 20f;
         [SerializeField] private float orbCollectThreshold = 0.2f;
         [SerializeField] private LayerMask orbLayer;
-
-        private bool isVacuuming = false;
-        private HashSet<Rigidbody> affectedOrbs = new HashSet<Rigidbody>();
         
+        [Header("Liquid Settings")]
+        [SerializeField] private Material liquidMaterial;
+        [SerializeField] private float emptyValue = 0.14f;
+        [SerializeField] private float fullValue = -0.14f;
+        private static readonly int FillAmount = Shader.PropertyToID("_FillAmount");
+
+        private HashSet<Rigidbody> affectedOrbs = new HashSet<Rigidbody>();
+
+
+        private void Start()
+        {
+            PlayerManager.Instance.OnMoneyChanged += PlayerManager_MoneyChanged;
+        }
+
+        private void OnDestroy()
+        {
+            PlayerManager.Instance.OnMoneyChanged -= PlayerManager_MoneyChanged;
+        }
+
+        private void PlayerManager_MoneyChanged(object sender, PlayerManager.OnMoneyChangedEventArgs e)
+        {
+            // Update liquid shader visual
+            // Remap Max money values
+            float t = Mathf.InverseLerp(0, PlayerManager.Instance.MaxMoney, PlayerManager.Instance.CurrentMoney);
+            float fillAmount = Mathf.Lerp(emptyValue, fullValue, t);
+            liquidMaterial.SetFloat(FillAmount, fillAmount);
+        }
 
         public void VacuumOrbs()
         {
@@ -51,15 +78,19 @@ namespace Items
                 Vector3 velocity = (direction + spiralDir * spiralStrength).normalized * pullSpeed;
                 
                 rb.MovePosition(rb.position + velocity * Time.deltaTime);
-
-
+                
                 if (distance < orbCollectThreshold)
                 {
-                    affectedOrbs.Remove(rb);
-                    orb.Collect();
-
-                    // Add score
-                    // GameManager.Instance.OnScoreCollected
+                    if (PlayerManager.Instance.CurrentMoney >= PlayerManager.Instance.MaxMoney)
+                    {
+                        // Don't consume these orbs
+                        continue;
+                    }
+                    else
+                    {
+                        affectedOrbs.Remove(rb);
+                        orb.Collect();
+                    }
                 }
             }
         }

@@ -1,3 +1,4 @@
+using Player;
 using UnityEngine;
 
 namespace Items
@@ -12,9 +13,12 @@ namespace Items
 
         public void Collect()
         {
-            Destroy(gameObject);
+            // Add money
+            PlayerManager.Instance.AddMoney(value);
             
             // TODO: Add particles, sfx?
+            
+            Destroy(gameObject);
         }
     }
 }

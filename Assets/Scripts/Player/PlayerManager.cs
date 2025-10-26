@@ -9,6 +9,10 @@ namespace Player
         
         [SerializeField] private int health = 3;
         [SerializeField] private int currentMoney = 20;
+        [SerializeField] private int maxMoney = 100;
+        
+        public int CurrentMoney => currentMoney;
+        public int MaxMoney => maxMoney;
 
         public event EventHandler<OnMoneyChangedEventArgs> OnMoneyChanged;
         public class OnMoneyChangedEventArgs : EventArgs
@@ -30,6 +34,13 @@ namespace Player
             }
             FindHaySetHealth();
         }
+
+        private void Start()
+        {
+            // Invoke the event so that liquid shader can properly update
+            OnMoneyChanged?.Invoke(this, new OnMoneyChangedEventArgs { Money = currentMoney });
+        }
+        
         private void FindHaySetHealth()
         {
             health = UnityEngine.Object.FindObjectsByType<HayScript>(FindObjectsSortMode.None).Length;
@@ -37,12 +48,14 @@ namespace Player
         public void DeductMoney(int amount)
         {
             currentMoney -= amount;
+            currentMoney = Mathf.Clamp(currentMoney, 0, maxMoney);
             OnMoneyChanged?.Invoke(this, new OnMoneyChangedEventArgs { Money = currentMoney });
         }
 
         public void AddMoney(int amount)
         {
             currentMoney += amount;
+            currentMoney = Mathf.Clamp(currentMoney, 0, maxMoney);
             OnMoneyChanged?.Invoke(this, new OnMoneyChangedEventArgs { Money = currentMoney });
         }
 
@@ -53,11 +66,6 @@ namespace Player
         public bool HasEnoughMoney(int amount)
         {
             return amount <= currentMoney;
-        }
-
-        public int GetCurrentMoney()
-        {
-            return currentMoney;
         }
     }
 
