@@ -41,23 +41,6 @@ namespace Items
         }
         public void VacuumOrbs()
         {
-            // First, check all currently affected orbs and restore gravity to those no longer in cone
-            foreach (Rigidbody rb in affectedOrbs.ToList())
-            {
-                if (rb == null)
-                {
-                    affectedOrbs.Remove(rb);
-                    continue;
-                }
-
-                if (!IsInCone(rb.position))
-                {
-                    rb.useGravity = true;
-                    affectedOrbs.Remove(rb);
-                }
-            }
-
-            // Now find new orbs to vacuum
             Collider[] colliders = Physics.OverlapSphere(suctionPoint.position, suctionRange, orbLayer);
 
             foreach (Collider collider in colliders)
@@ -67,14 +50,9 @@ namespace Items
                 if (!IsInCone(collider.transform.position))
                     continue;
                 Rigidbody rb = collider.GetComponent<Rigidbody>();
-
-                // If not already affected, add to set and disable gravity
-                if (!affectedOrbs.Contains(rb))
-                {
-                    affectedOrbs.Add(rb);
-                    rb.useGravity = false;
-                }
-
+                affectedOrbs.Add(rb);
+                // Disable orb gravity while vacuuming
+                rb.useGravity = false;
                 // Get the direction from orb to vacuum
                 Vector3 direction = (suctionPoint.position - rb.position).normalized;
                 direction += Vector3.up * 0.2f;
