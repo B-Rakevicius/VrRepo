@@ -9,10 +9,10 @@ namespace Player
 {
     public class HandInteractableChecker : MonoBehaviour
     {
-        // Reference to input action
+        [Tooltip("Reference to input action")]
         [SerializeField] private InputActionReference m_ActivateVacuum;
-
-        // Reference to left hand interactor
+        
+        [Tooltip("Reference to left hand interactor")]
         [SerializeField] private XRInteractionGroup m_InteractionGroup;
         
         // Interactable object
@@ -24,6 +24,9 @@ namespace Player
         // Optimization booleans
         private bool m_IsHolding;
 
+        private bool m_stopCleaning = true;
+
+        
         private void Awake()
         {
             m_InteractionGroup = GetComponent<XRInteractionGroup>();
@@ -42,36 +45,43 @@ namespace Player
             if (m_ActivateVacuumValue > 0)
             {
                 IsHoldingInteractable();
-                if (m_IsHolding)
-                {
-                    ActivateVacuum();
-                }
+                if (!m_IsHolding) return;
+                ActivateVacuum();
             }
+            else
+            {
+                if (m_stopCleaning) return;
+                if (m_Interactable == null) return;
+                if (!m_Interactable.transform.TryGetComponent(out VacuumCleaner vacuumCleaner)) return;
+                vacuumCleaner.StopCleaner();
+                m_stopCleaning = true;
+            }
+
         }
 
         private void IsHoldingInteractable()
         {
             IXRInteractor activeInteractor = m_InteractionGroup.activeInteractor;
-            if (activeInteractor is IXRSelectInteractor selectInteractor)
+            if (activeInteractor is not IXRSelectInteractor selectInteractor)
+            {
+                ResetInteractableRef();
+            }
+            else
             {
                 // Check if we have an object selected
-                if (selectInteractor.hasSelection)
+                if (!selectInteractor.hasSelection)
+                {
+                    ResetInteractableRef();
+                }
+                else
                 {
                     // Get the interactable GameObject
                     m_Interactable = selectInteractor.interactablesSelected[0];
 
                     Debug.Log($"Picked up: {m_Interactable.transform.name}");
-                    
+
                     m_IsHolding = true;
                 }
-                else
-                {
-                    ResetInteractableRef();
-                }
-            }
-            else
-            {
-                ResetInteractableRef();
             }
         }
 
@@ -87,7 +97,8 @@ namespace Player
             // If it's Vacuum Cleaner, activate it
             if (m_Interactable.transform.TryGetComponent(out VacuumCleaner vacuumCleaner))
             {
-                vacuumCleaner.ActivateCleaner();
+                vacuumCleaner.VacuumOrbs();
+                m_stopCleaning = false;
             }
             else // It's a regular item or something else
             {

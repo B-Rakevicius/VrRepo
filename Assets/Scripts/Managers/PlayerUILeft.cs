@@ -28,7 +28,7 @@ namespace Managers
         private void Start()
         {
             PlayerManager.Instance.OnMoneyChanged += PlayerManager_MoneyChanged;
-            UpdateMoneyText(PlayerManager.Instance.GetCurrentMoney());
+            UpdateMoneyText(PlayerManager.Instance.CurrentMoney);
         }
 
         private void OnDestroy()
