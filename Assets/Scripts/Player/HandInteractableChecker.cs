@@ -52,7 +52,7 @@ namespace Player
             {
                 if (m_stopCleaning) return;
                 if (m_Interactable == null) return;
-                if (!m_Interactable.transform.TryGetComponent(out VacuumCleaner vacuumCleaner)) return;
+                if (!m_Interactable.transform.TryGetComponent(out VacuumCleaner2 vacuumCleaner)) return;
                 vacuumCleaner.StopCleaner();
                 m_stopCleaning = true;
             }
@@ -95,7 +95,7 @@ namespace Player
         private void ActivateVacuum()
         {
             // If it's Vacuum Cleaner, activate it
-            if (m_Interactable.transform.TryGetComponent(out VacuumCleaner vacuumCleaner))
+            if (m_Interactable.transform.TryGetComponent(out VacuumCleaner2 vacuumCleaner))
             {
                 vacuumCleaner.VacuumOrbs();
                 m_stopCleaning = false;
