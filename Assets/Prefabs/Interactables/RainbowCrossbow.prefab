@@ -142,7 +142,7 @@ Transform:
   m_GameObject: {fileID: 5896433846636258493}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.287, z: 1.714}
+  m_LocalPosition: {x: 0, y: 0.287, z: 4.5}
   m_LocalScale: {x: 1.4999999, y: 1.4999999, z: 1.4999999}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -674,7 +674,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootPoint: {fileID: 9013386399095008940}
-  shootForce: 20
+  shootForce: 35
   shootRange: 10
   fireRate: 1
   targetLayer:

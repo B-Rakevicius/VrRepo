@@ -4,7 +4,7 @@ using System.Linq;
 using System.Collections.Generic;
 using Unity.VRTemplate;
 
-public class EnemyAI : MonoBehaviour
+public class EnemyAI : MonoBehaviour, IDamageable
 {
     [Header("Movement Settings")]
     public float speed = 1.25f;
@@ -181,9 +181,12 @@ public class EnemyAI : MonoBehaviour
     {
         return Physics.Raycast(transform.position, Vector3.down, 1.1f, groundLayer);
     }
-    public void TakeDamage(int damage, Vector3 hitDirection, float knockbackStrength = 0f)
+    public void TakeDamage(float damage, Vector3 hitDirection, float knockbackStrength = 0f, string source = "")
     {
-        currentHealth -= damage;
+        int intDamage = Mathf.RoundToInt(damage);
+        currentHealth -= intDamage;
+        if (!string.IsNullOrEmpty(source))
+            Debug.Log($"Hit by {source} for {damage} damage!");
         if (knockbackStrength > 0)
         {
             ApplyKnockback(hitDirection, knockbackStrength);
@@ -247,4 +250,8 @@ public class EnemyAI : MonoBehaviour
     {
 
     }
+}
+public interface IDamageable
+{
+    void TakeDamage(float damage, Vector3 hitDirection, float knockbackStrength = 0f, string source = "");
 }
