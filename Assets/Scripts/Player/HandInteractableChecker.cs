@@ -1,6 +1,7 @@
 using Items;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
@@ -10,23 +11,22 @@ namespace Player
     public class HandInteractableChecker : MonoBehaviour
     {
         [Tooltip("Reference to input action")]
-        [SerializeField] private InputActionReference m_ActivateVacuum;
+        [SerializeField] private InputActionReference m_InputAction;
         
-        [Tooltip("Reference to left hand interactor")]
+        [Tooltip("Reference to left/right hand interactor")]
         [SerializeField] private XRInteractionGroup m_InteractionGroup;
-        
+
         // Interactable object
         private IXRSelectInteractable m_Interactable;
-        
+
         // Input values
-        private float m_ActivateVacuumValue;
+        private float m_InputValue;
         
         // Optimization booleans
         private bool m_IsHolding;
-
         private bool m_stopCleaning = true;
 
-        
+
         private void Awake()
         {
             m_InteractionGroup = GetComponent<XRInteractionGroup>();
@@ -39,24 +39,23 @@ namespace Player
 
         private void GatherInput()
         {
-            m_ActivateVacuumValue = m_ActivateVacuum.action.ReadValue<float>();
+            m_InputValue = m_InputAction.action.ReadValue<float>();
             
-            // We are holding the button. Try to do the cleaning.
-            if (m_ActivateVacuumValue > 0)
+            // We are holding the button. Try to activate currently held item
+            if (m_InputValue > 0)
             {
                 IsHoldingInteractable();
                 if (!m_IsHolding) return;
-                ActivateVacuum();
+                ActivateHeldItem();
             }
             else
             {
-                if (m_stopCleaning) return;
                 if (m_Interactable == null) return;
-                if (!m_Interactable.transform.TryGetComponent(out VacuumCleaner vacuumCleaner)) return;
-                vacuumCleaner.StopCleaner();
-                m_stopCleaning = true;
+                if (m_Interactable.transform.TryGetComponent(out ITool tool))
+                {
+                    tool.DeactivateTool();
+                }
             }
-
         }
 
         private void IsHoldingInteractable()
@@ -77,9 +76,6 @@ namespace Player
                 {
                     // Get the interactable GameObject
                     m_Interactable = selectInteractor.interactablesSelected[0];
-
-                    Debug.Log($"Picked up: {m_Interactable.transform.name}");
-
                     m_IsHolding = true;
                 }
             }
@@ -87,22 +83,20 @@ namespace Player
 
         private void ResetInteractableRef()
         {
-            Debug.Log("Not holding an interactable!");
             m_IsHolding = false;
             m_Interactable = null;
         }
 
-        private void ActivateVacuum()
+        private void ActivateHeldItem()
         {
-            // If it's Vacuum Cleaner, activate it
-            if (m_Interactable.transform.TryGetComponent(out VacuumCleaner vacuumCleaner))
+            // If it's a weapon (crossbow, vacuum cleaner), activate it.
+            if (m_Interactable.transform.TryGetComponent(out IWeapon weapon))
             {
-                vacuumCleaner.VacuumOrbs();
-                m_stopCleaning = false;
+                weapon.UseWeapon();
             }
-            else // It's a regular item or something else
+            else if(m_Interactable.transform.TryGetComponent(out ITool tool)) // It's a tool
             {
-                Debug.Log("Item is not a vacuum cleaner!");
+                tool.ActivateTool();
             }
         }
     }

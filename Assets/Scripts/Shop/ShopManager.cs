@@ -82,7 +82,7 @@ namespace Shop
 
         private void GetItemPool()
         {
-            List<ItemData> itemPool = items.FindAll(x => x.unlocksAt <= GameManager.Instance.currentRound);
+            List<ItemData> itemPool = items.FindAll(x => x.unlocksAt <= GameManager.Instance.currentWave);
             
             OnItemPoolReceived?.Invoke(this, new OnItemPoolReceivedEventArgs { items = itemPool });
         }

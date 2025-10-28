@@ -143,9 +143,8 @@ public class EnemyAI : MonoBehaviour
     }
     private void EndGame()
     {
-        //GameManager.Instance.GameOver();
+        GameManager.Instance.GameOver();
         // Destroy(HayTarget.gameObject);
-        // EndGameUIMethodMaybe();
     }
     private void Update()
     {
@@ -207,9 +206,14 @@ public class EnemyAI : MonoBehaviour
     }
     private void Die()
     {
+        EnemySpawner spawner = FindFirstObjectByType<EnemySpawner>();
+        if (spawner != null)
+        {
+            spawner.OnEnemyDestroyed(gameObject);
+        }
         isDying = true;
         LootManager.Instance.TryDropLoot(transform.position);
-        Destroy(gameObject.transform.parent.gameObject);
+        Destroy(this);
         PointManager.Instance.addSlain();
     }
     private IEnumerator ApplyShadeAfterDelay(Transform enemy, float delay)
