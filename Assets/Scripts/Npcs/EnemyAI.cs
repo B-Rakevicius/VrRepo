@@ -217,7 +217,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
         }
         isDying = true;
         LootManager.Instance.TryDropLoot(transform.position);
-        Destroy(this);
+        Destroy(this.gameObject);
         //PointManager.Instance.addSlain();
     }
     private IEnumerator ApplyShadeAfterDelay(Transform enemy, float delay)

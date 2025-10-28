@@ -67,7 +67,7 @@ public class HaySlotManager : MonoBehaviour
         }
         if (AllSlotsEmpty())
         {
-            GameManager.Instance.EndRound(); // or Game Over
+            //GameManager.Instance.GameOver(); // commented out due to testing with manually placed hay blocks.
         }
     }
     private bool AllSlotsEmpty()

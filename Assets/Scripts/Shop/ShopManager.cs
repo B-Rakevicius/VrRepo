@@ -79,7 +79,6 @@ namespace Shop
                 GetItemPool();
             }
         }
-
         private void GetItemPool()
         {
             List<ItemData> itemPool = items.FindAll(x => x.unlocksAt <= GameManager.Instance.currentWave);
