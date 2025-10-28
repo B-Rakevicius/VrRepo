@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 namespace Items
 {
-    public class VacuumCleaner : MonoBehaviour
+    public class VacuumCleaner2 : MonoBehaviour
     {
         [Header("Vacuum Settings")]
         [SerializeField] private Transform suctionPoint;

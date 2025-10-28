@@ -15,19 +15,18 @@ namespace Player
         
         [Tooltip("Reference to left/right hand interactor")]
         [SerializeField] private XRInteractionGroup m_InteractionGroup;
-        
+
         // Interactable object
         private IXRSelectInteractable m_Interactable;
-        
+
         // Input values
         private float m_InputValue;
         
         // Optimization booleans
         private bool m_IsHolding;
-
         private bool m_stopCleaning = true;
 
-        
+
         private void Awake()
         {
             m_InteractionGroup = GetComponent<XRInteractionGroup>();
@@ -53,11 +52,10 @@ namespace Player
             {
                 if (m_stopCleaning) return;
                 if (m_Interactable == null) return;
-                if (!m_Interactable.transform.TryGetComponent(out VacuumCleaner vacuumCleaner)) return;
+                if (!m_Interactable.transform.TryGetComponent(out VacuumCleaner2 vacuumCleaner)) return;
                 vacuumCleaner.StopCleaner();
                 m_stopCleaning = true;
             }
-
         }
 
         private void IsHoldingInteractable()
@@ -78,9 +76,6 @@ namespace Player
                 {
                     // Get the interactable GameObject
                     m_Interactable = selectInteractor.interactablesSelected[0];
-
-                    Debug.Log($"Picked up: {m_Interactable.transform.name}");
-
                     m_IsHolding = true;
                 }
             }
@@ -88,7 +83,6 @@ namespace Player
 
         private void ResetInteractableRef()
         {
-            Debug.Log("Not holding an interactable!");
             m_IsHolding = false;
             m_Interactable = null;
         }
@@ -96,14 +90,19 @@ namespace Player
         private void ActivateHeldItem()
         {
             // If it's Vacuum Cleaner, activate it
-            if (m_Interactable.transform.TryGetComponent(out VacuumCleaner vacuumCleaner))
+            if (m_Interactable.transform.TryGetComponent(out VacuumCleaner2 vacuumCleaner))
             {
                 vacuumCleaner.VacuumOrbs();
                 m_stopCleaning = false;
             }
+            // If it's Crossbow, shoot it
+            else if (m_Interactable.transform.TryGetComponent(out CrossBuh crossbow))
+            {
+                crossbow.Shoot();
+            }
             else // It's a regular item or something else
             {
-                Debug.Log("Item is not a vacuum cleaner!");
+                Debug.Log("Item is not a vacuum cleaner or crossbow!");
             }
         }
     }

@@ -1,31 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.XR.Oculus.Input;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation;
-using UnityEngine.XR.OpenXR.API;
-
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject enemyPrefab;
-    public GameObject strongEnemyPrefab;
-    private const int normalEnemyCost = 1;
-    private const int strongEnemyCost = 3;
+    public GameObject enemyPrefab, strongEnemyPrefab;
+    private const int normalEnemyCost = 1, strongEnemyCost = 3;
     public Transform player;
-    public float spawnRadius = 50f;
-    public float waveInterval = 5f;
-    public int maxEnemiesPerWave = 25;
+    public float spawnRadius = 50f, waveInterval = 5f, spawnBuffer = 0f;
+    public int maxEnemiesPerWave = 25, totalEnemies = 0;
     public LayerMask groundLayer;
-    public int totalEnemies = 0;
-    private bool DontSpawnNow = false;
-    public float gameTimer = 0f;
-
-    public float spawnBuffer = 0f;
-
-
-
-
+    private bool isPaused = false;
+    private float timeTotal = 0f, timeDuringWaves = 0f;
+    private Coroutine waveCoroutine;
     public List<GameObject> activeEnemies = new List<GameObject>();
     private void Start()
     {
@@ -33,15 +19,41 @@ public class EnemySpawner : MonoBehaviour
         {
             player = GameObject.FindGameObjectWithTag("Player").transform;
         }
-        StartCoroutine(WaveSpawner());
+        waveCoroutine = StartCoroutine(WaveSpawner());
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.OnRoundStarted += OnRoundStarted;
+        }
+    }
+    private void OnDestroy()
+    {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.OnRoundStarted -= OnRoundStarted;
+        }
+    }
+    private void OnRoundStarted(object sender, System.EventArgs e)
+    {
+        if (GameManager.Instance.currentWave % 5 == 0)
+        {
+            PauseSpawning();
+            Debug.Log($"Spawning paused at round {GameManager.Instance.currentWave}");
+        }
+        else
+        {
+            ResumeSpawning();
+        }
     }
     private void Update()
     {
-        if (!DontSpawnNow)
+        if (!isPaused)
         {
-            spawnBuffer += Time.deltaTime*GetSpawnRateMultiplier();
-            gameTimer += Time.deltaTime;
-        }  
+            spawnBuffer += Time.deltaTime * GetSpawnRateMultiplier();
+            timeDuringWaves += Time.deltaTime;
+        }
+        timeTotal += Time.deltaTime;
+        DifficultyLogging();
+        CheckAndUpdateInbetweenWaves();
     }
     private IEnumerator WaveSpawner()
     {
@@ -49,38 +61,38 @@ public class EnemySpawner : MonoBehaviour
         {
             yield return new WaitForSeconds(waveInterval);
 
-            if (!DontSpawnNow)
+            if (!isPaused)
             {
                 SpawnWave();
             }
         }
     }
+    private void ResetBuffer()
+    {
+        spawnBuffer = 0f;
+        isPaused = true;
+    }
     private void SpawnWave()
     {
         float availableBuffer = spawnBuffer;
         int enemiesSpawned = 0;
-
-        while (availableBuffer > 0 && enemiesSpawned < maxEnemiesPerWave && totalEnemies < 100 )
+        while (availableBuffer > 0 && enemiesSpawned < maxEnemiesPerWave && totalEnemies < 100)
         {
             availableBuffer = spawnBuffer;
             GameObject enemyType;
             int enemyCost;
-
             if (availableBuffer >= strongEnemyCost && Random.value > 0.7f)
             {
                 enemyType = strongEnemyPrefab;
                 enemyCost = strongEnemyCost;
-                //adjustEnemyType(enemyType, 3);
             }
             else
             {
                 enemyType = enemyPrefab;
                 enemyCost = normalEnemyCost;
-                //adjustEnemyType(enemyType, 1);
             }
             if (availableBuffer >= enemyCost)
             {
-                
                 SpawnEnemy(enemyType, enemyCost);
                 enemiesSpawned++;
             }
@@ -89,24 +101,22 @@ public class EnemySpawner : MonoBehaviour
                 break;
             }
         }
+        GameManager.Instance.StartRound();
     }
     private void SpawnEnemy(GameObject enemyType, int enemyCost)
     {
         int attempts = 0;
         bool spawned = false;
-
         while (attempts < 10 && !spawned)
         {
             Vector3 randomOffset = Random.insideUnitSphere * spawnRadius;
             randomOffset.y = 10f;
             Vector3 spawnPosition = player.position + randomOffset;
-
             if (Physics.Raycast(spawnPosition, Vector3.down, out RaycastHit hit, 20f, groundLayer))
             {
                 spawnPosition = hit.point;
                 float enemyRadius = 1.5f;
                 Collider[] colliders = Physics.OverlapSphere(spawnPosition, enemyRadius);
-
                 bool positionClear = true;
                 foreach (Collider col in colliders)
                 {
@@ -116,19 +126,19 @@ public class EnemySpawner : MonoBehaviour
                         break;
                     }
                 }
-
                 if (positionClear)
                 {
                     GameObject newEnemy = Instantiate(enemyType, spawnPosition, Quaternion.identity);
-                    newEnemy.GetComponentInChildren<EnemyAI>().speed += gameTimer * 0.01f;
+                    newEnemy.GetComponentInChildren<EnemyAI>().speed += timeTotal * 0.001f;
+                    int mult = enemyType == strongEnemyPrefab ? 3 : 1;
+                    AdjustEnemyType(newEnemy, mult);
+
                     activeEnemies.Add(newEnemy);
                     spawnBuffer -= enemyCost;
                     totalEnemies++;
                     spawned = true;
-                    //Debug.Log(enemyType.GetComponentInChildren<EnemyAI>().maxHealth + " <-- spawned enemy who has this much max hp");
                 }
             }
-
             attempts++;
         }
         if (!spawned)
@@ -137,50 +147,123 @@ public class EnemySpawner : MonoBehaviour
         }
     }
     /// <summary>
-    /// Method to adjust spawn rates in time, currently returns
-    /// 1x amount of enemies between 0-30 seconds of gametime
-    /// 2.5x amount of enemies between 30-90 seconds of gametime
-    /// 1x amount of enemies between 90-180 seconds of gametime
-    /// 6x amount of enemies between 180-forever seconds of gametime
-    /// 
-    /// This implementation allows for simple scaling with minimal variables
-    /// ( but maybe should make this a switch or something, cba right now )
-    /// 
-    /// should consider changing to wave based if game based on that.
+    /// Method to adjust spawn rates based on wave
     /// </summary>
-    /// <returns></returns>
     private float GetSpawnRateMultiplier()
     {
-        if (gameTimer < 30f)
+        int currentWave = GameManager.Instance.currentWave;
+
+        if (currentWave < 5)
             return 1.0f;
-        else if (gameTimer < 90f)
+        else if (currentWave < 10)
             return 2.5f;
-        else if (gameTimer < 180f)
+        else if (currentWave < 20)
             return 1.0f;
         else
             return 6.0f;
     }
     /// <summary>
-    /// Addjusts enemy max hp based on game time, should consider changing to wave based if game based on that.
+    /// Adjusts enemy max hp based on current wave
     /// </summary>
-    /// <param name="enemyType"></param>
-    /// <param name="mult"></param>
-    private void adjustEnemyType(GameObject enemyType, int mult)
+    private void AdjustEnemyType(GameObject enemyType, int mult)
     {
-        if (gameTimer <= 30f)
-            enemyType.GetComponentInChildren<EnemyAI>().maxHealth = mult * (5 + (int)(gameTimer * 0.1));
-        else if (gameTimer <= 90f)
-            enemyType.GetComponentInChildren<EnemyAI>().maxHealth = mult * (5 + (int)(gameTimer * 0.2));
+        int currentWave = GameManager.Instance.currentWave;
+
+        if (currentWave <= 10)
+            enemyType.GetComponentInChildren<EnemyAI>().maxHealth = mult * (5 + (int)(currentWave * 2));
+        else if (currentWave <= 20)
+            enemyType.GetComponentInChildren<EnemyAI>().maxHealth = mult * (5 + (int)(currentWave * 3));
         else
-            enemyType.GetComponentInChildren<EnemyAI>().maxHealth = mult * (5 + (int)(gameTimer * 0.3));
+            enemyType.GetComponentInChildren<EnemyAI>().maxHealth = mult * (5 + (int)(currentWave * 4));
     }
-    public void SetSpawningBool(bool booleanMoment)
+
+    /// <summary>
+    /// Checks and logs when enemies get stronger based on wave thresholds
+    /// </summary>
+    private void DifficultyLogging()
     {
-        if (DontSpawnNow && !booleanMoment)
+        int currentWave = GameManager.Instance.currentWave;
+
+        switch (currentWave)
         {
-            //DontSpawnNow = booleanMoment; // in hindsight probably needs this, double check if if breaks with/without
-            SpawnWave();
+            case 10:
+                Debug.Log("Enemies growing stronger: Now +3 HP per wave with 2.5x spawn rate");
+                break;
+            case 20:
+                Debug.Log("Enemies evolving: Now +4 HP per wave with 6x spawn rate");
+                break;
+            case 5:
+                Debug.Log("Enemies getting tougher: Now +2 HP per wave with 1x spawn rate");
+                break;
         }
-        DontSpawnNow = booleanMoment;
+    }
+    /// <summary>
+    /// Pauses the enemy spawner between waves
+    /// </summary>
+    public void PauseSpawning()
+    {
+        if (!isPaused)
+        {
+            isPaused = true;
+            Debug.Log("Enemy spawning paused");
+        }
+    }
+    /// <summary>
+    /// Resumes the enemy spawner
+    /// </summary>
+    public void ResumeSpawning()
+    {
+        if (isPaused)
+        {
+            isPaused = false;
+            Debug.Log("Enemy spawning resumed");
+        }
+    }
+    /// <summary>
+    /// Toggles the pause state of the enemy spawner
+    /// </summary>
+    public void TogglePauseSpawning()
+    {
+        isPaused = !isPaused;
+        Debug.Log($"Enemy spawning {(isPaused ? "paused" : "resumed")}");
+    }
+    /// <summary>
+    /// Sets the pause state directly (replaces SetSpawningBool)
+    /// </summary>
+    public void SetSpawningPaused(bool pause)
+    {
+        if (isPaused && !pause)
+        {
+            isPaused = false;
+            SpawnWave();
+            Debug.Log("Enemy spawning resumed and wave spawned");
+        }
+        else if (!isPaused && pause)
+        {
+            isPaused = true;
+            Debug.Log("Enemy spawning paused");
+        }
+    }
+    /// <summary>
+    /// Gets the current pause state
+    /// </summary>
+    public bool IsSpawningPaused()
+    {
+        return isPaused;
+    }
+    private void CheckAndUpdateInbetweenWaves()
+    {
+        if (GameManager.Instance == null) return;
+
+        bool shouldShowInbetween = IsSpawningPaused() && activeEnemies.Count == 0;
+        GameManager.Instance.SetInbetweenWavesState(shouldShowInbetween);
+    }
+    public void OnEnemyDestroyed(GameObject enemy)
+    {
+        if (activeEnemies.Contains(enemy))
+        {
+            activeEnemies.Remove(enemy);
+        }
+        CheckAndUpdateInbetweenWaves();
     }
 }

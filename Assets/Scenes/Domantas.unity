@@ -6079,6 +6079,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd05d942801a0bc499c940a5a2b4bcc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inbetweenWaves: {fileID: 0}
 --- !u!1001 &777115020
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6526,6 +6527,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PetalShotgun
       objectReference: {fileID: 0}
+    - target: {fileID: 4708087593500276042, guid: ab2bfb5dd57a55142b533ce9272fdee1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6016438754994087244, guid: ab2bfb5dd57a55142b533ce9272fdee1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.349
@@ -6575,6 +6580,9 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2359834440933827928, guid: ab2bfb5dd57a55142b533ce9272fdee1, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 866579967}
+    - targetCorrespondingSourceObject: {fileID: 2359834440933827928, guid: ab2bfb5dd57a55142b533ce9272fdee1, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 866579961}
   m_SourcePrefab: {fileID: 100100000, guid: ab2bfb5dd57a55142b533ce9272fdee1, type: 3}
 --- !u!1 &866579959 stripped
@@ -6597,6 +6605,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b5f13d4757d84b489f5b1a03977578f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  suctionPoint: {fileID: 691030696}
+  suctionRange: 1
+  suctionRadius: 3
+  suctionStrength: 20
+  orbCollectThreshold: 0.2
+  orbLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  coneAngle: 45
+  startRadius: 0.05
+  liquidMaterial: {fileID: 0}
+  emptyValue: 0.14
+  fullValue: -0.14
+--- !u!114 &866579967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866579959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63169526eb1f0e9448a65122933d6efd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   suctionPoint: {fileID: 691030696}
@@ -7788,6 +7821,10 @@ PrefabInstance:
     - target: {fileID: 2243020123108092049, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556648708419447538, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
+      propertyPath: m_SmoothMotionEnabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3630594832954831854, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
       propertyPath: m_IsActive
