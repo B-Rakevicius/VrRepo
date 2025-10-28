@@ -24,6 +24,16 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(this);
         }
+        
+        // Event to trigger a confirmation window when player tries to exit the game.
+        Application.wantsToQuit += Application_WantsToQuit;
+    }
+
+    private bool Application_WantsToQuit()
+    {
+        // For now simply just quit. Later implement a dialog box to confirm application exit.
+        Debug.Log("Quitting...");
+        return true;
     }
 
     public void StartRound()
