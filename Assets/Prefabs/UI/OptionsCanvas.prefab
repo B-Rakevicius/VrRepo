@@ -282,6 +282,7 @@ GameObject:
   m_Component:
   - component: {fileID: 235100442153099353}
   - component: {fileID: 8920118555231787111}
+  - component: {fileID: 1855931792085745178}
   m_Layer: 5
   m_Name: OptionsUI
   m_TagString: Untagged
@@ -321,6 +322,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2941631781882814160}
   m_CullTransparentMesh: 1
+--- !u!114 &1855931792085745178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2941631781882814160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee38785fe8bd02d47ad0cbdcfedf7d02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeButton: {fileID: 5880032303414804370}
+  graphicsButton: {fileID: 3754467603363179999}
+  accessibilityButton: {fileID: 4717082963144959128}
+  backButton: {fileID: 6501009902553193845}
+  animDuration: 0.2
+  animStartScale: 0
+  animEndScale: 1
 --- !u!1 &3021429045433871189
 GameObject:
   m_ObjectHideFlags: 0
@@ -1330,7 +1350,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6655057622390673858}
-  m_LocalRotation: {x: -0, y: 0.13052598, z: -0, w: 0.9914449}
+  m_LocalRotation: {x: 0, y: 0.13052616, z: 0, w: 0.9914449}
   m_LocalPosition: {x: 0, y: 0, z: 1.077}
   m_LocalScale: {x: 0.0008825713, y: 0.0008825713, z: 0.0008825713}
   m_ConstrainProportionsScale: 1

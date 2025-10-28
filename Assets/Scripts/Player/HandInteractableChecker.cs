@@ -1,6 +1,7 @@
 using Items;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
@@ -10,16 +11,16 @@ namespace Player
     public class HandInteractableChecker : MonoBehaviour
     {
         [Tooltip("Reference to input action")]
-        [SerializeField] private InputActionReference m_ActivateVacuum;
+        [SerializeField] private InputActionReference m_InputAction;
         
-        [Tooltip("Reference to left hand interactor")]
+        [Tooltip("Reference to left/right hand interactor")]
         [SerializeField] private XRInteractionGroup m_InteractionGroup;
         
         // Interactable object
         private IXRSelectInteractable m_Interactable;
         
         // Input values
-        private float m_ActivateVacuumValue;
+        private float m_InputValue;
         
         // Optimization booleans
         private bool m_IsHolding;
@@ -39,14 +40,14 @@ namespace Player
 
         private void GatherInput()
         {
-            m_ActivateVacuumValue = m_ActivateVacuum.action.ReadValue<float>();
+            m_InputValue = m_InputAction.action.ReadValue<float>();
             
-            // We are holding the button. Try to do the cleaning.
-            if (m_ActivateVacuumValue > 0)
+            // We are holding the button. Try to activate currently held item
+            if (m_InputValue > 0)
             {
                 IsHoldingInteractable();
                 if (!m_IsHolding) return;
-                ActivateVacuum();
+                ActivateHeldItem();
             }
             else
             {
@@ -92,7 +93,7 @@ namespace Player
             m_Interactable = null;
         }
 
-        private void ActivateVacuum()
+        private void ActivateHeldItem()
         {
             // If it's Vacuum Cleaner, activate it
             if (m_Interactable.transform.TryGetComponent(out VacuumCleaner vacuumCleaner))

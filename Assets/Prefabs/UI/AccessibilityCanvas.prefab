@@ -646,7 +646,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3890181583155365772}
-  m_LocalRotation: {x: -0, y: 0.27324897, z: -0, w: 0.9619434}
+  m_LocalRotation: {x: 0, y: 0.27324572, z: 0, w: 0.9619443}
   m_LocalPosition: {x: 0, y: 0, z: 0.592}
   m_LocalScale: {x: 0.0008825713, y: 0.0008825713, z: 0.0008825713}
   m_ConstrainProportionsScale: 1
@@ -1280,6 +1280,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9083660266664207328}
   - component: {fileID: 8445829669331781640}
+  - component: {fileID: 1290333690818719209}
   m_Layer: 5
   m_Name: AccessibilityUI
   m_TagString: Untagged
@@ -1319,6 +1320,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7426878644103738259}
   m_CullTransparentMesh: 1
+--- !u!114 &1290333690818719209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7426878644103738259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ddbb3b4fa348d545829a2b4ae48879d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animDuration: 0.2
+  animStartScale: 0
+  animEndScale: 1
 --- !u!1 &8511700841345845328
 GameObject:
   m_ObjectHideFlags: 0
