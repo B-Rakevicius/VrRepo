@@ -75,6 +75,8 @@ namespace Shop
 
         private async void SpawnShop()
         {
+            if (_spawnedShop != null) return;
+            
             _spawnedShop = Instantiate(shopPrefab);
             bool finished = await _spawnedShop.GetComponent<ShopAnimator>().AnimateShopFall();
             if (finished)

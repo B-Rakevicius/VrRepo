@@ -73,6 +73,9 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         IsGameStarted = true;
+
+        // For now, instantly start first round
+        StartRound();
     }
     public void GameOver()
     {

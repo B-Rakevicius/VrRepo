@@ -19,6 +19,8 @@ public class EnemySpawner : MonoBehaviour
         {
             player = GameObject.FindGameObjectWithTag("Player").transform;
         }
+
+        isPaused = true;
         waveCoroutine = StartCoroutine(WaveSpawner());
         if (GameManager.Instance != null)
         {
