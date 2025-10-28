@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace Items
 {
-    public class CrossBuh : MonoBehaviour
+    public class CrossBuh : MonoBehaviour, IWeapon
     {
         [Header("Crossbow Settings")]
         [SerializeField] private Transform shootPoint;
@@ -18,7 +18,7 @@ namespace Items
         [SerializeField] private float startRadius = 0.05f;
         private float nextFireTime;
         private Queue<GameObject> activeArrows = new Queue<GameObject>();
-        public void Shoot()
+        public void UseWeapon()
         {
             if (Time.time < nextFireTime) return;
             nextFireTime = Time.time + 1f / fireRate;

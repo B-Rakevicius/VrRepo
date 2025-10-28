@@ -50,11 +50,11 @@ namespace Player
             }
             else
             {
-                if (m_stopCleaning) return;
                 if (m_Interactable == null) return;
-                if (!m_Interactable.transform.TryGetComponent(out VacuumCleaner2 vacuumCleaner)) return;
-                vacuumCleaner.StopCleaner();
-                m_stopCleaning = true;
+                if (m_Interactable.transform.TryGetComponent(out ITool tool))
+                {
+                    tool.DeactivateTool();
+                }
             }
         }
 
@@ -89,20 +89,14 @@ namespace Player
 
         private void ActivateHeldItem()
         {
-            // If it's Vacuum Cleaner, activate it
-            if (m_Interactable.transform.TryGetComponent(out VacuumCleaner2 vacuumCleaner))
+            // If it's a weapon (crossbow, vacuum cleaner), activate it.
+            if (m_Interactable.transform.TryGetComponent(out IWeapon weapon))
             {
-                vacuumCleaner.VacuumOrbs();
-                m_stopCleaning = false;
+                weapon.UseWeapon();
             }
-            // If it's Crossbow, shoot it
-            else if (m_Interactable.transform.TryGetComponent(out CrossBuh crossbow))
+            else if(m_Interactable.transform.TryGetComponent(out ITool tool)) // It's a tool
             {
-                crossbow.Shoot();
-            }
-            else // It's a regular item or something else
-            {
-                Debug.Log("Item is not a vacuum cleaner or crossbow!");
+                tool.ActivateTool();
             }
         }
     }

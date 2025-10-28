@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 namespace Items
 {
-    public class VacuumCleaner2 : MonoBehaviour
+    public class VacuumCleaner2 : MonoBehaviour, ITool
     {
         [Header("Vacuum Settings")]
         [SerializeField] private Transform suctionPoint;
@@ -39,7 +39,7 @@ namespace Items
             float fillAmount = Mathf.Lerp(emptyValue, fullValue, t);
             liquidMaterial.SetFloat(FillAmount, fillAmount);
         }
-        public void VacuumOrbs()
+        public void ActivateTool()
         {
             Collider[] colliders = Physics.OverlapSphere(suctionPoint.position, suctionRange, orbLayer);
 
@@ -47,9 +47,14 @@ namespace Items
             {
                 Orb orb = collider.GetComponent<Orb>();
                 if (orb is null) { continue; }
-                if (!IsInCone(collider.transform.position))
-                    continue;
+
                 Rigidbody rb = collider.GetComponent<Rigidbody>();
+                if (!IsInCone(collider.transform.position))
+                {
+                    // Re-enable its gravity
+                    rb.useGravity = true;
+                    continue;
+                }
                 affectedOrbs.Add(rb);
                 // Disable orb gravity while vacuuming
                 rb.useGravity = false;
@@ -91,7 +96,7 @@ namespace Items
 
             return distanceFromCenter <= currentRadius && localPos.z <= suctionRange;
         }
-        public void StopCleaner()
+        public void DeactivateTool()
         {
             foreach (Rigidbody rb in affectedOrbs.ToList())
             {
