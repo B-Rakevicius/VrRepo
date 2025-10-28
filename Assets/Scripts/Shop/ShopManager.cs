@@ -21,7 +21,10 @@ namespace Shop
         
         [Header("Shop Prefab")]
         [SerializeField] private Transform shopPrefab;
-        
+
+        [Header("HayManager")]
+        [SerializeField] private HaySlotManager haySlotManager;
+
         private Transform _spawnedShop; // Keep the reference to be able to destroy the shop.
 
         public event EventHandler<OnItemPoolReceivedEventArgs> OnItemPoolReceived;
@@ -98,6 +101,23 @@ namespace Shop
                 foreach (Item item in shoppingCartItems)
                 {
                     item.IsBought = true;
+
+                    if (item.GetItemData().itemName == "HayItem")
+                    {
+                        Transform freeSlot = HaySlotManager.Instance.GetFreeSlot();
+                        if (freeSlot != null)
+                        {
+                            HaySlotManager.Instance.PlaceHayInSlot(freeSlot);
+                        }
+                        else
+                        {
+                            Debug.Log("No free hay slots available!");
+                        }
+                    }
+                    else
+                    {
+                        Debug.Log("nohaye!");
+                    }
                 }
                 
                 PlayerManager.Instance.DeductMoney(totalPrice);

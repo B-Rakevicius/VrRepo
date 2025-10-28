@@ -1811,7 +1811,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2e49e54016550704aaffa1cc2ed4f31b, type: 2}
   - {fileID: 11400000, guid: 66df33bbe2ffdb64a95e677dacf6e2ac, type: 2}
   - {fileID: 11400000, guid: bd3c2f9bebd6c3c4995b907a7453e157, type: 2}
+  - {fileID: 11400000, guid: cb19cbc8e48f0674d943915baa7e0bc3, type: 2}
   shopPrefab: {fileID: 6357142663728154981, guid: a7b416c223771c24aabd479b88580483, type: 3}
+  haySlotManager: {fileID: 884795108}
 --- !u!1001 &183229226
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5700,6 +5702,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd05d942801a0bc499c940a5a2b4bcc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inbetweenWaves: {fileID: 0}
 --- !u!1001 &777115020
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5997,6 +6000,8 @@ MonoBehaviour:
   orbLayer:
     serializedVersion: 2
     m_Bits: 512
+  coneAngle: 45
+  startRadius: 0.05
   liquidMaterial: {fileID: 0}
   emptyValue: 0.14
   fullValue: -0.14
@@ -12322,7 +12327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 203d0d5fa9dadde4590734e46f535232, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ActivateVacuum: {fileID: -3258458902609584745, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  m_InputAction: {fileID: 0}
   m_InteractionGroup: {fileID: 1532104830}
 --- !u!4 &1538803869 stripped
 Transform:
