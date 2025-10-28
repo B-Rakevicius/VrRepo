@@ -33,9 +33,6 @@ namespace Items
         [Tooltip("How many arrows does one arrow reload")]
         [SerializeField] private int reloadAmount = 5;
         
-        [Tooltip("How long should the shot arrow exist in the world")]
-        [SerializeField] private float arrowLifetime = 5f;
-        
         [Header("Cone Settings")]
         [SerializeField] private float coneAngle = 15f;
         [SerializeField] private float startRadius = 0.05f;
@@ -87,17 +84,10 @@ namespace Items
             
             // Instantiate arrow with colliders, rigidbody
             GameObject arrow = Instantiate(arrowPrefab, shootPoint.position, Quaternion.LookRotation(shootDirection));
-            
-            Rigidbody rb = arrow.GetComponent<Rigidbody>();
-            if (rb != null)
-            {
-                rb.AddForce(shootDirection * shootForce, ForceMode.Impulse);
-            }
+
+            arrow.GetComponent<Arrow>().Shoot(shootDirection, shootForce);
 
             m_currentArrows--;
-            
-            // Destroy after some time
-            Destroy(arrow, arrowLifetime);
 
             // If we ran out of arrows, destroy arrow visual and mark crossbow as unloaded.
             if (m_currentArrows <= 0)

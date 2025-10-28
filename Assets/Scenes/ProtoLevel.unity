@@ -86354,6 +86354,14 @@ PrefabInstance:
       value: GrabPointTrigger
       objectReference: {fileID: 0}
     - target: {fileID: 1293790762374742323, guid: d05d1b9f2a8a4f14aaa77f5e0cd569ac, type: 3}
+      propertyPath: shootForce
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 1293790762374742323, guid: d05d1b9f2a8a4f14aaa77f5e0cd569ac, type: 3}
+      propertyPath: arrowPrefab
+      value: 
+      objectReference: {fileID: 1813917790458350144, guid: 6aae66389618d304080e8cb93af7644b, type: 3}
+    - target: {fileID: 1293790762374742323, guid: d05d1b9f2a8a4f14aaa77f5e0cd569ac, type: 3}
       propertyPath: arrowPrefabNew
       value: 
       objectReference: {fileID: 1813917790458350144, guid: 6aae66389618d304080e8cb93af7644b, type: 3}
@@ -86365,6 +86373,22 @@ PrefabInstance:
       propertyPath: arrowPrefabVisuals
       value: 
       objectReference: {fileID: 1813917790458350144, guid: bec74a98d2d87ca499a6eab3b7b63fc0, type: 3}
+    - target: {fileID: 4940849710114259478, guid: d05d1b9f2a8a4f14aaa77f5e0cd569ac, type: 3}
+      propertyPath: m_Size.y
+      value: 0.7999999
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940849710114259478, guid: d05d1b9f2a8a4f14aaa77f5e0cd569ac, type: 3}
+      propertyPath: m_Size.z
+      value: 2.4409935
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940849710114259478, guid: d05d1b9f2a8a4f14aaa77f5e0cd569ac, type: 3}
+      propertyPath: m_Center.y
+      value: 0.049999956
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940849710114259478, guid: d05d1b9f2a8a4f14aaa77f5e0cd569ac, type: 3}
+      propertyPath: m_Center.z
+      value: -0.2845027
+      objectReference: {fileID: 0}
     - target: {fileID: 8407553262590817323, guid: d05d1b9f2a8a4f14aaa77f5e0cd569ac, type: 3}
       propertyPath: m_SelectMode
       value: 1
