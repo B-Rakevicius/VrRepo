@@ -111,12 +111,12 @@ namespace Shop
                         }
                         else
                         {
-                            Debug.Log("No free hay slots available!");
+                            Debug.LogError("No free hay slots available!");
                         }
                     }
                     else
                     {
-                        Debug.Log("nohaye!");
+                        Debug.LogError("nohaye!");
                     }
                 }
                 

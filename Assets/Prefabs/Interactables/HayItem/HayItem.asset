@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57da5c17dff04b24fadd3851700f5b81, type: 3}
   m_Name: HayItem
   m_EditorClassIdentifier: 
-  itemName: Hay Block
+  itemName: HayItem
   itemDescription: Adds a new hay block to your fortress.
   itemPrice: 100
   unlocksAt: 1
