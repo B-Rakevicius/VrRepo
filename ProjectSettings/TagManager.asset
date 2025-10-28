@@ -7,7 +7,6 @@ TagManager:
   - Anchor
   - Enemy
   - Hay
-  - Arrow
   layers:
   - Default
   - TransparentFX
@@ -19,7 +18,7 @@ TagManager:
   - AmmoMag
   - Ground
   - Orb
-  - Arrow
+  - 
   - 
   - 
   - 
