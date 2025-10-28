@@ -198,7 +198,8 @@ public class EnemyAI : MonoBehaviour, IDamageable
         }
         else
         {
-            StartCoroutine(ApplyShadeAfterDelay(this.gameObject.transform, 0.5f));
+            Debug.Log("baa fix hit damage color showing");
+            //StartCoroutine(ApplyShadeAfterDelay(this.gameObject.transform, 0.5f));
         }
     }
     private void ApplyKnockback(Vector3 hitDirection, float knockbackStrength)
@@ -217,7 +218,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
         isDying = true;
         LootManager.Instance.TryDropLoot(transform.position);
         Destroy(this);
-        PointManager.Instance.addSlain();
+        //PointManager.Instance.addSlain();
     }
     private IEnumerator ApplyShadeAfterDelay(Transform enemy, float delay)
     {

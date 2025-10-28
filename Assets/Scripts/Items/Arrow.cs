@@ -7,6 +7,7 @@ namespace Items
         [SerializeField] private float lifetime = 5f;
         [SerializeField] private LayerMask collisionMask;
         [SerializeField] private float damage = 10f;
+        [SerializeField] private float knockbackForce = 1f;
         [SerializeField] private GameObject hitEffect;
         private Rigidbody rb;
         private bool hasHit = false;
@@ -37,7 +38,9 @@ namespace Items
                 IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
                 if (damageable != null)
                 {
-                    damageable.TakeDamage(damage, damageSource);
+                    // Calculate hit direction (from arrow to target)
+                    Vector3 hitDirection = (collision.transform.position - transform.position).normalized;
+                    damageable.TakeDamage(damage, hitDirection, knockbackForce, damageSource);
                 }
                 // hit vfx
                 if (hitEffect != null)
@@ -48,7 +51,7 @@ namespace Items
                 if (rb != null)
                 {
                     rb.isKinematic = true;
-                    rb.constraints = RigidbodyConstraints.FreezeAll;
+                    //rb.constraints = RigidbodyConstraints.FreezeAll;
                     transform.SetParent(collision.transform);
                 }
                 // Disable collider to prevent multihit ( ? maybe upgrade can allow multiple hits later on ) 
