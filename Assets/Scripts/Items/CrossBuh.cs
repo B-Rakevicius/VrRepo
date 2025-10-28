@@ -1,49 +1,118 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
+
 namespace Items
 {
     public class CrossBuh : MonoBehaviour, IWeapon
     {
         [Header("Crossbow Settings")]
+        [Tooltip("Crossbow's shooting point")]
         [SerializeField] private Transform shootPoint;
+        
+        [Tooltip("Crossbow's arrow insert point")]
+        [SerializeField] private Transform arrowInsertPoint;
+        
+        [Tooltip("How fast should the arrow travel when shot?")]
         [SerializeField] private float shootForce = 20f;
+        
         [SerializeField] private float shootRange = 10f;
+        
+        [Tooltip("Crossbow's fire rate")]
         [SerializeField] private float fireRate = 1f;
+        
         [SerializeField] private LayerMask targetLayer;
+        
+        [Tooltip("Interactable arrow's prefab")]
         [SerializeField] private GameObject arrowPrefab;
+        
+        [Tooltip("Visuals for the arrow prefab. Will be used when instantiating arrow on the crossbow")]
+        [SerializeField] private GameObject arrowPrefabVisuals;
         [SerializeField] private int maxArrows = 10;
-        [SerializeField] private float arrowLifetime = 5f;
+        
+        [Tooltip("How many arrows does one arrow reload")]
+        [SerializeField] private int reloadAmount = 5;
+        
         [Header("Cone Settings")]
         [SerializeField] private float coneAngle = 15f;
         [SerializeField] private float startRadius = 0.05f;
         private float nextFireTime;
         private Queue<GameObject> activeArrows = new Queue<GameObject>();
+
+        // Count of currently loaded arrows.
+        private int m_currentArrows;
+        public bool IsCrossbowLoaded { get; private set; } = false;
+        private GameObject m_currentArrowVisuals;
+
+        // public void UseWeapon()
+        // {
+        //     if (Time.time < nextFireTime) return;
+        //     nextFireTime = Time.time + 1f / fireRate;
+        //     // Calculate random direction within cone
+        //     Vector3 shootDirection = GetRandomDirectionInCone();
+        //     // Instantiate arrow
+        //     GameObject arrow = Instantiate(arrowPrefab, shootPoint.position, Quaternion.LookRotation(shootDirection));
+        //     // Add arrow to tracking queue
+        //     activeArrows.Enqueue(arrow);
+        //     // Limit number of active arrows
+        //     if (activeArrows.Count > maxArrows)
+        //     {
+        //         GameObject oldArrow = activeArrows.Dequeue();
+        //         if (oldArrow != null)
+        //             Destroy(oldArrow);
+        //     }
+        //     // Set up arrow physics
+        //     Rigidbody rb = arrow.GetComponent<Rigidbody>();
+        //     if (rb != null)
+        //     {
+        //         rb.AddForce(shootDirection * shootForce, ForceMode.Impulse);
+        //     }
+        //     // Set up arrow destruction
+        //     Destroy(arrow, arrowLifetime);
+        // }
+
         public void UseWeapon()
         {
+            if (!IsCrossbowLoaded) { return; }
+            
+            // Check for shooting cooldown
             if (Time.time < nextFireTime) return;
             nextFireTime = Time.time + 1f / fireRate;
-            // Calculate random direction within cone
-            Vector3 shootDirection = GetRandomDirectionInCone();
-            // Instantiate arrow
+            
+            // Get arrow direction to shoot towards
+            Vector3 shootDirection = shootPoint.forward;
+            
+            // Instantiate arrow with colliders, rigidbody
             GameObject arrow = Instantiate(arrowPrefab, shootPoint.position, Quaternion.LookRotation(shootDirection));
-            // Add arrow to tracking queue
-            activeArrows.Enqueue(arrow);
-            // Limit number of active arrows
-            if (activeArrows.Count > maxArrows)
+
+            arrow.GetComponent<Arrow>().Shoot(shootDirection, shootForce);
+
+            m_currentArrows--;
+
+            // If we ran out of arrows, destroy arrow visual and mark crossbow as unloaded.
+            if (m_currentArrows <= 0)
             {
-                GameObject oldArrow = activeArrows.Dequeue();
-                if (oldArrow != null)
-                    Destroy(oldArrow);
+                Destroy(m_currentArrowVisuals);
+                
+                IsCrossbowLoaded = false;
             }
-            // Set up arrow physics
-            Rigidbody rb = arrow.GetComponent<Rigidbody>();
-            if (rb != null)
-            {
-                rb.AddForce(shootDirection * shootForce, ForceMode.Impulse);
-            }
-            // Set up arrow destruction
-            Destroy(arrow, arrowLifetime);
         }
+
+        public bool TryReload()
+        {
+            // Check if crossbow is already reloaded
+            if(IsCrossbowLoaded) { return false; }
+            
+            // Instantiate viewmodel arrow (only visuals) at insertion point
+            m_currentArrowVisuals = Instantiate(arrowPrefabVisuals, arrowInsertPoint);
+
+            m_currentArrows = reloadAmount;
+            
+            IsCrossbowLoaded = true;
+            
+            return true;
+        }
+        
         private Vector3 GetRandomDirectionInCone()
         {
             // Start with forward direction
