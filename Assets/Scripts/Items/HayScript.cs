@@ -34,6 +34,7 @@ public class HayScript : MonoBehaviour
     }
     public bool IsDestroyed()
     {
+        HaySlotManager.Instance.OnHayDestroyed(gameObject);
         return currentHealth <= 0;
     }
 }
