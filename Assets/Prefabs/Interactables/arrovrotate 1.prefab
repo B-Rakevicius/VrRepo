@@ -170,8 +170,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifetime: 5
-  collisionMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
   damage: 10
-  hitEffect: {fileID: 0}
+  knockbackForce: 1
+  hitEffect: {fileID: 4809171458859421548, guid: 6977c02a7620ddc439d06357b7c285cb, type: 3}
