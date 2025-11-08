@@ -18,4 +18,4 @@ MonoBehaviour:
   unlocksAt: 5
   spawnChance: 100
   isBought: 0
-  itemPrefab: {fileID: 6288251467741337038, guid: 1f6342e3fd425274898c9776389379a4, type: 3}
+  itemPrefab: {fileID: 7644083621880544771, guid: fff164b2c164f8c4ca490b29aa9e98b3, type: 3}
