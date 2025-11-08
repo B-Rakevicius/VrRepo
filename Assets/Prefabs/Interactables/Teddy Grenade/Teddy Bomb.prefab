@@ -247,12 +247,12 @@ MonoBehaviour:
   baseDamage: 50
   knockbackForce: 15
   upwardForce: 5
-  explosionEffect: {fileID: 0}
+  explosionEffect: {fileID: 4809171458859421548, guid: 40a427d86cc71404f9ea64cf515ae89b, type: 3}
   trailEffect: {fileID: 0}
   fuseLightEffect: {fileID: 0}
-  explosionSound: {fileID: 0}
-  fuseSound: {fileID: 0}
-  disarmSound: {fileID: 0}
+  explosionSound: {fileID: 8300000, guid: c24dbdb1d49fa2748863406343415bfd, type: 3}
+  fuseSound: {fileID: 8300000, guid: b6d5120ccfbe7a6469dc4028a59a31ac, type: 3}
+  disarmSound: {fileID: 8300000, guid: 9ef7ae724e0ba8a4f82fc269aa183c1f, type: 3}
 --- !u!33 &8185535468154685237
 MeshFilter:
   m_ObjectHideFlags: 0
