@@ -8,17 +8,10 @@ namespace Items
     [RequireComponent(typeof(XRGrabInteractable))]
     public class Grenade : MonoBehaviour
     {
-        [SerializeField] private float fuseTime = 3f;
-        [SerializeField] private float explosionRadius = 5f;
-        [SerializeField] private float baseDamage = 50f;
-        [SerializeField] private float knockbackForce = 15f;
-        [SerializeField] private float upwardForce = 5f;
-        [SerializeField] private GameObject explosionEffect;
-        [SerializeField] private GameObject trailEffect;
-        [SerializeField] private GameObject fuseLightEffect; // Visual cue for armed state
-        [SerializeField] private AudioClip explosionSound;
-        [SerializeField] private AudioClip fuseSound;
-        [SerializeField] private AudioClip disarmSound;
+        [SerializeField] private float fuseTime = 3f, explosionRadius = 5f;
+        [SerializeField] private float baseDamage = 50f, knockbackForce = 15f, upwardForce = 5f;
+        [SerializeField] private GameObject explosionEffect, fuseLightEffect;
+        [SerializeField] private AudioClip explosionSound, fuseSound, disarmSound;
         private Rigidbody _rb;
         private XRGrabInteractable _grabInteractable;
         private bool _hasExploded = false;
@@ -122,10 +115,6 @@ namespace Items
                 _audioSource.loop = true;
                 _audioSource.Play();
             }
-            if (trailEffect != null)
-            {
-                trailEffect.SetActive(true);
-            }
             if (fuseLightEffect != null)
             {
                 fuseLightEffect.SetActive(true);
@@ -147,10 +136,6 @@ namespace Items
                 if (disarmSound != null)
                 {
                     _audioSource.PlayOneShot(disarmSound);
-                }
-                if (trailEffect != null)
-                {
-                    trailEffect.SetActive(false);
                 }
                 if (fuseLightEffect != null)
                 {
