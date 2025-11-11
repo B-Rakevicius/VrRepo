@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 98164814019043564}
   m_Layer: 0
-  m_Name: GrabPointTrigger
+  m_Name: GrabPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,7 +26,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.213, z: -0.783}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.4999999, y: 1.4999999, z: 1.4999999}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 762292122904530555}
@@ -82,8 +82,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.25, y: 0.7999999, z: 2.4409935}
-  m_Center: {x: 0, y: 0.049999956, z: -0.2845027}
+  m_Size: {x: 0.25, y: 0.8, z: 2.65}
+  m_Center: {x: 0, y: 0.05, z: -0.18}
 --- !u!1 &5210248491731356866
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,10 +472,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100038, guid: 4a332f70083450d449b1f0e2b247591c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 100038, guid: 4a332f70083450d449b1f0e2b247591c, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -501,15 +497,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: 4a332f70083450d449b1f0e2b247591c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.726
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: 4a332f70083450d449b1f0e2b247591c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.683
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: 4a332f70083450d449b1f0e2b247591c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.122
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: 4a332f70083450d449b1f0e2b247591c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -567,7 +563,7 @@ PrefabInstance:
       insertIndex: 3
       addedObject: {fileID: 95993902086625048}
     - targetCorrespondingSourceObject: {fileID: 400012, guid: 4a332f70083450d449b1f0e2b247591c, type: 3}
-      insertIndex: 4
+      insertIndex: 3
       addedObject: {fileID: 7662306494998537304}
     - targetCorrespondingSourceObject: {fileID: 400012, guid: 4a332f70083450d449b1f0e2b247591c, type: 3}
       insertIndex: -1
@@ -635,7 +631,7 @@ MonoBehaviour:
   m_InteractionLayers:
     m_Bits: 1
   m_DistanceCalculationMode: 1
-  m_SelectMode: 1
+  m_SelectMode: 0
   m_FocusMode: 1
   m_CustomReticle: {fileID: 0}
   m_AllowGazeInteraction: 0
@@ -788,7 +784,7 @@ MonoBehaviour:
   arrowPrefab: {fileID: 1813917790458350144, guid: 6aae66389618d304080e8cb93af7644b, type: 3}
   arrowPrefabVisuals: {fileID: 1813917790458350144, guid: bec74a98d2d87ca499a6eab3b7b63fc0, type: 3}
   maxArrows: 10
-  reloadAmount: 5
+  arrowLifetime: 5
   coneAngle: 15
   startRadius: 0.05
 --- !u!4 &762292122904530555 stripped
