@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-//using Unity.Android.Gradle.Manifest;
 public class LootManager : MonoBehaviour
 {
     public static LootManager Instance;
@@ -17,11 +16,29 @@ public class LootManager : MonoBehaviour
     /// </summary>
     public void TryDropLoot(Vector3 position)
     {
-
-        Debug.Log($"Enemy is supposed to drop loot, implement later :]");
         if (SheepWool != null)
         {
             GameObject spawned = Instantiate(SheepWool, position, Quaternion.identity);
+            Rigidbody rb = spawned.GetComponent<Rigidbody>();
+            if (rb == null)
+            {
+                rb = spawned.AddComponent<Rigidbody>();
+            }
+            // upward
+            Vector3 randomDirection = new Vector3(
+                Random.Range(-1f, 1f),
+                1f,
+                Random.Range(-1f, 1f)
+            ).normalized;
+            float popForce = Random.Range(5f, 8f);
+            rb.AddForce(randomDirection * popForce, ForceMode.Impulse);
+            // spin
+            Vector3 randomTorque = new Vector3(
+                Random.Range(-100f, 100f),
+                Random.Range(-100f, 100f),
+                Random.Range(-100f, 100f)
+            );
+            rb.AddTorque(randomTorque);
         }
     }
 }

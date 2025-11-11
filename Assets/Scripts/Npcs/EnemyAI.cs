@@ -3,6 +3,7 @@ using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
 using Unity.VRTemplate;
+using Items;
 
 public class EnemyAI : MonoBehaviour, IDamageable
 {
@@ -114,6 +115,8 @@ public class EnemyAI : MonoBehaviour, IDamageable
             if (!isTargetingPlayer)
             {
                 HayScript hayScript = target.GetComponent<HayScript>();
+                DecoyGrenade decoyGrenade = target.GetComponent<DecoyGrenade>();
+
                 if (hayScript != null)
                 {
                     hayScript.TakeBite();
@@ -124,9 +127,19 @@ public class EnemyAI : MonoBehaviour, IDamageable
                         FindTarget();
                     }
                 }
+                else if (decoyGrenade != null && decoyGrenade.IsActive)
+                {
+                    decoyGrenade.TakeBite(this);
+                    Debug.Log($"{this.name} took a bite of decoy grenade.");
+                    if (!decoyGrenade.IsActive)
+                    {
+                        Debug.Log("Decoy destroyed from bites, switching targets.");
+                        FindTarget();
+                    }
+                }
                 else
                 {
-                    Debug.LogWarning("No HayScript found, destroying impostor hay immediately.");
+                    Debug.LogWarning("No HayScript or active DecoyGrenade found, destroying impostor hay immediately.");
                     Destroy(target);
                     FindTarget();
                 }
@@ -238,6 +251,12 @@ public class EnemyAI : MonoBehaviour, IDamageable
             }
         }
     }
+    public void SetTemporaryTarget(Transform newTarget, float duration)
+    {
+        HayTarget = newTarget;
+        isTargetingPlayer = false;
+        Invoke(nameof(FindTarget), duration);
+    }
     private void PlayEatingAnimation()
     {
 
@@ -251,6 +270,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
     {
 
     }
+
 }
 public interface IDamageable
 {
