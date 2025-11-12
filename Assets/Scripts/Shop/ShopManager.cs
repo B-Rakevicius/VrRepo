@@ -2,12 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Items;
-using UnityEditor.VersionControl;
 using UnityEngine;
 using System.Threading.Tasks;
 using Managers;
 using Player;
-using Task = UnityEditor.VersionControl.Task;
 
 namespace Shop
 {

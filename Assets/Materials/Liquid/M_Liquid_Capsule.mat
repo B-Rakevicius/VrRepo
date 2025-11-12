@@ -141,8 +141,8 @@ Material:
     - _UVScale: 7.2
     - _WobbleSpeed: 0.4
     - _WobbleSpeedScale: 1.04
-    - _WobbleX: -4.3135104e-10
-    - _WobbleZ: 2.054735e-10
+    - _WobbleX: NaN
+    - _WobbleZ: NaN
     - _WorkflowMode: 1
     - _ZWrite: 1
     - __BubbleSmoothness: 0.01

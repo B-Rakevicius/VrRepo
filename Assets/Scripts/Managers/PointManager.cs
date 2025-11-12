@@ -3,11 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.Rendering;
-using UnityEngine.Rendering.HighDefinition;
+
 public class PointManager : MonoBehaviour
 {
     public TextMeshProUGUI slainScore ,pointScore, enemyBuffer;

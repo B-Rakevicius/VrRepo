@@ -4903,7 +4903,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 0
-  maxHealth: 15
+  maxHealth: 30
   currentHealth: 0
   enemyRenderer: {fileID: 0}
   hitFlashDuration: 0.2

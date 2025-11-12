@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
+using Utils;
 
 namespace UI
 {
@@ -112,11 +113,11 @@ namespace UI
             gameObject.SetActive(false);
         }
 
-        public void Show()
+        public async void Show()
         {
             gameObject.SetActive(true);
             
-            ScaleInAnim();
+            await UIAnimator.ScaleAnim(GetComponent<RectTransform>(), animDuration, animStartScale, animEndScale);
         }
         
         public void Hide()
@@ -124,9 +125,11 @@ namespace UI
             gameObject.SetActive(false);
         }
 
-        public void HideWithAnim()
+        public async void HideWithAnim()
         {
-            ScaleOutAnim();
+            await UIAnimator.ScaleAnim(GetComponent<RectTransform>(), animDuration, animEndScale, animStartScale);
+            
+            Hide();
         }
     }
 }
