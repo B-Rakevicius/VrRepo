@@ -3,8 +3,9 @@ using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
 using Unity.VRTemplate;
+using Items;
 
-public class EnemyAI : MonoBehaviour
+public class EnemyAI : MonoBehaviour, IDamageable
 {
     [Header("Movement Settings")]
     public float speed = 1.25f;
@@ -114,6 +115,8 @@ public class EnemyAI : MonoBehaviour
             if (!isTargetingPlayer)
             {
                 HayScript hayScript = target.GetComponent<HayScript>();
+                DecoyGrenade decoyGrenade = target.GetComponent<DecoyGrenade>();
+
                 if (hayScript != null)
                 {
                     hayScript.TakeBite();
@@ -124,9 +127,19 @@ public class EnemyAI : MonoBehaviour
                         FindTarget();
                     }
                 }
+                else if (decoyGrenade != null && decoyGrenade.IsActive)
+                {
+                    decoyGrenade.TakeBite(this);
+                    Debug.Log($"{this.name} took a bite of decoy grenade.");
+                    if (!decoyGrenade.IsActive)
+                    {
+                        Debug.Log("Decoy destroyed from bites, switching targets.");
+                        FindTarget();
+                    }
+                }
                 else
                 {
-                    Debug.LogWarning("No HayScript found, destroying impostor hay immediately.");
+                    Debug.LogWarning("No HayScript or active DecoyGrenade found, destroying impostor hay immediately.");
                     Destroy(target);
                     FindTarget();
                 }
@@ -181,9 +194,12 @@ public class EnemyAI : MonoBehaviour
     {
         return Physics.Raycast(transform.position, Vector3.down, 1.1f, groundLayer);
     }
-    public void TakeDamage(int damage, Vector3 hitDirection, float knockbackStrength = 0f)
+    public void TakeDamage(float damage, Vector3 hitDirection, float knockbackStrength = 0f, string source = "")
     {
-        currentHealth -= damage;
+        int intDamage = Mathf.RoundToInt(damage);
+        currentHealth -= intDamage;
+        if (!string.IsNullOrEmpty(source))
+            Debug.Log($"Hit by {source} for {damage} damage!");
         if (knockbackStrength > 0)
         {
             ApplyKnockback(hitDirection, knockbackStrength);
@@ -195,7 +211,8 @@ public class EnemyAI : MonoBehaviour
         }
         else
         {
-            StartCoroutine(ApplyShadeAfterDelay(this.gameObject.transform, 0.5f));
+            Debug.Log("baa fix hit damage color showing");
+            //StartCoroutine(ApplyShadeAfterDelay(this.gameObject.transform, 0.5f));
         }
     }
     private void ApplyKnockback(Vector3 hitDirection, float knockbackStrength)
@@ -213,8 +230,8 @@ public class EnemyAI : MonoBehaviour
         }
         isDying = true;
         LootManager.Instance.TryDropLoot(transform.position);
-        Destroy(this);
-        PointManager.Instance.addSlain();
+        Destroy(this.gameObject);
+        //PointManager.Instance.addSlain();
     }
     private IEnumerator ApplyShadeAfterDelay(Transform enemy, float delay)
     {
@@ -234,6 +251,12 @@ public class EnemyAI : MonoBehaviour
             }
         }
     }
+    public void SetTemporaryTarget(Transform newTarget, float duration)
+    {
+        HayTarget = newTarget;
+        isTargetingPlayer = false;
+        Invoke(nameof(FindTarget), duration);
+    }
     private void PlayEatingAnimation()
     {
 
@@ -247,4 +270,9 @@ public class EnemyAI : MonoBehaviour
     {
 
     }
+
+}
+public interface IDamageable
+{
+    void TakeDamage(float damage, Vector3 hitDirection, float knockbackStrength = 0f, string source = "");
 }

@@ -579,8 +579,8 @@ GameObject:
   - component: {fileID: 6906597122761608527}
   - component: {fileID: 3783991341175807147}
   - component: {fileID: 2122425132011250237}
-  - component: {fileID: 4708087593500276042}
   - component: {fileID: 1687854146496114040}
+  - component: {fileID: 1529989440024601327}
   m_Layer: 0
   m_Name: PetalShotgun
   m_TagString: Untagged
@@ -606,6 +606,7 @@ Transform:
   - {fileID: 4395657208203793185}
   - {fileID: 9092553279918368234}
   - {fileID: 7108354167638843599}
+  - {fileID: 3176132470497086305}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &771891958266779278
@@ -672,7 +673,7 @@ MonoBehaviour:
   m_InteractionManager: {fileID: 0}
   m_Colliders: []
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 3
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1
@@ -807,29 +808,6 @@ MonoBehaviour:
   m_MinimumScaleRatio: 0.25
   m_MaximumScaleRatio: 2
   m_ScaleMultiplier: 0.25
---- !u!114 &4708087593500276042
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2359834440933827928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b5f13d4757d84b489f5b1a03977578f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  suctionPoint: {fileID: 7108354167638843599}
-  suctionRange: 0.6
-  suctionRadius: 3
-  suctionStrength: 10
-  orbCollectThreshold: 0.2
-  orbLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  liquidMaterial: {fileID: 2100000, guid: ba2a609c175369f4d9f91d32a87ebd42, type: 2}
-  emptyValue: 0.14
-  fullValue: -0.14
 --- !u!114 &1687854146496114040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -853,6 +831,31 @@ MonoBehaviour:
   coneAngle: 45
   startRadius: 0.05
   liquidMaterial: {fileID: 2100000, guid: ba2a609c175369f4d9f91d32a87ebd42, type: 2}
+  emptyValue: 0.14
+  fullValue: -0.14
+--- !u!114 &1529989440024601327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2359834440933827928}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b5f13d4757d84b489f5b1a03977578f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  suctionPoint: {fileID: 1353637683357309537}
+  suctionRange: 10
+  suctionRadius: 3
+  suctionStrength: 10
+  orbCollectThreshold: 0.2
+  orbLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  coneAngle: 45
+  startRadius: 0.05
+  liquidMaterial: {fileID: 0}
   emptyValue: 0.14
   fullValue: -0.14
 --- !u!1 &2576145892101267862
@@ -1371,6 +1374,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &3544348161171057304
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3176132470497086305}
+  m_Layer: 0
+  m_Name: SuctionPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3176132470497086305
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3544348161171057304}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.2, z: 1.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6016438754994087244}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3701498094787450468
 GameObject:
   m_ObjectHideFlags: 0
@@ -2270,6 +2304,37 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     m_Variable: {fileID: 0}
+--- !u!1 &5858271593692729776
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1353637683357309537}
+  m_Layer: 0
+  m_Name: SuctionPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1353637683357309537
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5858271593692729776}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.2, z: 1.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6016438754994087244}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5965625722090653969
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7743943359608205738}
   - component: {fileID: 4096572134634588562}
   - component: {fileID: 6487710876713902024}
-  - component: {fileID: 8240449570785013154}
+  - component: {fileID: 1173787740107984362}
   m_Layer: 0
   m_Name: arrow
   m_TagString: Arrow
@@ -238,7 +238,7 @@ MonoBehaviour:
   m_MinimumScaleRatio: 0.25
   m_MaximumScaleRatio: 2
   m_ScaleMultiplier: 0.25
---- !u!114 &8240449570785013154
+--- !u!114 &1173787740107984362
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -247,10 +247,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1813917790458350144}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53884fa429ee46049897963973de75e0, type: 3}
+  m_Script: {fileID: 11500000, guid: 6da2addab3506be4eb3ee38abe9101ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrowLifetime: 5
+  lifetime: 5
+  damage: 10
+  knockbackForce: 15
+  hitEffect: {fileID: 4809171458859421548, guid: 6977c02a7620ddc439d06357b7c285cb, type: 3}
 --- !u!1 &2874011848925427730
 GameObject:
   m_ObjectHideFlags: 0

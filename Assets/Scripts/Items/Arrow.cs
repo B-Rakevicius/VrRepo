@@ -7,18 +7,23 @@ namespace Items
     [RequireComponent(typeof(Rigidbody))]
     public class Arrow : MonoBehaviour
     {
-        [Tooltip("How long should the shot arrow exist in the world?")]
-        [SerializeField] private float arrowLifetime = 5f;
-        
+        [SerializeField] private float lifetime = 5f;
+        [SerializeField] private float damage = 10f;
+        [SerializeField] private float knockbackForce = 8f;
+        [SerializeField] private GameObject hitEffect; //vfx, need make then add
         private Rigidbody _rb;
-        private bool m_hasBeenShot = false;
         private bool m_hasHit = false;
-
+        private bool m_hasBeenShot = false;
+        private string damageSource;
+        private GameObject instantVFX;
         private void Awake()
         {
             _rb = GetComponent<Rigidbody>();
+            if (GetComponent<Collider>() == null)
+            {
+                Debug.LogError("Collider not found. Make sure it is attached to the arrow game object.");
+            }
         }
-        
         private void FixedUpdate()
         {
             if (m_hasBeenShot && !m_hasHit && _rb.linearVelocity.sqrMagnitude > 0.1f)
@@ -26,43 +31,40 @@ namespace Items
                 transform.forward = _rb.linearVelocity.normalized;
             }
         }
-
-        private void OnCollisionEnter(Collision collision)
+        public void Shoot(Vector3 direction, float force, string source = "Player")
         {
-            // Arrow already hit something or wasn't shot. Don't calculate collisions.
-            if (m_hasHit || !m_hasBeenShot) { return; }
-            
-            m_hasHit = true;
-
-            StickToSurface(collision);
-        }
-
-        public void Shoot(Vector3 direction, float force)
-        {
+            damageSource = source;
             _rb.isKinematic = false;
             _rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
             _rb.AddForce(direction * force, ForceMode.Impulse);
             m_hasBeenShot = true;
+            Destroy(gameObject, lifetime);
             
-            Destroy(gameObject, arrowLifetime);
         }
-
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (m_hasHit || !m_hasBeenShot) { return; }
+            m_hasHit = true;
+            if (collision.gameObject.TryGetComponent(out IDamageable damageable))
+            {
+                Vector3 hitDirection = transform.forward;
+                damageable.TakeDamage(damage, hitDirection, knockbackForce, damageSource);
+            }
+            if (hitEffect != null)
+            {
+                instantVFX = Instantiate(hitEffect, collision.contacts[0].point, Quaternion.identity);
+                Destroy(instantVFX, 2f);
+            }
+            StickToSurface(collision);
+        }
         private void StickToSurface(Collision collision)
         {
-            // Set speed to 0
             _rb.linearVelocity = Vector3.zero;
             _rb.angularVelocity = Vector3.zero;
-            
             _rb.isKinematic = true;
-            
-            // Get collision contacts and move the arrow slightly into the surface
             ContactPoint contact = collision.contacts[0];
             transform.position = contact.point + transform.forward * -0.37f;
-            
-            // Set a parent so that arrow would follow it
             transform.SetParent(collision.transform, true);
-            
-            // Disable interactions with this arrow
             GetComponent<XRGrabInteractable>().enabled = false;
             GetComponent<XRGeneralGrabTransformer>().enabled = false;
             GetComponent<CapsuleCollider>().enabled = false;

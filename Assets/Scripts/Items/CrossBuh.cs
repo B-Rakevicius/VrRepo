@@ -21,8 +21,6 @@ namespace Items
         [Tooltip("Crossbow's fire rate")]
         [SerializeField] private float fireRate = 1f;
         
-        [SerializeField] private LayerMask targetLayer;
-        
         [Tooltip("Interactable arrow's prefab")]
         [SerializeField] private GameObject arrowPrefab;
         
@@ -36,50 +34,22 @@ namespace Items
         [Header("Cone Settings")]
         [SerializeField] private float coneAngle = 15f;
         [SerializeField] private float startRadius = 0.05f;
-        private float nextFireTime;
-        private Queue<GameObject> activeArrows = new Queue<GameObject>();
+        private float m_nextFireTime;
 
         // Count of currently loaded arrows.
         private int m_currentArrows;
         public bool IsCrossbowLoaded { get; private set; } = false;
         private GameObject m_currentArrowVisuals;
 
-        // public void UseWeapon()
-        // {
-        //     if (Time.time < nextFireTime) return;
-        //     nextFireTime = Time.time + 1f / fireRate;
-        //     // Calculate random direction within cone
-        //     Vector3 shootDirection = GetRandomDirectionInCone();
-        //     // Instantiate arrow
-        //     GameObject arrow = Instantiate(arrowPrefab, shootPoint.position, Quaternion.LookRotation(shootDirection));
-        //     // Add arrow to tracking queue
-        //     activeArrows.Enqueue(arrow);
-        //     // Limit number of active arrows
-        //     if (activeArrows.Count > maxArrows)
-        //     {
-        //         GameObject oldArrow = activeArrows.Dequeue();
-        //         if (oldArrow != null)
-        //             Destroy(oldArrow);
-        //     }
-        //     // Set up arrow physics
-        //     Rigidbody rb = arrow.GetComponent<Rigidbody>();
-        //     if (rb != null)
-        //     {
-        //         rb.AddForce(shootDirection * shootForce, ForceMode.Impulse);
-        //     }
-        //     // Set up arrow destruction
-        //     Destroy(arrow, arrowLifetime);
-        // }
-
         public void UseWeapon()
         {
             if (!IsCrossbowLoaded) { return; }
             
             // Check for shooting cooldown
-            if (Time.time < nextFireTime) return;
-            nextFireTime = Time.time + 1f / fireRate;
+            if (Time.time < m_nextFireTime) return;
+            m_nextFireTime = Time.time + 1f / fireRate;
             
-            // Get arrow direction to shoot towards
+            // Calculate random direction within cone
             Vector3 shootDirection = shootPoint.forward;
             
             // Instantiate arrow with colliders, rigidbody

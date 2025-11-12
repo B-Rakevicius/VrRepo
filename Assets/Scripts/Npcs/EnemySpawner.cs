@@ -9,7 +9,7 @@ public class EnemySpawner : MonoBehaviour
     public float spawnRadius = 50f, waveInterval = 5f, spawnBuffer = 0f;
     public int maxEnemiesPerWave = 25, totalEnemies = 0;
     public LayerMask groundLayer;
-    private bool isPaused = false;
+    public bool isPaused = false;
     private float timeTotal = 0f, timeDuringWaves = 0f;
     private Coroutine waveCoroutine;
     public List<GameObject> activeEnemies = new List<GameObject>();
@@ -19,6 +19,8 @@ public class EnemySpawner : MonoBehaviour
         {
             player = GameObject.FindGameObjectWithTag("Player").transform;
         }
+
+        isPaused = true;
         waveCoroutine = StartCoroutine(WaveSpawner());
         if (GameManager.Instance != null)
         {
@@ -38,6 +40,7 @@ public class EnemySpawner : MonoBehaviour
         {
             PauseSpawning();
             Debug.Log($"Spawning paused at round {GameManager.Instance.currentWave}");
+            CheckAndUpdateInbetweenWaves();
         }
         else
         {
@@ -52,8 +55,8 @@ public class EnemySpawner : MonoBehaviour
             timeDuringWaves += Time.deltaTime;
         }
         timeTotal += Time.deltaTime;
-        DifficultyLogging();
-        CheckAndUpdateInbetweenWaves();
+        //DifficultyLogging();
+        //CheckAndUpdateInbetweenWaves();
     }
     private IEnumerator WaveSpawner()
     {
@@ -170,11 +173,11 @@ public class EnemySpawner : MonoBehaviour
         int currentWave = GameManager.Instance.currentWave;
 
         if (currentWave <= 10)
-            enemyType.GetComponentInChildren<EnemyAI>().maxHealth = mult * (5 + (int)(currentWave * 2));
+            enemyType.GetComponentInChildren<EnemyAI>().maxHealth = mult * (5 + (int)(currentWave * 0.2));
         else if (currentWave <= 20)
-            enemyType.GetComponentInChildren<EnemyAI>().maxHealth = mult * (5 + (int)(currentWave * 3));
+            enemyType.GetComponentInChildren<EnemyAI>().maxHealth = mult * (5 + (int)(currentWave * 0.3));
         else
-            enemyType.GetComponentInChildren<EnemyAI>().maxHealth = mult * (5 + (int)(currentWave * 4));
+            enemyType.GetComponentInChildren<EnemyAI>().maxHealth = mult * (5 + (int)(currentWave * 0.4));
     }
 
     /// <summary>
@@ -187,13 +190,13 @@ public class EnemySpawner : MonoBehaviour
         switch (currentWave)
         {
             case 10:
-                Debug.Log("Enemies growing stronger: Now +3 HP per wave with 2.5x spawn rate");
+                Debug.Log("Enemies growing stronger: Now +0.3 HP per wave with 2.5x spawn rate");
                 break;
             case 20:
-                Debug.Log("Enemies evolving: Now +4 HP per wave with 6x spawn rate");
+                Debug.Log("Enemies evolving: Now +0.4 HP per wave with 6x spawn rate");
                 break;
             case 5:
-                Debug.Log("Enemies getting tougher: Now +2 HP per wave with 1x spawn rate");
+                Debug.Log("Enemies getting tougher: Now +0.2 HP per wave with 1x spawn rate");
                 break;
         }
     }

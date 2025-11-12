@@ -35,6 +35,7 @@ namespace Items
         {
             // Update liquid shader visual
             // Remap Max money values
+            Debug.Log($"Current money: {PlayerManager.Instance.CurrentMoney}");
             float t = Mathf.InverseLerp(0, PlayerManager.Instance.MaxMoney, PlayerManager.Instance.CurrentMoney);
             float fillAmount = Mathf.Lerp(emptyValue, fullValue, t);
             liquidMaterial.SetFloat(FillAmount, fillAmount);

@@ -30,15 +30,12 @@ namespace UI
         private async void ScaleInAnim()
         {
             float currentAnimTime = 0f;
-            Debug.Log("Entered ScaleInAnim");
 
             while (currentAnimTime <= animDuration)
             {
                 // Normalize to 0-1 range
                 float t = currentAnimTime / animDuration;
 
-                Debug.Log($"AnimTime: {t}");
-                
                 float newScale = Mathf.Lerp(animStartScale, animEndScale, t);
                 Vector3 newScaleVector = new Vector3(newScale, newScale, newScale);
                 transform.localScale = newScaleVector;
@@ -55,15 +52,12 @@ namespace UI
         private async void ScaleOutAnim()
         {
             float currentAnimTime = 0f;
-            Debug.Log("Entered ScaleInAnim");
 
             while (currentAnimTime <= animDuration)
             {
                 // Normalize to 0-1 range
                 float t = currentAnimTime / animDuration;
 
-                Debug.Log($"AnimTime: {t}");
-                
                 float newScale = Mathf.Lerp(animEndScale, animStartScale, t);
                 Vector3 newScaleVector = new Vector3(newScale, newScale, newScale);
                 transform.localScale = newScaleVector;
