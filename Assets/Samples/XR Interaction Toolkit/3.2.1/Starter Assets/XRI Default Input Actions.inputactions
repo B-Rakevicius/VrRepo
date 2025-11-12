@@ -984,6 +984,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Activate Held Item UI",
+                    "type": "Button",
+                    "id": "b4517dcc-dc20-4d4a-8dc5-5d89546d0932",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1303,6 +1312,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Activate Held Item",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5f350e0d-9e32-4cad-a08c-de681add37d3",
+                    "path": "<XRController>{LeftHand}/{TriggerButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Activate Held Item UI",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -2097,6 +2117,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Activate Held Item UI",
+                    "type": "Button",
+                    "id": "b88e4ece-11d8-4f9e-b6fb-94c06ddf2408",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -2416,6 +2445,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Activate Held Item",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "67242c2d-45d9-4939-9397-3f3548879e1b",
+                    "path": "<XRController>{RightHand}/{TriggerButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Activate Held Item UI",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

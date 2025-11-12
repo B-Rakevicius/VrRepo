@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Items;
+using UI;
 using UnityEngine;
 
 namespace Shop
@@ -52,7 +53,9 @@ namespace Shop
             if (itemPrefab != null)
             {
                 Debug.Log("Spawning item...");
-                Instantiate(itemPrefab, spawnPoint.position, spawnPoint.rotation);
+                GameObject shopItem = Instantiate(itemPrefab, spawnPoint.position, spawnPoint.rotation);
+                ItemUI itemUI = shopItem.GetComponent<ItemUI>();
+                itemUI.ToggleUI();
             }
             else
             {

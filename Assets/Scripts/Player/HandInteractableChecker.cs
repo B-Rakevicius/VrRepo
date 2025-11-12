@@ -1,4 +1,5 @@
 using Items;
+using UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -11,7 +12,9 @@ namespace Player
     public class HandInteractableChecker : MonoBehaviour
     {
         [Tooltip("Reference to input action")]
-        [SerializeField] private InputActionReference m_InputAction;
+        [SerializeField] private InputActionReference m_InputAction_Use;
+        [Tooltip("Reference to `Show item info UI` input action")]
+        [SerializeField] private InputActionReference m_InputAction_ToggleUI;
         
         [Tooltip("Reference to left/right hand interactor")]
         [SerializeField] private XRInteractionGroup m_InteractionGroup;
@@ -26,10 +29,33 @@ namespace Player
         private bool m_IsHolding;
         private bool m_stopCleaning = true;
 
+        private float m_UIButtonLockedTill;
+
 
         private void Awake()
         {
             m_InteractionGroup = GetComponent<XRInteractionGroup>();
+        }
+
+        private void Start()
+        {
+            m_InputAction_ToggleUI.action.performed += InputAction_ToggleUI;
+        }
+
+        /// <summary>
+        /// Used to show item info panel when Show Item UI button is pressed
+        /// </summary>
+        /// <param name="obj"></param>
+        private void InputAction_ToggleUI(InputAction.CallbackContext obj)
+        {
+            IsHoldingInteractable();
+            if (!m_IsHolding) return;
+            // Get ItemUI component and toggle UI
+            if (m_Interactable.transform.TryGetComponent(out ItemUI itemUI) && Time.time > m_UIButtonLockedTill)
+            {
+                itemUI.ToggleUI();
+                m_UIButtonLockedTill = Time.time + itemUI.AnimDuration;
+            }
         }
 
         private void Update()
@@ -39,7 +65,7 @@ namespace Player
 
         private void GatherInput()
         {
-            m_InputValue = m_InputAction.action.ReadValue<float>();
+            m_InputValue = m_InputAction_Use.action.ReadValue<float>();
             
             // We are holding the button. Try to activate currently held item
             if (m_InputValue > 0)
