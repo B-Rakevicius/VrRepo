@@ -6,6 +6,7 @@ using UnityEngine;
 using System.Threading.Tasks;
 using Managers;
 using Player;
+using UI;
 
 namespace Shop
 {
@@ -94,11 +95,15 @@ namespace Shop
             int totalPrice = shoppingCartItems.Sum(x => x.GetItemData().itemPrice);
             
             // Check if player has enough money
+            Debug.Log("Has enough money: " + PlayerManager.Instance.HasEnoughMoney(totalPrice));
             if (PlayerManager.Instance.HasEnoughMoney(totalPrice))
             {
                 // Loop through all items and buy them. Also mark them as bought
                 foreach (Item item in shoppingCartItems)
                 {
+                    // Disable shop item UI
+                    item.GetComponent<ItemUI>().HideUI();
+                    
                     item.IsBought = true;
 
                     if (item.GetItemData().itemName == "HayItem")

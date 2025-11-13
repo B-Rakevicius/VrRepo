@@ -53,9 +53,7 @@ namespace Shop
             if (itemPrefab != null)
             {
                 Debug.Log("Spawning item...");
-                GameObject shopItem = Instantiate(itemPrefab, spawnPoint.position, spawnPoint.rotation);
-                ItemUI itemUI = shopItem.GetComponent<ItemUI>();
-                itemUI.ToggleUI();
+                Instantiate(itemPrefab, spawnPoint.position, spawnPoint.rotation);
             }
             else
             {

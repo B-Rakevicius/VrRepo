@@ -30,7 +30,7 @@ namespace UI
         [SerializeField] private float animEndScale = 1f;
 
         public float AnimDuration => animDuration;
-        private bool m_isUIOpen;
+        private bool m_isUIOpen = false;
 
         private void Start()
         {
@@ -62,15 +62,16 @@ namespace UI
         }
 
         /// <summary>
-        /// Toggles item's UI depending on whether the item is already bought or not
+        /// Toggles item's UI depending on whether the item is already bought or not. Mainly used from HandInteractableChecker
         /// </summary>
         public async void ToggleUI()
         {
             bool isBought = _item.IsBought;
-            Debug.Log("Is bought: " + isBought);
 
             if (isBought) // Activate UI panel which contains item info without its price
             {
+                if (_boughtItemInfo == null) { return; }
+                
                 if (!m_isUIOpen)
                 {
                     Show(_boughtItemInfo);
@@ -85,6 +86,8 @@ namespace UI
             }
             else // Item is not bought, display full panel
             {
+                if(_shopItemInfo == null) { return; }
+                
                 if (!m_isUIOpen)
                 {
                     Show(_shopItemInfo);
@@ -96,6 +99,40 @@ namespace UI
                     Hide(_shopItemInfo);
                 }
                 m_isUIOpen = !m_isUIOpen;
+            }
+        }
+
+        /// <summary>
+        /// Shows item UI when hovering on the item.
+        /// </summary>
+        public async void ShowUI()
+        {
+            if(m_isUIOpen) { return; }
+            
+            bool isBought = _item.IsBought;
+
+            if (!isBought) // Activate UI panel which contains item info without its price
+            {
+                Show(_boughtItemInfo);
+                await UIAnimator.ScaleAnim(_boughtItemInfo, animDuration, animStartScale, animEndScale);
+                m_isUIOpen = true;
+            }
+        }
+
+        /// <summary>
+        /// Hides item UI when not hovering.
+        /// </summary>
+        public async void HideUI()
+        {
+            if(!m_isUIOpen) { return; }
+            
+            bool isBought = _item.IsBought;
+
+            if (!isBought) // Activate UI panel which contains item info without its price
+            {
+                await UIAnimator.ScaleAnim(_boughtItemInfo, animDuration, animEndScale, animStartScale);
+                Hide(_boughtItemInfo);
+                m_isUIOpen = false;
             }
         }
 

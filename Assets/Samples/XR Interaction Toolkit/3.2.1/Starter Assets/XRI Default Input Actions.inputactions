@@ -896,6 +896,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Activate Held Item UI",
+                    "type": "Button",
+                    "id": "b4517dcc-dc20-4d4a-8dc5-5d89546d0932",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Activate Held Item",
                     "type": "Button",
                     "id": "a88aee80-4f3c-45ca-a5f7-0719d6df7fac",
@@ -984,15 +993,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "Activate Held Item UI",
-                    "type": "Button",
-                    "id": "b4517dcc-dc20-4d4a-8dc5-5d89546d0932",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -2029,6 +2029,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Activate Held Item UI",
+                    "type": "Button",
+                    "id": "b88e4ece-11d8-4f9e-b6fb-94c06ddf2408",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Activate Held Item",
                     "type": "Button",
                     "id": "fc291899-ba3b-4a0a-b721-172561a648f6",
@@ -2117,15 +2126,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "Activate Held Item UI",
-                    "type": "Button",
-                    "id": "b88e4ece-11d8-4f9e-b6fb-94c06ddf2408",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [

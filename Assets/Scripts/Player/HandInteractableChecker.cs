@@ -29,7 +29,7 @@ namespace Player
         private bool m_IsHolding;
         private bool m_stopCleaning = true;
 
-        private float m_UIButtonLockedTill;
+        private float m_UIButtonLockedTill = 0f;
 
 
         private void Awake()
@@ -40,6 +40,11 @@ namespace Player
         private void Start()
         {
             m_InputAction_ToggleUI.action.performed += InputAction_ToggleUI;
+        }
+
+        private void OnDestroy()
+        {
+            m_InputAction_ToggleUI.action.performed -= InputAction_ToggleUI;
         }
 
         /// <summary>
