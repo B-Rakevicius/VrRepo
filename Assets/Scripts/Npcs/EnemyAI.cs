@@ -7,6 +7,12 @@ using Items;
 
 public class EnemyAI : MonoBehaviour, IDamageable
 {
+    [Header("Balloon toggle")]
+    public bool balloonMode = false;
+    
+
+
+
     [Header("Movement Settings")]
     public float speed = 1.25f;
     public float stoppingDistance = 0.75f;
