@@ -113,8 +113,8 @@ namespace UI
 
             if (!isBought) // Activate UI panel which contains item info without its price
             {
-                Show(_boughtItemInfo);
-                await UIAnimator.ScaleAnim(_boughtItemInfo, animDuration, animStartScale, animEndScale);
+                Show(_shopItemInfo);
+                await UIAnimator.ScaleAnim(_shopItemInfo, animDuration, animStartScale, animEndScale);
                 m_isUIOpen = true;
             }
         }
@@ -130,8 +130,8 @@ namespace UI
 
             if (!isBought) // Activate UI panel which contains item info without its price
             {
-                await UIAnimator.ScaleAnim(_boughtItemInfo, animDuration, animEndScale, animStartScale);
-                Hide(_boughtItemInfo);
+                await UIAnimator.ScaleAnim(_shopItemInfo, animDuration, animEndScale, animStartScale);
+                Hide(_shopItemInfo);
                 m_isUIOpen = false;
             }
         }
