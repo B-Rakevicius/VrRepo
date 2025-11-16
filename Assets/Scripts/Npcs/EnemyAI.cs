@@ -9,33 +9,30 @@ public class EnemyAI : MonoBehaviour, IDamageable
 {
     [Header("Balloon toggle")]
     public bool balloonMode = false;
-    
-
-
-
+    [Header("Safety Checks")]
+    public float fallDeathY = -50f;
+    public float safetyCheckDuration = 5f;
+    private float spawnTime;
+    private bool isRespawning = false;
     [Header("Movement Settings")]
     public float speed = 1.25f;
     public float stoppingDistance = 0.75f;
     public float rotationSpeed = 5f;
     public float gravity = 10f;
     public LayerMask groundLayer;
-
     [Header("Health Settings")]
     public int maxHealth = 10;
     public int currentHealth;
     private bool isDying = false;
-
     [Header("Damage Feedback")]
     public Renderer enemyRenderer;
     public float hitFlashDuration = 0.2f;
-
     [Header("Knockback Settings")]
     public float knockbackResistance = 0.5f; // 0 = no resistance, 1 = full resistance
     private Vector3 knockbackForce;
     private Transform HayTarget;
     private Vector3 velocity;
     private CharacterController controller;
-
     [Header("Eating Settings")]
     public float eatingRange = 1.5f;
     private float lastEatTime;
@@ -48,10 +45,12 @@ public class EnemyAI : MonoBehaviour, IDamageable
         FindTarget();
         controller = GetComponent<CharacterController>();
         currentHealth = maxHealth;
+
         if (controller == null)
         {
             Debug.LogError("CharacterController is missing on enemy!");
         }
+        spawnTime = Time.time;
     }
     private void FindTarget()
     {
@@ -167,8 +166,13 @@ public class EnemyAI : MonoBehaviour, IDamageable
     }
     private void Update()
     {
+        if (!isRespawning && Time.time - spawnTime <= safetyCheckDuration)
+        {
+            CheckFallenOffMap();
+        }
+
         TryEatHay();
-        if (HayTarget == null || isEating) return;
+        if (HayTarget == null || isEating || isRespawning) return;
         Vector3 direction = (HayTarget.position - transform.position).normalized;
         direction.y = 0;
         if (knockbackForce.magnitude > 0.1f)
@@ -182,7 +186,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
         if (Vector3.Distance(transform.position, HayTarget.position) > stoppingDistance &&
-            Vector3.Distance(transform.position, HayTarget.position) > eatingRange/2)
+            Vector3.Distance(transform.position, HayTarget.position) > eatingRange / 2)
         {
             controller.Move(direction * speed * Time.deltaTime);
         }
@@ -276,7 +280,33 @@ public class EnemyAI : MonoBehaviour, IDamageable
     {
 
     }
+    private void CheckFallenOffMap()
+    {
+        if (transform.position.y <= fallDeathY)
+        {
+            Debug.LogWarning($"{name} has fallen off the map at Y:{transform.position.y}...");
+            RespawnEnemy();
+        }
+    }
+    private void RespawnEnemy()
+    {
+        if (isRespawning) return;
 
+        isRespawning = true;
+        Debug.Log($"{name} moving to safe height... bruh");
+        Vector3 newPosition = new Vector3(transform.position.x, 5f, transform.position.z);
+        transform.position = newPosition;
+        velocity = Vector3.zero;
+        knockbackForce = Vector3.zero;
+        StartCoroutine(EnableAfterRespawn());
+    }
+    private IEnumerator EnableAfterRespawn()
+    {
+        yield return new WaitForSeconds(0.5f);
+        isRespawning = false;
+        FindTarget();
+        Debug.Log($"{name} successfully repositioned to safe height at position: {transform.position}");
+    }
 }
 public interface IDamageable
 {

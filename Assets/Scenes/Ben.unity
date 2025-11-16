@@ -3003,17 +3003,17 @@ MonoBehaviour:
     spawnWeight: 10
   - enemyPrefab: {fileID: 3363292928994503358, guid: ad3aea47f978d3249b7cc3777db50fc9, type: 3}
     cost: 3
-    minWave: 1
+    minWave: 3
     spawnWeight: 10
   - enemyPrefab: {fileID: 7942003247806901866, guid: 3abb4039078ce7e409cc5650cb2b8771, type: 3}
     cost: 2
-    minWave: 2
+    minWave: 6
     spawnWeight: 10
   player: {fileID: 0}
   spawnRadius: 50
   waveInterval: 5
   spawnBuffer: 0
-  maxEnemiesPerWave: 1
+  maxEnemiesPerWave: 4
   totalEnemies: 0
   groundLayer:
     serializedVersion: 2
