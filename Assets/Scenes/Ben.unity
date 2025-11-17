@@ -3013,7 +3013,7 @@ MonoBehaviour:
   spawnRadius: 50
   waveInterval: 5
   spawnBuffer: 0
-  maxEnemiesPerWave: 4
+  maxEnemiesPerWave: 1
   totalEnemies: 0
   groundLayer:
     serializedVersion: 2

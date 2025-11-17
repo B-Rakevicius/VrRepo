@@ -20,6 +20,7 @@ namespace Items
         private AudioSource _audioSource;
         private Dictionary<EnemyAI, Transform> _originalTargets = new Dictionary<EnemyAI, Transform>();
         private HashSet<EnemyAI> _enemiesThatBit = new HashSet<EnemyAI>();
+        private bool _isInShop = false;
         public bool IsActive => _isActive;
         public Vector3 Position => transform.position;
         private void Awake()
@@ -44,7 +45,7 @@ namespace Items
         }
         private void Update()
         {
-            if (_isActive)
+            if (_isActive && !_isInShop)
             {
                 PulseActiveVisual();
                 AttractEnemies();
@@ -54,6 +55,7 @@ namespace Items
         private void OnThrown(SelectExitEventArgs args)
         {
             _rb.isKinematic = false;
+            if (_isInShop) return;
             if (!_isArmed)
             {
                 ArmDecoy();
@@ -62,6 +64,7 @@ namespace Items
         private void OnPickedUp(SelectEnterEventArgs args)
         {
             _rb.isKinematic = false;
+            if (_isInShop) return;
             if (_isArmed && !_hasActivated)
             {
                 DisarmDecoy();
@@ -69,13 +72,14 @@ namespace Items
         }
         public void ArmDecoy()
         {
-            if (_isArmed) return;
+            if (_isArmed || _isInShop) return;
             _isArmed = true;
             Invoke(nameof(ActivateDecoy), activationTime);
             Debug.Log("decoy armed");
         }
         public void DisarmDecoy()
         {
+            if (_isInShop) return;
             if (_isArmed && !_hasActivated)
             {
                 _isArmed = false;
@@ -281,6 +285,10 @@ namespace Items
         {
             Gizmos.color = Color.cyan;
             Gizmos.DrawWireSphere(transform.position, attractionRadius);
+        }
+        public void SetShopState(bool isShopper)
+        {
+            _isInShop = isShopper;
         }
     }
 }

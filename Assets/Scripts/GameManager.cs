@@ -35,12 +35,10 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        // TODO: Game loop goes here. When the player press Start Game, it will update m_isGameStarted to true.
     }
 
     private bool Application_WantsToQuit()
     {
-        // For now simply just quit. Later implement a dialog box to confirm application exit.
         Debug.Log("Quitting...");
         return true;
     }
@@ -73,8 +71,6 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         IsGameStarted = true;
-
-        // For now, instantly start first round
         StartRound();
     }
     public void GameOver()

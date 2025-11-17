@@ -13,26 +13,19 @@ namespace Shop
     public class ShopManager : MonoBehaviour
     {
         public static ShopManager Instance;
-        
         [Header("Shop Items Pool")]
         [Tooltip("All available shop items to buy.")]
         [SerializeField] private List<ItemData> items;
-        
         [Header("Shop Prefab")]
         [SerializeField] private Transform shopPrefab;
-
         [Header("HayManager")]
         [SerializeField] private HaySlotManager haySlotManager;
-
         private Transform _spawnedShop; // Keep the reference to be able to destroy the shop.
-
         public event EventHandler<OnItemPoolReceivedEventArgs> OnItemPoolReceived;
         public class OnItemPoolReceivedEventArgs : EventArgs {
             public List<ItemData> items { get; set; }
         }
-
         public event EventHandler OnShopAnimationFinished;
-
         private void Awake()
         {
             if (Instance != null && Instance != this)
@@ -46,32 +39,36 @@ namespace Shop
                 DontDestroyOnLoad(this);
             }
         }
-        
         private void Start()
         {
             // Subscribe to GameManager events
             GameManager.Instance.OnRoundStarted += GameManager_RoundStarted;
             GameManager.Instance.OnRoundEnded += GameManager_RoundEnded;
         }
-        
         private void OnDestroy()
         {
             GameManager.Instance.OnRoundStarted -= GameManager_RoundStarted;
             GameManager.Instance.OnRoundEnded -= GameManager_RoundEnded;
         }
-
         private void GameManager_RoundStarted(object sender, EventArgs e)
         {
             if (_spawnedShop is null) { return; }
-            
+            Grenade[] grenades = FindObjectsOfType<Grenade>();
+            foreach (Grenade grenade in grenades)
+            {
+                grenade.SetShopState(false);
+            }
+            DecoyGrenade[] grenades2 = FindObjectsOfType<DecoyGrenade>();
+            foreach (DecoyGrenade grenade in grenades2)
+            {
+                grenade.SetShopState(false);
+            }
             Destroy(_spawnedShop.gameObject);
         }
-        
         private void GameManager_RoundEnded(object sender, EventArgs e)
         {
             SpawnShop();
         }
-
         private async void SpawnShop()
         {
             if (_spawnedShop != null) return;
@@ -82,18 +79,26 @@ namespace Shop
             {
                 GetItemPool();
             }
+
         }
         private void GetItemPool()
         {
             List<ItemData> itemPool = items.FindAll(x => x.unlocksAt <= GameManager.Instance.currentWave);
-            
             OnItemPoolReceived?.Invoke(this, new OnItemPoolReceivedEventArgs { items = itemPool });
+            Grenade[] grenades = FindObjectsOfType<Grenade>();
+            foreach (Grenade grenade in grenades)
+            {
+                grenade.SetShopState(true);
+            }
+            DecoyGrenade[] grenades2 = FindObjectsOfType<DecoyGrenade>();
+            foreach (DecoyGrenade grenade in grenades2)
+            {
+                grenade.SetShopState(false);
+            }
         }
-
         public bool TryPurchase(List<Item> shoppingCartItems)
         {
             int totalPrice = shoppingCartItems.Sum(x => x.GetItemData().itemPrice);
-            
             // Check if player has enough money
             Debug.Log("Has enough money: " + PlayerManager.Instance.HasEnoughMoney(totalPrice));
             if (PlayerManager.Instance.HasEnoughMoney(totalPrice))
@@ -133,7 +138,5 @@ namespace Shop
                 return false;
             }
         }
-        
-        
     }
 }

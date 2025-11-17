@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
-using UnityEngine.XR.Interaction.Toolkit.Transformers;
 namespace Items
 {
     [RequireComponent(typeof(Rigidbody))]
@@ -23,6 +22,7 @@ namespace Items
         private Color _armedColor = Color.red;
         // public check if grenade is armed
         public bool IsArmed => _isArmed;
+        private bool _isInShop = false;
         private void Awake()
         {
             _rb = GetComponent<Rigidbody>();
@@ -52,7 +52,7 @@ namespace Items
         }
         private void Update()
         {
-            if (_isArmed && !_hasExploded)
+            if (_isArmed && !_hasExploded && !_isInShop)
             {
                 float timeSinceArm = Time.time - _armTime;
                 float timeLeft = fuseTime - timeSinceArm;
@@ -69,6 +69,7 @@ namespace Items
         private void OnThrown(SelectExitEventArgs args)
         {
             _rb.isKinematic = false;
+            if (_isInShop) return;
             if (!_isArmed)
             {
                 ArmGrenade();
@@ -81,6 +82,7 @@ namespace Items
         private void OnPickedUp(SelectEnterEventArgs args)
         {
             _rb.isKinematic = false;
+            if (_isInShop) return;
             if (_isArmed && !_hasExploded)
             {
                 DisarmGrenade();
@@ -93,6 +95,7 @@ namespace Items
         /// <param name="args"></param>
         private void OnActivated(ActivateEventArgs args)
         {
+            if (_isInShop) return;
             if (!_isArmed)
             {
                 ArmGrenade();
@@ -104,8 +107,7 @@ namespace Items
         /// <param name="damageSource"></param>
         public void ArmGrenade(string damageSource = "Player")
         {
-            if (_isArmed) return;
-
+            if (_isArmed || _isInShop) return;
             _isArmed = true;
             _damageSource = damageSource;
             _armTime = Time.time;
@@ -128,6 +130,7 @@ namespace Items
         /// </summary>
         public void DisarmGrenade()
         {
+            if (_isInShop) return;
             if (_isArmed && !_hasExploded)
             {
                 _isArmed = false;
@@ -214,7 +217,7 @@ namespace Items
             Collider[] hitColliders = Physics.OverlapSphere(transform.position, explosionRadius);
             foreach (Collider hitCollider in hitColliders)
             {
-                // Skip grenade itself
+                // skip grenade itself
                 if (hitCollider.gameObject == gameObject) continue;
                 // distance from explosion center
                 float distance = Vector3.Distance(transform.position, hitCollider.transform.position);
@@ -225,12 +228,11 @@ namespace Items
                     Vector3 explosionDirection = (hitCollider.transform.position - transform.position).normalized;
                     float calculatedDamage = baseDamage * distanceFactor;
                     float calculatedKnockback = knockbackForce * distanceFactor;
-
                     damageable.TakeDamage(calculatedDamage, explosionDirection, calculatedKnockback, _damageSource);
-
                     Debug.Log($"grenade explosion damaged {hitCollider} object 22222222");
                 }
                 Rigidbody hitRb = hitCollider.GetComponent<Rigidbody>();
+                /*
                 if (hitRb != null && !hitRb.isKinematic)
                 {
                     Vector3 explosionDirection = (hitCollider.transform.position - transform.position).normalized;
@@ -238,6 +240,7 @@ namespace Items
                     explosionForce.y += upwardForce;
                     hitRb.AddForce(explosionForce, ForceMode.Impulse);
                 }
+                */
             }
             Debug.Log($"grenade explosion affected {hitColliders.Length} objects");
         }
@@ -274,6 +277,10 @@ namespace Items
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, explosionRadius);
+        }
+        public void SetShopState(bool isShopper)
+        { 
+            _isInShop = isShopper;
         }
     }
 }
