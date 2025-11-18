@@ -14,6 +14,8 @@ namespace Player
 
         private InputDevice _targetDevice; // Current device
         private Vector2 m_input;
+
+        private bool m_isHoldingInteractable = false;
         
         private void Start()
         {
@@ -82,11 +84,27 @@ namespace Player
                 _animator.SetFloat(HandAnimatorParameters.Grip, 0);
             }
         }
+
+        public void SetHandPose(int poseID)
+        {
+            _animator.SetFloat(HandAnimatorParameters.Grip, 0);
+            _animator.SetFloat(HandAnimatorParameters.Trigger, 0);
+
+            
+            _animator.SetInteger(HandAnimatorParameters.PoseID, poseID);
+        }
+
+        public void ClearHandPose()
+        {
+            _animator.SetInteger(HandAnimatorParameters.PoseID, 0);
+        }
     }
 
     public static class HandAnimatorParameters
     {
         public static readonly int Grip = Animator.StringToHash("Grip");
         public static readonly int Trigger = Animator.StringToHash("Trigger");
+        public static readonly int PoseID = Animator.StringToHash("PoseID");
+        public static readonly int IsHoldingInteractable = Animator.StringToHash("IsHoldingInteractable");
     }
 }
