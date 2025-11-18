@@ -122,7 +122,7 @@ namespace Items
             if (handedness == InteractorHandedness.Right)
             {
                 // Right hand was holding the trigger. Change left hand's pose to hold the trigger.
-                if (_rightHandAttachPointType == AttachPointType.Main)
+                if (_rightHandAttachPointType == AttachPointType.Main && _leftHandAttachPointType != AttachPointType.None)
                 {
                     HandAnimator animator = _leftHandInteractor.transform.GetComponentInParent<HandInteractableChecker>().GetHandAnimator();
                     animator.SetHandPose(triggerPoseID);
@@ -135,7 +135,7 @@ namespace Items
             else if (handedness == InteractorHandedness.Left)
             {
                 // Left hand was holding the trigger. Change right hand's pose to hold the trigger.
-                if (_leftHandAttachPointType == AttachPointType.Main)
+                if (_leftHandAttachPointType == AttachPointType.Main && _rightHandAttachPointType != AttachPointType.None)
                 {
                     HandAnimator animator = _rightHandInteractor.transform.GetComponentInParent<HandInteractableChecker>().GetHandAnimator();
                     animator.SetHandPose(triggerPoseID);
