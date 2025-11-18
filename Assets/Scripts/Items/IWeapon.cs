@@ -1,3 +1,6 @@
+using Player;
+using UnityEngine;
+
 namespace Items
 {
     public interface IWeapon

@@ -1,9 +1,23 @@
 using System.Collections.Generic;
+using Player;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 namespace Items
 {
+    /// <summary>
+    /// Used to tell which hand is attached to which point
+    /// </summary>
+    enum AttachPointType
+    {
+        None,
+        Main,
+        Secondary
+    }
+    
     public class CrossBuh : MonoBehaviour, IWeapon
     {
         [Header("Crossbow Settings")]
@@ -36,10 +50,145 @@ namespace Items
         [SerializeField] private float startRadius = 0.05f;
         private float m_nextFireTime;
 
+        [Header("Hand Pose Settings")] 
+        [SerializeField] private int triggerPoseID = 1;
+        [SerializeField] private int handlePoseID = 2;
+        
         // Count of currently loaded arrows.
         private int m_currentArrows;
         public bool IsCrossbowLoaded { get; private set; } = false;
         private GameObject m_currentArrowVisuals;
+
+        // Grab interactable component to subscribe to grab events
+        [SerializeField] private XRGrabInteractable interactable;
+        
+        // Attach points
+        [SerializeField] private Transform leftHandTriggerAttach;
+        [SerializeField] private Transform rightHandTriggerAttach;
+        [SerializeField] private Transform leftHandHandleAttach;
+        [SerializeField] private Transform rightHandHandleAttach;
+        
+        // Identify hand grab points between main and secondary
+        private AttachPointType _leftHandAttachPointType = AttachPointType.None;
+        private AttachPointType _rightHandAttachPointType = AttachPointType.None;
+        
+        // Interactors to keep track of which are active for this object, a.k.a which hands are holding the object
+        private IXRSelectInteractor _leftHandInteractor;
+        private IXRSelectInteractor _rightHandInteractor;
+
+        private void Start()
+        {
+            if (interactable == null)
+            {
+                interactable = GetComponent<XRGrabInteractable>();
+            }
+            interactable.selectEntered.AddListener(OnGrab);
+            interactable.selectExited.AddListener(OnRelease);
+            interactable.hoverEntered.AddListener(OnHover);
+        }
+
+        /// <summary>
+        /// Sets attach points prior to grabbing actual object.
+        /// </summary>
+        /// <param name="arg0"></param>
+        private void OnHover(HoverEnterEventArgs arg0)
+        {
+            var interactor = arg0.interactorObject;
+            var handedness = interactor.handedness;
+
+            if (handedness == InteractorHandedness.Right)
+            {
+                interactable.attachTransform = rightHandTriggerAttach;
+                interactable.secondaryAttachTransform = leftHandHandleAttach;
+            }
+            else if (handedness == InteractorHandedness.Left)
+            {
+                interactable.attachTransform = leftHandTriggerAttach;
+                interactable.secondaryAttachTransform = rightHandHandleAttach;
+            }
+        }
+
+        /// <summary>
+        /// Gets called then the object is released. Checks which hand was holding it to properly clear variables, change poses.
+        /// </summary>
+        /// <param name="arg0"></param>
+        private void OnRelease(SelectExitEventArgs arg0)
+        {
+            var interactor = arg0.interactorObject;
+            var handedness = interactor.handedness;
+            HandAnimator handAnimator = interactor.transform.GetComponentInParent<HandInteractableChecker>().GetHandAnimator();
+            
+            // Check if released hand was holding the handle.
+            if (handedness == InteractorHandedness.Right)
+            {
+                // Right hand was holding the trigger. Change left hand's pose to hold the trigger.
+                if (_rightHandAttachPointType == AttachPointType.Main)
+                {
+                    HandAnimator animator = _leftHandInteractor.transform.GetComponentInParent<HandInteractableChecker>().GetHandAnimator();
+                    animator.SetHandPose(triggerPoseID);
+                    _leftHandAttachPointType = AttachPointType.Main;
+                }
+                handAnimator.ClearHandPose();
+                _rightHandAttachPointType = AttachPointType.None;
+                _rightHandInteractor = null;
+            }
+            else if (handedness == InteractorHandedness.Left)
+            {
+                // Left hand was holding the trigger. Change right hand's pose to hold the trigger.
+                if (_leftHandAttachPointType == AttachPointType.Main)
+                {
+                    HandAnimator animator = _rightHandInteractor.transform.GetComponentInParent<HandInteractableChecker>().GetHandAnimator();
+                    animator.SetHandPose(triggerPoseID);
+                    _rightHandAttachPointType = AttachPointType.Main;
+                }
+                handAnimator.ClearHandPose();
+                _leftHandAttachPointType = AttachPointType.None;
+                _leftHandInteractor = null;
+            }
+        }
+
+        /// <summary>
+        /// Sets hand pose depending on which hand picked up the object.
+        /// </summary>
+        /// <param name="arg0"></param>
+        private void OnGrab(SelectEnterEventArgs arg0)
+        {
+            var interactor = arg0.interactorObject;
+            var handedness = interactor.handedness;
+            HandAnimator handAnimator = interactor.transform.GetComponentInParent<HandInteractableChecker>().GetHandAnimator();
+
+            Debug.Log("Grabbing object...");
+            if (handedness == InteractorHandedness.Right)
+            {
+                // Left hand is not holding it. Grab by trigger
+                if (_leftHandInteractor == null)
+                {
+                    handAnimator.SetHandPose(triggerPoseID);
+                    _rightHandAttachPointType = AttachPointType.Main;
+                }
+                else // Left hand is holding it. Grab by handle
+                {
+                    handAnimator.SetHandPose(handlePoseID);
+                    _rightHandAttachPointType = AttachPointType.Secondary;
+                }
+                _rightHandInteractor = interactor;
+            }
+            else if (handedness == InteractorHandedness.Left)
+            {
+                // Right hand is not holding it. Grab by trigger
+                if (_rightHandInteractor == null)
+                {
+                    handAnimator.SetHandPose(triggerPoseID);
+                    _leftHandAttachPointType = AttachPointType.Main;
+                }
+                else // Right hand is holding it. Grab by handle
+                {
+                    handAnimator.SetHandPose(handlePoseID);
+                    _leftHandAttachPointType = AttachPointType.Secondary;
+                }
+                _leftHandInteractor = interactor;
+            }
+        }
 
         public void UseWeapon()
         {

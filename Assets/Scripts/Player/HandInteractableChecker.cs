@@ -21,6 +21,9 @@ namespace Player
 
         // Interactable object
         private IXRSelectInteractable m_Interactable;
+        
+        // Hand animator
+        [SerializeField] private HandAnimator _handAnimator;
 
         // Input values
         private float m_InputValue;
@@ -30,6 +33,9 @@ namespace Player
         private bool m_stopCleaning = true;
 
         private float m_UIButtonLockedTill = 0f;
+        
+        // TESTING SELECT EVENTS
+        [SerializeField] private NearFarInteractor nearFarInteractor;
 
 
         private void Awake()
@@ -40,7 +46,37 @@ namespace Player
         private void Start()
         {
             m_InputAction_ToggleUI.action.performed += InputAction_ToggleUI;
+            
+            // SELECT EVENTS
+            // nearFarInteractor.selectEntered.AddListener(OnGrab);
+            // nearFarInteractor.selectExited.AddListener(OnRelease);
         }
+
+        // private void OnRelease(SelectExitEventArgs arg0)
+        // {
+        //     // Find which hand we are holding with
+        //     InteractorHandedness handedness = arg0.interactorObject.handedness;
+        //     if (handedness == InteractorHandedness.Right)
+        //     {
+        //         // Activate pose for current held item
+        //         _handAnimator.ClearHandPose();
+        //     }
+        // }
+        //
+        // private void OnGrab(SelectEnterEventArgs arg0)
+        // {
+        //     HandPoses poses = arg0.interactableObject.transform.GetComponent<HandPoses>();
+        //     if (poses != null)
+        //     {
+        //         // Find which hand we are holding with
+        //         InteractorHandedness handedness = arg0.interactorObject.handedness;
+        //         if (handedness == InteractorHandedness.Right)
+        //         {
+        //             // Activate pose for current held item
+        //             _handAnimator.SetHandPose(poses.rightPoseMain);
+        //         }
+        //     }
+        // }
 
         private void OnDestroy()
         {
@@ -108,6 +144,9 @@ namespace Player
                     // Get the interactable GameObject
                     m_Interactable = selectInteractor.interactablesSelected[0];
                     m_IsHolding = true;
+                    
+                    // Change hands pose
+                    
                 }
             }
         }
@@ -129,6 +168,11 @@ namespace Player
             {
                 tool.ActivateTool();
             }
+        }
+
+        public HandAnimator GetHandAnimator()
+        {
+            return _handAnimator;
         }
     }
 }

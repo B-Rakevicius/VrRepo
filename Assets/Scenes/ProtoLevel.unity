@@ -771,6 +771,8 @@ MonoBehaviour:
   m_InputAction_Use: {fileID: 0}
   m_InputAction_ToggleUI: {fileID: 0}
   m_InteractionGroup: {fileID: 86646726}
+  _handAnimator: {fileID: 0}
+  nearFarInteractor: {fileID: 0}
 --- !u!1 &125804380
 GameObject:
   m_ObjectHideFlags: 0
@@ -81941,7 +81943,7 @@ PrefabInstance:
     - target: {fileID: 109434732388006827, guid: 65847589f926b734d9eaed6e25f0046b, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: d4ed74d89991a3b4d9fd658d545533fd, type: 2}
+      objectReference: {fileID: 9100000, guid: 8dbc69d7f16888841a3c010b8f284302, type: 2}
     - target: {fileID: 109434732395284509, guid: 65847589f926b734d9eaed6e25f0046b, type: 3}
       propertyPath: m_Name
       value: Left Hand Model
@@ -84778,9 +84780,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1923231018649321055, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
+      propertyPath: _handAnimator
+      value: 
+      objectReference: {fileID: 1561590934}
+    - target: {fileID: 1923231018649321055, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
       propertyPath: m_InputAction_Use
       value: 
       objectReference: {fileID: -3258458902609584745, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    - target: {fileID: 1923231018649321055, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
+      propertyPath: nearFarInteractor
+      value: 
+      objectReference: {fileID: 1992208388}
     - target: {fileID: 1923231018649321055, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
       propertyPath: m_InputAction_ToggleUI
       value: 
@@ -85010,9 +85020,17 @@ PrefabInstance:
       value: -23
       objectReference: {fileID: 0}
     - target: {fileID: 5447833433969650218, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
+      propertyPath: _handAnimator
+      value: 
+      objectReference: {fileID: 1317473324}
+    - target: {fileID: 5447833433969650218, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
       propertyPath: m_InputAction_Use
       value: 
       objectReference: {fileID: -6585936895302187540, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    - target: {fileID: 5447833433969650218, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
+      propertyPath: nearFarInteractor
+      value: 
+      objectReference: {fileID: 1341641137}
     - target: {fileID: 5447833433969650218, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
       propertyPath: m_InputAction_ToggleUI
       value: 
@@ -85150,6 +85168,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3997160942596605598, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
   m_PrefabInstance: {fileID: 1317473321}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1341641137 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8629926924687228403, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
+  m_PrefabInstance: {fileID: 1317473321}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25a07ef133a37d140a87cdf1f1c75fdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1347698451
 GameObject:
   m_ObjectHideFlags: 0
@@ -85539,7 +85568,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1385928324}
   m_Layer: 0
-  m_Name: GrabPointHandle
+  m_Name: LeftHandGrabPointHandle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -85554,7 +85583,7 @@ Transform:
   m_GameObject: {fileID: 1385928323}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.357, z: 0.72}
+  m_LocalPosition: {x: -0.073, y: -0.19, z: 0.831}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -85900,6 +85929,8 @@ MonoBehaviour:
   m_InputAction_Use: {fileID: 0}
   m_InputAction_ToggleUI: {fileID: 0}
   m_InteractionGroup: {fileID: 1477048064}
+  _handAnimator: {fileID: 0}
+  nearFarInteractor: {fileID: 0}
 --- !u!114 &1477048064 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6986405091442374917, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
@@ -87474,6 +87505,18 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 98164814019043564, guid: d05d1b9f2a8a4f14aaa77f5e0cd569ac, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 98164814019043564, guid: d05d1b9f2a8a4f14aaa77f5e0cd569ac, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 98164814019043564, guid: d05d1b9f2a8a4f14aaa77f5e0cd569ac, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.78
+      objectReference: {fileID: 0}
     - target: {fileID: 762292122904302129, guid: d05d1b9f2a8a4f14aaa77f5e0cd569ac, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -87524,7 +87567,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1246677620566578861, guid: d05d1b9f2a8a4f14aaa77f5e0cd569ac, type: 3}
       propertyPath: m_Name
-      value: GrabPointTrigger
+      value: LeftHandGrabPointTrigger
       objectReference: {fileID: 0}
     - target: {fileID: 1293790762374742323, guid: d05d1b9f2a8a4f14aaa77f5e0cd569ac, type: 3}
       propertyPath: shootForce
@@ -87534,6 +87577,10 @@ PrefabInstance:
       propertyPath: arrowPrefab
       value: 
       objectReference: {fileID: 1813917790458350144, guid: 6aae66389618d304080e8cb93af7644b, type: 3}
+    - target: {fileID: 1293790762374742323, guid: d05d1b9f2a8a4f14aaa77f5e0cd569ac, type: 3}
+      propertyPath: interactable
+      value: 
+      objectReference: {fileID: 1848721897}
     - target: {fileID: 1293790762374742323, guid: d05d1b9f2a8a4f14aaa77f5e0cd569ac, type: 3}
       propertyPath: arrowPrefabNew
       value: 
@@ -87546,6 +87593,22 @@ PrefabInstance:
       propertyPath: arrowPrefabVisuals
       value: 
       objectReference: {fileID: 1813917790458350144, guid: bec74a98d2d87ca499a6eab3b7b63fc0, type: 3}
+    - target: {fileID: 1293790762374742323, guid: d05d1b9f2a8a4f14aaa77f5e0cd569ac, type: 3}
+      propertyPath: leftHandHandleAttach
+      value: 
+      objectReference: {fileID: 1385928324}
+    - target: {fileID: 1293790762374742323, guid: d05d1b9f2a8a4f14aaa77f5e0cd569ac, type: 3}
+      propertyPath: leftHandTriggerAttach
+      value: 
+      objectReference: {fileID: 725402266}
+    - target: {fileID: 1293790762374742323, guid: d05d1b9f2a8a4f14aaa77f5e0cd569ac, type: 3}
+      propertyPath: rightHandHandleAttach
+      value: 
+      objectReference: {fileID: 1970101875}
+    - target: {fileID: 1293790762374742323, guid: d05d1b9f2a8a4f14aaa77f5e0cd569ac, type: 3}
+      propertyPath: rightHandTriggerAttach
+      value: 
+      objectReference: {fileID: 2046838544}
     - target: {fileID: 4940849710114259478, guid: d05d1b9f2a8a4f14aaa77f5e0cd569ac, type: 3}
       propertyPath: m_Size.y
       value: 0.7999999
@@ -87569,7 +87632,7 @@ PrefabInstance:
     - target: {fileID: 8407553262590817323, guid: d05d1b9f2a8a4f14aaa77f5e0cd569ac, type: 3}
       propertyPath: m_AttachTransform
       value: 
-      objectReference: {fileID: 725402266}
+      objectReference: {fileID: 0}
     - target: {fileID: 8407553262590817323, guid: d05d1b9f2a8a4f14aaa77f5e0cd569ac, type: 3}
       propertyPath: m_InteractionLayers.m_Bits
       value: 4
@@ -87577,13 +87640,20 @@ PrefabInstance:
     - target: {fileID: 8407553262590817323, guid: d05d1b9f2a8a4f14aaa77f5e0cd569ac, type: 3}
       propertyPath: m_SecondaryAttachTransform
       value: 
-      objectReference: {fileID: 1385928324}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5497979668946935847, guid: d05d1b9f2a8a4f14aaa77f5e0cd569ac, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 762292122904530555, guid: d05d1b9f2a8a4f14aaa77f5e0cd569ac, type: 3}
       insertIndex: 2
+      addedObject: {fileID: 2046838544}
+    - targetCorrespondingSourceObject: {fileID: 762292122904530555, guid: d05d1b9f2a8a4f14aaa77f5e0cd569ac, type: 3}
+      insertIndex: 3
       addedObject: {fileID: 1385928324}
+    - targetCorrespondingSourceObject: {fileID: 762292122904530555, guid: d05d1b9f2a8a4f14aaa77f5e0cd569ac, type: 3}
+      insertIndex: 4
+      addedObject: {fileID: 1970101875}
     - targetCorrespondingSourceObject: {fileID: 762292122904530555, guid: d05d1b9f2a8a4f14aaa77f5e0cd569ac, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1925273081}
@@ -88766,6 +88836,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 762292122904530555, guid: d05d1b9f2a8a4f14aaa77f5e0cd569ac, type: 3}
   m_PrefabInstance: {fileID: 1739755168}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1848721897 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8407553262590817323, guid: d05d1b9f2a8a4f14aaa77f5e0cd569ac, type: 3}
+  m_PrefabInstance: {fileID: 1739755168}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ad34abafad169848a38072baa96cdb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1876637035
 GameObject:
   m_ObjectHideFlags: 0
@@ -89262,6 +89343,48 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8423597089675187885, guid: 2ca767861259fd94f994579019e739bf, type: 3}
   m_PrefabInstance: {fileID: 1960562091}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1970101874
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1970101875}
+  m_Layer: 0
+  m_Name: RightHandGrabPointHandle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1970101875
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1970101874}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.206, y: -0.147, z: 0.72}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1848721894}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1992208388 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1644703820982035308, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
+  m_PrefabInstance: {fileID: 1317473321}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25a07ef133a37d140a87cdf1f1c75fdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2026284138
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -89324,6 +89447,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8423597089675187885, guid: 2ca767861259fd94f994579019e739bf, type: 3}
   m_PrefabInstance: {fileID: 2026284138}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2046838543
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2046838544}
+  m_Layer: 0
+  m_Name: RightHandGrabPointTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2046838544
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2046838543}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.077, y: -0.17, z: -0.76}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1848721894}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2095019019
 PrefabInstance:
   m_ObjectHideFlags: 0
