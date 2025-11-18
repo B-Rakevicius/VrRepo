@@ -156,8 +156,7 @@ namespace Items
             var interactor = arg0.interactorObject;
             var handedness = interactor.handedness;
             HandAnimator handAnimator = interactor.transform.GetComponentInParent<HandInteractableChecker>().GetHandAnimator();
-
-            Debug.Log("Grabbing object...");
+            
             if (handedness == InteractorHandedness.Right)
             {
                 // Left hand is not holding it. Grab by trigger

@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &125394109638426962
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6186740520255418655}
+  m_Layer: 0
+  m_Name: LeftHandGrabPointHandle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6186740520255418655
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 125394109638426962}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.073, y: -0.19, z: 0.831}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 762292122904530555}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1246677620566578861
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 98164814019043564}
   m_Layer: 0
-  m_Name: GrabPoint
+  m_Name: LeftHandGrabPointTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25,8 +56,136 @@ Transform:
   m_GameObject: {fileID: 1246677620566578861}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.213, z: -0.783}
-  m_LocalScale: {x: 1.4999999, y: 1.4999999, z: 1.4999999}
+  m_LocalPosition: {x: 0.1, y: -0.17, z: -0.78}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 762292122904530555}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1867847569022536009
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3946357560711222916}
+  m_Layer: 0
+  m_Name: RightHandGrabPointHandle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3946357560711222916
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1867847569022536009}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.074, y: -0.186, z: 0.72}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 762292122904530555}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3789882431265585702
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5548092216382197204}
+  - component: {fileID: 4329039848253890144}
+  - component: {fileID: 9162762197738124592}
+  m_Layer: 0
+  m_Name: ArrowInsertZone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5548092216382197204
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3789882431265585702}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.219, z: -0.56}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 762292122904530555}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4329039848253890144
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3789882431265585702}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.26, y: 0.23492813, z: 1.310407}
+  m_Center: {x: 0, y: 0.07218927, z: 0.71}
+--- !u!114 &9162762197738124592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3789882431265585702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a37b393d242337c468db364bb71e72ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &3964897387196831119
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7786448377571719162}
+  m_Layer: 0
+  m_Name: RightHandGrabPointTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7786448377571719162
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3964897387196831119}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.077, y: -0.17, z: -0.76}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 762292122904530555}
@@ -82,8 +241,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.25, y: 0.8, z: 2.65}
-  m_Center: {x: 0, y: 0.05, z: -0.18}
+  m_Size: {x: 0.25, y: 0.7999999, z: 2.4409935}
+  m_Center: {x: 0, y: 0.049999956, z: -0.2845027}
 --- !u!1 &5210248491731356866
 GameObject:
   m_ObjectHideFlags: 0
@@ -115,37 +274,6 @@ Transform:
   m_Children:
   - {fileID: 3926747001788467351}
   - {fileID: 35052646292099609}
-  m_Father: {fileID: 762292122904530555}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5497979668946935847
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2971669048840037165}
-  m_Layer: 0
-  m_Name: GrabPointHandle
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2971669048840037165
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5497979668946935847}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.357, z: 0.72}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
   m_Father: {fileID: 762292122904530555}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5896433846636258493
@@ -472,6 +600,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100038, guid: 4a332f70083450d449b1f0e2b247591c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100038, guid: 4a332f70083450d449b1f0e2b247591c, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -497,19 +629,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: 4a332f70083450d449b1f0e2b247591c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -2.4113133
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: 4a332f70083450d449b1f0e2b247591c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.683
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: 4a332f70083450d449b1f0e2b247591c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.22015059
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: 4a332f70083450d449b1f0e2b247591c, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.70710784
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: 4a332f70083450d449b1f0e2b247591c, type: 3}
       propertyPath: m_LocalRotation.x
@@ -517,7 +649,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: 4a332f70083450d449b1f0e2b247591c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.70710576
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: 4a332f70083450d449b1f0e2b247591c, type: 3}
       propertyPath: m_LocalRotation.z
@@ -529,7 +661,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: 4a332f70083450d449b1f0e2b247591c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: 4a332f70083450d449b1f0e2b247591c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -558,16 +690,25 @@ PrefabInstance:
       addedObject: {fileID: 98164814019043564}
     - targetCorrespondingSourceObject: {fileID: 400012, guid: 4a332f70083450d449b1f0e2b247591c, type: 3}
       insertIndex: 2
-      addedObject: {fileID: 2971669048840037165}
+      addedObject: {fileID: 7786448377571719162}
     - targetCorrespondingSourceObject: {fileID: 400012, guid: 4a332f70083450d449b1f0e2b247591c, type: 3}
       insertIndex: 3
-      addedObject: {fileID: 95993902086625048}
+      addedObject: {fileID: 6186740520255418655}
     - targetCorrespondingSourceObject: {fileID: 400012, guid: 4a332f70083450d449b1f0e2b247591c, type: 3}
-      insertIndex: 3
+      insertIndex: 4
+      addedObject: {fileID: 3946357560711222916}
+    - targetCorrespondingSourceObject: {fileID: 400012, guid: 4a332f70083450d449b1f0e2b247591c, type: 3}
+      insertIndex: 5
       addedObject: {fileID: 7662306494998537304}
+    - targetCorrespondingSourceObject: {fileID: 400012, guid: 4a332f70083450d449b1f0e2b247591c, type: 3}
+      insertIndex: 6
+      addedObject: {fileID: 95993902086625048}
     - targetCorrespondingSourceObject: {fileID: 400012, guid: 4a332f70083450d449b1f0e2b247591c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2262127173413425959}
+    - targetCorrespondingSourceObject: {fileID: 400012, guid: 4a332f70083450d449b1f0e2b247591c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5548092216382197204}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 100012, guid: 4a332f70083450d449b1f0e2b247591c, type: 3}
       insertIndex: -1
@@ -629,9 +770,9 @@ MonoBehaviour:
   m_InteractionManager: {fileID: 0}
   m_Colliders: []
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 4
   m_DistanceCalculationMode: 1
-  m_SelectMode: 0
+  m_SelectMode: 1
   m_FocusMode: 1
   m_CustomReticle: {fileID: 0}
   m_AllowGazeInteraction: 0
@@ -686,8 +827,8 @@ MonoBehaviour:
   m_StartingHoverFilters: []
   m_StartingSelectFilters: []
   m_StartingInteractionStrengthFilters: []
-  m_AttachTransform: {fileID: 98164814019043564}
-  m_SecondaryAttachTransform: {fileID: 2971669048840037165}
+  m_AttachTransform: {fileID: 0}
+  m_SecondaryAttachTransform: {fileID: 0}
   m_UseDynamicAttach: 0
   m_MatchAttachPosition: 1
   m_MatchAttachRotation: 1
@@ -777,16 +918,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootPoint: {fileID: 9013386399095008940}
-  arrowInsertPoint: {fileID: 2262127173413425959}
+  arrowInsertPoint: {fileID: 5548092216382197204}
   shootForce: 40
   shootRange: 10
   fireRate: 1
   arrowPrefab: {fileID: 1813917790458350144, guid: 6aae66389618d304080e8cb93af7644b, type: 3}
   arrowPrefabVisuals: {fileID: 1813917790458350144, guid: bec74a98d2d87ca499a6eab3b7b63fc0, type: 3}
   maxArrows: 10
-  arrowLifetime: 5
+  reloadAmount: 5
   coneAngle: 15
   startRadius: 0.05
+  triggerPoseID: 1
+  handlePoseID: 2
+  interactable: {fileID: 8407553262590817323}
+  leftHandTriggerAttach: {fileID: 98164814019043564}
+  rightHandTriggerAttach: {fileID: 7786448377571719162}
+  leftHandHandleAttach: {fileID: 6186740520255418655}
+  rightHandHandleAttach: {fileID: 3946357560711222916}
 --- !u!4 &762292122904530555 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400012, guid: 4a332f70083450d449b1f0e2b247591c, type: 3}
