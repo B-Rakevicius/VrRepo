@@ -93,18 +93,20 @@ namespace Items
         /// <param name="arg0"></param>
         private void OnHover(HoverEnterEventArgs arg0)
         {
+            // It's possible to hover while holding the object in other hand. Check this before changing attach transforms
+            if (_rightHandAttachPointType != AttachPointType.None || _leftHandAttachPointType != AttachPointType.None)
+            { return; }
+            
             var interactor = arg0.interactorObject;
             var handedness = interactor.handedness;
-
+            
             if (handedness == InteractorHandedness.Right)
             {
-                interactable.attachTransform = rightHandTriggerAttach;
-                interactable.secondaryAttachTransform = leftHandHandleAttach;
+                SwapAttachTransformsRightSided();
             }
             else if (handedness == InteractorHandedness.Left)
             {
-                interactable.attachTransform = leftHandTriggerAttach;
-                interactable.secondaryAttachTransform = rightHandHandleAttach;
+                SwapAttachTransformsLeftSided();
             }
         }
 
@@ -121,25 +123,30 @@ namespace Items
             // Check if released hand was holding the handle.
             if (handedness == InteractorHandedness.Right)
             {
-                // Right hand was holding the trigger. Change left hand's pose to hold the trigger.
-                if (_rightHandAttachPointType == AttachPointType.Main && _leftHandAttachPointType != AttachPointType.None)
+                // Right hand is attached to main grab point. Reset right hand, change left hand's pose.
+                if (_rightHandAttachPointType == AttachPointType.Main && _leftHandAttachPointType == AttachPointType.Secondary)
                 {
                     HandAnimator animator = _leftHandInteractor.transform.GetComponentInParent<HandInteractableChecker>().GetHandAnimator();
                     animator.SetHandPose(triggerPoseID);
                     _leftHandAttachPointType = AttachPointType.Main;
+                    
+                    // Swap attach transforms
+                    SwapAttachTransformsLeftSided();
                 }
                 handAnimator.ClearHandPose();
                 _rightHandAttachPointType = AttachPointType.None;
                 _rightHandInteractor = null;
+                
             }
             else if (handedness == InteractorHandedness.Left)
             {
-                // Left hand was holding the trigger. Change right hand's pose to hold the trigger.
-                if (_leftHandAttachPointType == AttachPointType.Main && _rightHandAttachPointType != AttachPointType.None)
+                // Left hand is attached to main grab point. Reset left hand, change right hand's pose.
+                if (_leftHandAttachPointType == AttachPointType.Main && _rightHandAttachPointType == AttachPointType.Secondary)
                 {
                     HandAnimator animator = _rightHandInteractor.transform.GetComponentInParent<HandInteractableChecker>().GetHandAnimator();
                     animator.SetHandPose(triggerPoseID);
                     _rightHandAttachPointType = AttachPointType.Main;
+                    SwapAttachTransformsRightSided();
                 }
                 handAnimator.ClearHandPose();
                 _leftHandAttachPointType = AttachPointType.None;
@@ -229,6 +236,24 @@ namespace Items
             IsCrossbowLoaded = true;
             
             return true;
+        }
+
+        /// <summary>
+        /// Swaps grab point transforms, so that right hand holds the handle (barrel), and left hand - trigger.
+        /// </summary>
+        private void SwapAttachTransformsLeftSided()
+        {
+            interactable.attachTransform = leftHandTriggerAttach;
+            interactable.secondaryAttachTransform = rightHandHandleAttach;
+        }
+        
+        /// <summary>
+        /// Swaps grab point transforms, so that left hand holds the handle (barrel), and right hand - trigger.
+        /// </summary>
+        private void SwapAttachTransformsRightSided()
+        {
+            interactable.attachTransform = rightHandTriggerAttach;
+            interactable.secondaryAttachTransform = leftHandHandleAttach;
         }
         
         private Vector3 GetRandomDirectionInCone()

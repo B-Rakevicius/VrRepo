@@ -48,7 +48,7 @@ Rigidbody:
   serializedVersion: 5
   m_Mass: 1
   m_LinearDamping: 0
-  m_AngularDamping: 0.05
+  m_AngularDamping: 3
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -72,7 +72,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1813917790458350144}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 481d10e935d05f34bbeaf767fbd9581e, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -103,7 +103,7 @@ MonoBehaviour:
   m_InteractionManager: {fileID: 0}
   m_Colliders: []
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 2
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1

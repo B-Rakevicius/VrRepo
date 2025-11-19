@@ -28,7 +28,8 @@ namespace Items
         private static readonly int FillAmount = Shader.PropertyToID("_FillAmount");
         private HashSet<Rigidbody> affectedOrbs = new HashSet<Rigidbody>();
         
-        [Header("Hand Pose Settings")] 
+        [Header("Hand Pose Settings")]
+        [Tooltip("Defines which hands animation blend tree to use.")]
         [SerializeField] private int triggerPoseID = 3;
         
         // Grab interactable component to subscribe to grab events. Can be left unassigned in inspector
