@@ -89685,6 +89685,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Orb (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6961076795750387018, guid: 2ca767861259fd94f994579019e739bf, type: 3}
+      propertyPath: m_LinearDamping
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6961076795750387018, guid: 2ca767861259fd94f994579019e739bf, type: 3}
+      propertyPath: m_AngularDamping
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 8423597089675187885, guid: 2ca767861259fd94f994579019e739bf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.37896186
