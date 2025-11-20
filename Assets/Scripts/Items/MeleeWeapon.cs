@@ -1,6 +1,9 @@
+using System;
+using System.Collections.Generic;
 using Player;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
@@ -9,6 +12,21 @@ namespace Items
 {
     public class MeleeWeapon : MonoBehaviour
     {
+        [Header("Weapon Settings")] 
+        [Tooltip("How much damage should this melee weapon inflict?")]
+        [SerializeField] private float damage = 5f;
+        [Tooltip("How much knockback should this melee weapon inflict?")]
+        [SerializeField] private float knockback = 5f;
+        [Tooltip("Minimum speed from which hit detection activates")]
+        [SerializeField] private float minVelocityThreshold = 1f;
+        [Tooltip("How large should the hit detection radius be?")]
+        [SerializeField] private float hitDetectionRadius = 0.5f;
+        [Tooltip("Reference to weapon's part, that will do damage")] 
+        [SerializeField] private Transform damagePart;
+        private Vector3 m_LastPos;
+        private float m_Velocity;
+        private Vector3 m_Direction;
+        
         [Header("Hand Pose Settings")]
         [Tooltip("Defines which hands animation blend tree to use.")]
         [SerializeField] private int handlePoseID = 4;
@@ -34,6 +52,138 @@ namespace Items
             _interactable.selectEntered.AddListener(OnGrab);
             _interactable.selectExited.AddListener(OnRelease);
             _interactable.hoverEntered.AddListener(OnHover);
+
+            m_LastPos = damagePart.position;
+        }
+
+
+        private void OnDisable()
+        {
+            _interactable.selectEntered.RemoveAllListeners();
+        }
+        
+        private void Update()
+        {
+            CalculateWeaponVelocity();
+        }
+
+        /// <summary>
+        /// Returns a list of controllers that meet provided characteristics.
+        /// </summary>
+        /// <param name="characteristics">Controller characteristics</param>
+        /// <param name="devices">A list of controllers</param>
+        /// <returns>List of controllers that meet provided characteristics.</returns>
+        private bool GetDevicesWithCharacteristics(InputDeviceCharacteristics characteristics,
+            out List<InputDevice> devices)
+        {
+            devices = new List<InputDevice>();
+            
+            InputDevices.GetDevicesWithCharacteristics(characteristics, devices);
+
+            return devices.Count > 0;
+        }
+        
+        /// <summary>
+        /// Gets provided hand's velocity.
+        /// </summary>
+        /// <param name="device">Controller, which velocity should be gotten.</param>
+        /// <returns>Hand's velocity</returns>
+        private float GetHandVelocity(InputDevice device)
+        {
+            Vector3 velocity = Vector3.zero;
+
+            device.TryGetFeatureValue(CommonUsages.deviceVelocity, out velocity);
+
+            return velocity.magnitude;
+        }
+
+        /// <summary>
+        /// Gets called each frame to calculate weapons velocity.
+        /// </summary>
+        private void CalculateWeaponVelocity()
+        {
+            InputDeviceCharacteristics characteristics;
+            
+            DetectHandCharacteristics(out characteristics);
+
+            Vector3 currentPos = Vector3.zero;
+            float distance = 0f;
+            
+            currentPos = damagePart.position;
+            m_Direction = (currentPos - m_LastPos).normalized;
+            distance = m_Direction.magnitude;
+
+            // Object is in hands - calculate velocity based of controller
+            if (characteristics != InputDeviceCharacteristics.None)
+            {
+                if (GetDevicesWithCharacteristics(characteristics, out List<InputDevice> devices))
+                {
+                    m_Velocity = GetHandVelocity(devices[0]);
+                }
+            }
+            // Object is not in hands - calculate velocity based of the object itself
+            else
+            {
+                // Basic physics speed formula: speed = distance / time
+                m_Velocity = distance / Time.deltaTime;
+            }
+                        
+            m_LastPos = currentPos;
+        }
+        
+        /// <summary>
+        /// Uses weapon's velocity to determine if collider can receive damage.
+        /// </summary>
+        /// <param name="other">Collider to interact with</param>
+        public void DetectHits(Collider other)
+        {
+            // Check if velocity is not too low
+            if (m_Velocity > minVelocityThreshold)
+            {
+                if (other.TryGetComponent(out IDamageable damageable))
+                {
+                    damageable.TakeDamage(damage, m_Direction, knockback);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Finds which controller should be considered main for calculating velocity.
+        /// </summary>
+        /// <param name="characteristics">Controller characteristics.</param>
+        private void DetectHandCharacteristics(out InputDeviceCharacteristics characteristics)
+        {
+            // Only left hand is holding the weapon
+            if (_leftHandAttachPointType == AttachPointType.Main && _rightHandAttachPointType == AttachPointType.None)
+            {
+                // Construct characteristics
+                characteristics = InputDeviceCharacteristics.Left;
+            }
+            // Left hand is holding lower handle, and right hand - upper handle
+            else if (_leftHandAttachPointType == AttachPointType.Main &&
+                     _rightHandAttachPointType == AttachPointType.Secondary)
+            {
+                // Construct characteristics
+                characteristics = InputDeviceCharacteristics.Right;
+            }
+            // Only right hand is holding
+            else if (_rightHandAttachPointType == AttachPointType.Main &&
+                     _leftHandAttachPointType == AttachPointType.None)
+            {
+                // Construct characteristics
+                characteristics = InputDeviceCharacteristics.Right;
+            }
+            // Right hand is holding lower handle, and left hand - upper handle
+            else if (_rightHandAttachPointType == AttachPointType.Main &&
+                     _leftHandAttachPointType == AttachPointType.Secondary)
+            {
+                // Construct characteristics
+                characteristics = InputDeviceCharacteristics.Left;
+            }
+            else
+            {
+                characteristics = InputDeviceCharacteristics.None;
+            }
         }
 
         /// <summary>
@@ -77,6 +227,7 @@ namespace Items
                     SwapAttachTransformsLeftSided();
                     _leftHandAttachPointType = AttachPointType.Main;
                 }
+                
                 _rightHandAttachPointType = AttachPointType.None;
             }
             else if (handedness == InteractorHandedness.Left)
@@ -87,6 +238,7 @@ namespace Items
                     SwapAttachTransformsRightSided();
                     _rightHandAttachPointType = AttachPointType.Main;
                 }
+                
                 _leftHandAttachPointType = AttachPointType.None;
             }
             handAnimator.ClearHandPose();
