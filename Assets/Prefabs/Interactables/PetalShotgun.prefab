@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &97923648199959657
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7867228144225160724}
+  m_Layer: 0
+  m_Name: SuctionPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7867228144225160724
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 97923648199959657}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.2, z: 1.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6016438754994087244}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &410965285389575827
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9092553279918368234}
   m_Layer: 0
-  m_Name: GrabPoint
+  m_Name: LeftHandGrabPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 410965285389575827}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.056, z: -0.55}
+  m_LocalPosition: {x: 0, y: 0.048, z: -0.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -580,7 +611,6 @@ GameObject:
   - component: {fileID: 3783991341175807147}
   - component: {fileID: 2122425132011250237}
   - component: {fileID: 1687854146496114040}
-  - component: {fileID: 1529989440024601327}
   m_Layer: 0
   m_Name: PetalShotgun
   m_TagString: Untagged
@@ -605,8 +635,11 @@ Transform:
   - {fileID: 8415577097890216057}
   - {fileID: 4395657208203793185}
   - {fileID: 9092553279918368234}
+  - {fileID: 4730151267567530571}
   - {fileID: 7108354167638843599}
   - {fileID: 3176132470497086305}
+  - {fileID: 1353637683357309537}
+  - {fileID: 7867228144225160724}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &771891958266779278
@@ -673,7 +706,7 @@ MonoBehaviour:
   m_InteractionManager: {fileID: 0}
   m_Colliders: []
   m_InteractionLayers:
-    m_Bits: 3
+    m_Bits: 8
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1
@@ -730,7 +763,7 @@ MonoBehaviour:
   m_StartingHoverFilters: []
   m_StartingSelectFilters: []
   m_StartingInteractionStrengthFilters: []
-  m_AttachTransform: {fileID: 9092553279918368234}
+  m_AttachTransform: {fileID: 0}
   m_SecondaryAttachTransform: {fileID: 0}
   m_UseDynamicAttach: 0
   m_MatchAttachPosition: 1
@@ -833,31 +866,10 @@ MonoBehaviour:
   liquidMaterial: {fileID: 2100000, guid: ba2a609c175369f4d9f91d32a87ebd42, type: 2}
   emptyValue: 0.14
   fullValue: -0.14
---- !u!114 &1529989440024601327
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2359834440933827928}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b5f13d4757d84b489f5b1a03977578f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  suctionPoint: {fileID: 1353637683357309537}
-  suctionRange: 10
-  suctionRadius: 3
-  suctionStrength: 10
-  orbCollectThreshold: 0.2
-  orbLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  coneAngle: 45
-  startRadius: 0.05
-  liquidMaterial: {fileID: 0}
-  emptyValue: 0.14
-  fullValue: -0.14
+  triggerPoseID: 1
+  interactable: {fileID: 0}
+  leftHandTriggerAttach: {fileID: 9092553279918368234}
+  rightHandTriggerAttach: {fileID: 4730151267567530571}
 --- !u!1 &2576145892101267862
 GameObject:
   m_ObjectHideFlags: 0
@@ -1964,6 +1976,37 @@ Transform:
   - {fileID: 8279142947891495852}
   - {fileID: 7991285379485346278}
   m_Father: {fileID: 895753196170851571}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5381747823346143448
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4730151267567530571}
+  m_Layer: 0
+  m_Name: RightHandGrabPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4730151267567530571
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5381747823346143448}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.048, z: -0.59}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6016438754994087244}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5407636442959980365
 GameObject:

@@ -1,7 +1,10 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using System.Collections.Generic;
+using Player;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
+
 namespace Items
 {
     [RequireComponent(typeof(Rigidbody))]
@@ -23,6 +26,23 @@ namespace Items
         private bool _isInShop = false;
         public bool IsActive => _isActive;
         public Vector3 Position => transform.position;
+        
+        [Header("Hand Pose Settings")]
+        [Tooltip("Defines which hands animation blend tree to use.")]
+        [SerializeField] private int triggerPoseID = 3;
+        
+        // Attach points
+        [SerializeField] private Transform leftHandTriggerAttach;
+        [SerializeField] private Transform rightHandTriggerAttach;
+        
+        // Identify hand grab points between main and secondary
+        private AttachPointType _leftHandAttachPointType = AttachPointType.None;
+        private AttachPointType _rightHandAttachPointType = AttachPointType.None;
+        
+        // Interactors to keep track of which are active for this object, a.k.a which hands are holding the object
+        private IXRSelectInteractor _leftHandInteractor;
+        private IXRSelectInteractor _rightHandInteractor;
+        
         private void Awake()
         {
             _rb = GetComponent<Rigidbody>();
@@ -39,8 +59,9 @@ namespace Items
         {
             if (_grabInteractable != null)
             {
-                _grabInteractable.selectExited.AddListener(OnThrown);
                 _grabInteractable.selectEntered.AddListener(OnPickedUp);
+                _grabInteractable.selectExited.AddListener(OnThrown);
+                _grabInteractable.hoverEntered.AddListener(OnHover);
             }
         }
         private void Update()
@@ -52,22 +73,103 @@ namespace Items
                 CleanupEnemies();
             }
         }
-        private void OnThrown(SelectExitEventArgs args)
+        /// <summary>
+        /// Sets attach points prior to grabbing actual object.
+        /// </summary>
+        /// <param name="arg0"></param>
+        private void OnHover(HoverEnterEventArgs arg0)
         {
+            var interactor = arg0.interactorObject;
+            var handedness = interactor.handedness;
+
+            if (handedness == InteractorHandedness.Right)
+            {
+                _grabInteractable.attachTransform = rightHandTriggerAttach;
+            }
+            else if (handedness == InteractorHandedness.Left)
+            {
+                _grabInteractable.attachTransform = leftHandTriggerAttach;
+            }
+        }
+        /// <summary>
+        /// Gets called then the object is released. Checks which hand was holding it to properly clear variables, change poses.
+        /// </summary>
+        /// <param name="arg0"></param>
+        private void OnThrown(SelectExitEventArgs arg0)
+        {
+            // Grenade logic
             _rb.isKinematic = false;
             if (_isInShop) return;
             if (!_isArmed)
             {
                 ArmDecoy();
             }
+            
+            // Hand animation
+            var interactor = arg0.interactorObject;
+            var handedness = interactor.handedness;
+            HandAnimator handAnimator = interactor.transform.GetComponentInParent<HandInteractableChecker>().GetHandAnimator();
+            
+            // Check if released hand was holding the handle.
+            if (handedness == InteractorHandedness.Right)
+            {
+                handAnimator.ClearHandPose();
+                _rightHandAttachPointType = AttachPointType.None;
+                _rightHandInteractor = null;
+            }
+            else if (handedness == InteractorHandedness.Left)
+            {
+                handAnimator.ClearHandPose();
+                _leftHandAttachPointType = AttachPointType.None;
+                _leftHandInteractor = null;
+            }
         }
-        private void OnPickedUp(SelectEnterEventArgs args)
+        /// <summary>
+        /// Sets hand pose depending on which hand picked up the object.
+        /// </summary>
+        /// <param name="arg0"></param>
+        private void OnPickedUp(SelectEnterEventArgs arg0)
         {
+            // Grenade logic
             _rb.isKinematic = false;
             if (_isInShop) return;
             if (_isArmed && !_hasActivated)
             {
                 DisarmDecoy();
+            }
+            
+            // Hand animation
+            var interactor = arg0.interactorObject;
+            var handedness = interactor.handedness;
+            HandAnimator handAnimator = interactor.transform.GetComponentInParent<HandInteractableChecker>().GetHandAnimator();
+            
+            if (handedness == InteractorHandedness.Right)
+            {
+                // Left hand is holding it. Reset its pose
+                if (_leftHandInteractor != null)
+                {
+                    HandAnimator animator = _leftHandInteractor.transform.GetComponentInParent<HandInteractableChecker>().GetHandAnimator();
+                    animator.ClearHandPose();
+                    _leftHandAttachPointType = AttachPointType.None;
+                    _leftHandInteractor = null;
+                }
+                handAnimator.SetHandPose(triggerPoseID);
+                _rightHandAttachPointType = AttachPointType.Main;
+                _rightHandInteractor = interactor;
+            }
+            else if (handedness == InteractorHandedness.Left)
+            {
+                // Right hand is holding it. Reset its pose
+                if (_leftHandInteractor != null)
+                {
+                    HandAnimator animator = _rightHandInteractor.transform.GetComponentInParent<HandInteractableChecker>().GetHandAnimator();
+                    animator.ClearHandPose();
+                    _rightHandAttachPointType = AttachPointType.None;
+                    _rightHandInteractor = null;
+                }
+                handAnimator.SetHandPose(triggerPoseID);
+                _leftHandAttachPointType = AttachPointType.Main;
+                _leftHandInteractor = interactor;
             }
         }
         public void ArmDecoy()
@@ -278,6 +380,7 @@ namespace Items
             {
                 _grabInteractable.selectExited.RemoveListener(OnThrown);
                 _grabInteractable.selectEntered.RemoveListener(OnPickedUp);
+                _grabInteractable.hoverEntered.RemoveListener(OnHover);
             }
             ReleaseEnemies();
         }

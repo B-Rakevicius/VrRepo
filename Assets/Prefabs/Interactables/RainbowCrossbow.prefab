@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 125394109638426962}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.073, y: -0.19, z: 0.831}
+  m_LocalPosition: {x: 0.14, y: -0.457, z: 0.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -56,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 1246677620566578861}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.1, y: -0.17, z: -0.78}
+  m_LocalPosition: {x: -0.02, y: -0.06, z: -0.78}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -87,7 +87,7 @@ Transform:
   m_GameObject: {fileID: 1867847569022536009}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.074, y: -0.186, z: 0.72}
+  m_LocalPosition: {x: -0.029, y: -0.457, z: 0.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -184,7 +184,7 @@ Transform:
   m_GameObject: {fileID: 3964897387196831119}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.077, y: -0.17, z: -0.76}
+  m_LocalPosition: {x: 0.02, y: -0.06, z: -0.78}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -441,72 +441,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.7, y: 0.25, z: 1.2}
   m_Center: {x: 0, y: 0.15, z: 0.3}
---- !u!1 &8627815238750771511
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2262127173413425959}
-  - component: {fileID: 5078904563492648339}
-  - component: {fileID: 2976279589419137377}
-  m_Layer: 0
-  m_Name: ArrowInsertZone
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2262127173413425959
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8627815238750771511}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.219, z: -0.56}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 762292122904530555}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &5078904563492648339
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8627815238750771511}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.26, y: 0.23492813, z: 1.310407}
-  m_Center: {x: 0, y: 0.07218927, z: 0.71}
---- !u!114 &2976279589419137377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8627815238750771511}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a37b393d242337c468db364bb71e72ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &762292122904401143
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -703,9 +637,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 400012, guid: 4a332f70083450d449b1f0e2b247591c, type: 3}
       insertIndex: 6
       addedObject: {fileID: 95993902086625048}
-    - targetCorrespondingSourceObject: {fileID: 400012, guid: 4a332f70083450d449b1f0e2b247591c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2262127173413425959}
     - targetCorrespondingSourceObject: {fileID: 400012, guid: 4a332f70083450d449b1f0e2b247591c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5548092216382197204}

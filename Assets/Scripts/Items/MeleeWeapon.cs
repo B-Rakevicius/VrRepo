@@ -19,10 +19,9 @@ namespace Items
         [SerializeField] private float knockback = 5f;
         [Tooltip("Minimum speed from which hit detection activates")]
         [SerializeField] private float minVelocityThreshold = 1f;
-        [Tooltip("How large should the hit detection radius be?")]
-        [SerializeField] private float hitDetectionRadius = 0.5f;
         [Tooltip("Reference to weapon's part, that will do damage")] 
         [SerializeField] private Transform damagePart;
+        
         private Vector3 m_LastPos;
         private float m_Velocity;
         private Vector3 m_Direction;
@@ -59,7 +58,9 @@ namespace Items
 
         private void OnDisable()
         {
-            _interactable.selectEntered.RemoveAllListeners();
+            _interactable.selectEntered.RemoveListener(OnGrab);
+            _interactable.selectExited.RemoveListener(OnRelease);
+            _interactable.hoverEntered.RemoveListener(OnHover);
         }
         
         private void Update()
@@ -106,12 +107,9 @@ namespace Items
             
             DetectHandCharacteristics(out characteristics);
 
-            Vector3 currentPos = Vector3.zero;
-            float distance = 0f;
-            
-            currentPos = damagePart.position;
+            Vector3 currentPos = damagePart.position;
             m_Direction = (currentPos - m_LastPos).normalized;
-            distance = m_Direction.magnitude;
+            float distance = m_Direction.magnitude;
 
             // Object is in hands - calculate velocity based of controller
             if (characteristics != InputDeviceCharacteristics.None)
