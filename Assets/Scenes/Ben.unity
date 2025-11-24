@@ -8224,6 +8224,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f87f8c9797e69784ca46b3f3574c3e22, type: 3}
+--- !u!1 &933860762 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1033809707241254, guid: 1cf3fea9a9453a6498595957e49a2584, type: 3}
+  m_PrefabInstance: {fileID: 1654425633}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &935403844
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15353,11 +15358,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1720026050266331971, guid: 1cf3fea9a9453a6498595957e49a2584, type: 3}
       propertyPath: textFieldCount
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1720026050266331971, guid: 1cf3fea9a9453a6498595957e49a2584, type: 3}
       propertyPath: usableTextFieldsInfo
-      value: TL, BL, TMid, TR, BR
+      value: TL, TMid, TR
+      objectReference: {fileID: 0}
+    - target: {fileID: 3535914781930576034, guid: 1cf3fea9a9453a6498595957e49a2584, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4629496578835847099, guid: 1cf3fea9a9453a6498595957e49a2584, type: 3}
+      propertyPath: m_text
+      value: 'Game Time:'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4759733705831735253, guid: 1cf3fea9a9453a6498595957e49a2584, type: 3}
+      propertyPath: m_text
+      value: 'Sheep left:'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6150462818293042749, guid: 1cf3fea9a9453a6498595957e49a2584, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6626298295705699011, guid: 1cf3fea9a9453a6498595957e49a2584, type: 3}
+      propertyPath: m_text
+      value: 'Hay left:'
       objectReference: {fileID: 0}
     - target: {fileID: 8787092459106336950, guid: 1cf3fea9a9453a6498595957e49a2584, type: 3}
       propertyPath: m_HoverExited.m_PersistentCalls.m_Calls.Array.size
@@ -15418,7 +15443,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1033809707241254, guid: 1cf3fea9a9453a6498595957e49a2584, type: 3}
+      insertIndex: 4
+      addedObject: {fileID: 2133657035}
   m_SourcePrefab: {fileID: 100100000, guid: 1cf3fea9a9453a6498595957e49a2584, type: 3}
 --- !u!4 &1657744805 stripped
 Transform:
@@ -19257,12 +19285,29 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1720026050266331971, guid: 1cf3fea9a9453a6498595957e49a2584, type: 3}
   m_PrefabInstance: {fileID: 1654425633}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 933860762}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0000e4a04d3f25444851deeb1aef51c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2133657035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 933860762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e64d107d8a780b04e9536e806ebdd918, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positionCheckInterval: 5
+  movementThreshold: 1
+  maxDistanceFromOrigin: 2
+  resetDelay: 8
+  resetAudioClip: {fileID: 8300000, guid: f2525322547f57546b2668f83a2653fb, type: 3}
 --- !u!1 &2142756451
 GameObject:
   m_ObjectHideFlags: 0
