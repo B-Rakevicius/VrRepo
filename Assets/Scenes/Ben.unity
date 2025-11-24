@@ -3009,15 +3009,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyConfigs:
   - enemyPrefab: {fileID: 6278694812844612950, guid: faa4f0b2ed1137a48adfd149f5a62165, type: 3}
-    cost: 1
+    cost: 2
     minWave: 0
-    spawnWeight: 10
+    spawnWeight: 2
   - enemyPrefab: {fileID: 3363292928994503358, guid: ad3aea47f978d3249b7cc3777db50fc9, type: 3}
     cost: 3
     minWave: 3
     spawnWeight: 10
   - enemyPrefab: {fileID: 7942003247806901866, guid: 3abb4039078ce7e409cc5650cb2b8771, type: 3}
-    cost: 2
+    cost: 1
     minWave: 6
     spawnWeight: 10
   player: {fileID: 0}
