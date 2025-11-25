@@ -58,6 +58,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -111,7 +114,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.5, y: 1.5, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1203602724347975811}
@@ -129,24 +132,24 @@ LODGroup:
   m_GameObject: {fileID: 1997442676426876155}
   serializedVersion: 2
   m_LocalReferencePoint: {x: 0.025953531, y: 0.21549377, z: -0.024266839}
-  m_Size: 2.2662926
+  m_Size: 15.54
   m_FadeMode: 1
   m_AnimateCrossFading: 1
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.10117156
+  - screenRelativeHeight: 0.04464188
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 2443550005202161526}
-  - screenRelativeHeight: 0.05972704
+  - screenRelativeHeight: 0.026354514
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 3178368925326102105}
-  - screenRelativeHeight: 0.03619388
+  - screenRelativeHeight: 0.015970524
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 5809527279971157007}
-  - screenRelativeHeight: 0.018400509
+  - screenRelativeHeight: 0.0081192115
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 1219037251144198714}
@@ -231,6 +234,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -314,6 +320,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -397,6 +406,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

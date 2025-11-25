@@ -10,7 +10,6 @@ namespace Shop
     {
         [SerializeField] private Transform spawnPoint;
         
-        
         private void Start()
         {
             ShopManager.Instance.OnItemPoolReceived += ShopManager_ItemPoolReceived;
@@ -53,7 +52,10 @@ namespace Shop
             if (itemPrefab != null)
             {
                 Debug.Log("Spawning item...");
-                Instantiate(itemPrefab, spawnPoint.position, spawnPoint.rotation);
+                GameObject item = Instantiate(itemPrefab, spawnPoint.position, spawnPoint.rotation);
+                
+                // Send this item to shop manager's list to be able to destroy it later if not bought
+                ShopManager.Instance.AddSpawnedShopItem(item);
             }
             else
             {

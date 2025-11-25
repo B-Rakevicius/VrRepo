@@ -21,6 +21,7 @@ namespace Shop
         [Header("HayManager")]
         [SerializeField] private HaySlotManager haySlotManager;
         private Transform _spawnedShop; // Keep the reference to be able to destroy the shop.
+        private List<GameObject> spawnedShopItems = new List<GameObject>(); // A list of currently spawned items. Is used to be able to destroy not bought items after round starts.
         public event EventHandler<OnItemPoolReceivedEventArgs> OnItemPoolReceived;
         public class OnItemPoolReceivedEventArgs : EventArgs {
             public List<ItemData> items { get; set; }
@@ -63,12 +64,17 @@ namespace Shop
             {
                 grenade.SetShopState(false);
             }
+            // Destroy the shop
             Destroy(_spawnedShop.gameObject);
+            
+            // Destroy items that were not bought
+            DestroyNotBoughtItems();
         }
         private void GameManager_RoundEnded(object sender, EventArgs e)
         {
             SpawnShop();
         }
+        
         private async void SpawnShop()
         {
             if (_spawnedShop != null) return;
@@ -137,6 +143,33 @@ namespace Shop
             {
                 return false;
             }
+        }
+        
+        /// <summary>
+        /// Destroys shop items that weren't bought.
+        /// </summary>
+        private void DestroyNotBoughtItems()
+        {
+            foreach (GameObject itemObject in spawnedShopItems)
+            {
+                if (itemObject.TryGetComponent(out Item item))
+                {
+                    if (!item.IsBought)
+                    {
+                        Destroy(itemObject);
+                    }
+                }
+            }
+            spawnedShopItems.Clear();
+        }
+
+        /// <summary>
+        /// Adds newly spawned shop items to the list.
+        /// </summary>
+        /// <param name="spawnedItem"></param>
+        public void AddSpawnedShopItem(GameObject spawnedItem)
+        {
+            spawnedShopItems.Add(spawnedItem);
         }
     }
 }
