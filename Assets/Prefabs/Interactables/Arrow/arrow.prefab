@@ -253,7 +253,7 @@ MonoBehaviour:
   lifetime: 5
   damage: 10
   knockbackForce: 15
-  hitEffect: {fileID: 4809171458859421548, guid: 6977c02a7620ddc439d06357b7c285cb, type: 3}
+  hitEffect: {fileID: 4809171458859421548, guid: f221432c307f5ab478633169acd436d5, type: 3}
 --- !u!1 &2874011848925427730
 GameObject:
   m_ObjectHideFlags: 0

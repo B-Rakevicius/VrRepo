@@ -275,7 +275,6 @@ public class EnemyAI : MonoBehaviour, IDamageable
     {
 
     }
-
     private void PlayEatingVFX()
     {
 
