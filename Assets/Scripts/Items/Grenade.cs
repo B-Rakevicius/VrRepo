@@ -147,6 +147,8 @@ namespace Items
             {
                 DisarmGrenade();
             }
+
+            Debug.Log("Grenade picked up");
             
             // Hand animation
             var interactor = arg0.interactorObject;

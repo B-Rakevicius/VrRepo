@@ -1924,6 +1924,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bd3c2f9bebd6c3c4995b907a7453e157, type: 2}
   - {fileID: 11400000, guid: c05f60c9222937244be61eaaa9768d27, type: 2}
   - {fileID: 11400000, guid: cb19cbc8e48f0674d943915baa7e0bc3, type: 2}
+  - {fileID: 11400000, guid: 25486f55f12315645a7a0c8284c017ce, type: 2}
   shopPrefab: {fileID: 6357142663728154981, guid: a7b416c223771c24aabd479b88580483, type: 3}
   haySlotManager: {fileID: 0}
 --- !u!1 &393324198
