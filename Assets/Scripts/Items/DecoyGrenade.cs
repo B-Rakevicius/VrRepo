@@ -79,6 +79,9 @@ namespace Items
         /// <param name="arg0"></param>
         private void OnHover(HoverEnterEventArgs arg0)
         {
+            if (arg0.interactorObject is XRSocketInteractor)
+                return; // ignore sockets
+            
             var interactor = arg0.interactorObject;
             var handedness = interactor.handedness;
 
@@ -106,6 +109,9 @@ namespace Items
             }
             
             // Hand animation
+            if (arg0.interactorObject is XRSocketInteractor)
+                return; // ignore sockets
+            
             var interactor = arg0.interactorObject;
             var handedness = interactor.handedness;
             HandAnimator handAnimator = interactor.transform.GetComponentInParent<HandInteractableChecker>().GetHandAnimator();
@@ -130,6 +136,7 @@ namespace Items
         /// <param name="arg0"></param>
         private void OnPickedUp(SelectEnterEventArgs arg0)
         {
+            
             // Grenade logic
             _rb.isKinematic = false;
             if (_isInShop) return;
@@ -138,7 +145,11 @@ namespace Items
                 DisarmDecoy();
             }
             
+            
             // Hand animation
+            if (arg0.interactorObject is XRSocketInteractor)
+                return; // ignore sockets
+            
             var interactor = arg0.interactorObject;
             var handedness = interactor.handedness;
             HandAnimator handAnimator = interactor.transform.GetComponentInParent<HandInteractableChecker>().GetHandAnimator();
@@ -160,7 +171,7 @@ namespace Items
             else if (handedness == InteractorHandedness.Left)
             {
                 // Right hand is holding it. Reset its pose
-                if (_leftHandInteractor != null)
+                if (_rightHandInteractor != null)
                 {
                     HandAnimator animator = _rightHandInteractor.transform.GetComponentInParent<HandInteractableChecker>().GetHandAnimator();
                     animator.ClearHandPose();

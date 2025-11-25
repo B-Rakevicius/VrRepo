@@ -5990,10 +5990,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items:
-  - {fileID: 11400000, guid: 2e49e54016550704aaffa1cc2ed4f31b, type: 2}
-  - {fileID: 11400000, guid: 66df33bbe2ffdb64a95e677dacf6e2ac, type: 2}
-  - {fileID: 11400000, guid: bd3c2f9bebd6c3c4995b907a7453e157, type: 2}
-  - {fileID: 11400000, guid: 25486f55f12315645a7a0c8284c017ce, type: 2}
+  - {fileID: 11400000, guid: c05f60c9222937244be61eaaa9768d27, type: 2}
+  - {fileID: 0}
   shopPrefab: {fileID: 6357142663728154981, guid: a7b416c223771c24aabd479b88580483, type: 3}
   haySlotManager: {fileID: 0}
 --- !u!1001 &673161011
@@ -9735,6 +9733,10 @@ PrefabInstance:
     - target: {fileID: 2359834440933827928, guid: ab2bfb5dd57a55142b533ce9272fdee1, type: 3}
       propertyPath: m_Name
       value: PetalShotgun (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3783991341175807147, guid: ab2bfb5dd57a55142b533ce9272fdee1, type: 3}
+      propertyPath: m_SelectMode
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6016438754994087244, guid: ab2bfb5dd57a55142b533ce9272fdee1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -19260,6 +19262,10 @@ PrefabInstance:
     - target: {fileID: 5532292140161407147, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -23
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986405091442374917, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
+      propertyPath: m_StartingInteractionOverridesMap.Array.data[0].overrideGroupMembers.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8082764799388567256, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
       propertyPath: m_SizeDelta.x

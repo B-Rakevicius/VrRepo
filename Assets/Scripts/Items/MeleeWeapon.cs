@@ -190,6 +190,9 @@ namespace Items
         /// <param name="arg0"></param>
         private void OnHover(HoverEnterEventArgs arg0)
         {
+            if (arg0.interactorObject is XRSocketInteractor)
+                return; // ignore sockets
+            
             // It's possible to hover while holding the object in other hand. Check this before changing attach transforms
             if (_rightHandAttachPointType != AttachPointType.None || _leftHandAttachPointType != AttachPointType.None)
             { return; }
@@ -213,6 +216,9 @@ namespace Items
         /// <param name="arg0"></param>
         private void OnRelease(SelectExitEventArgs arg0)
         {
+            if (arg0.interactorObject is XRSocketInteractor)
+                return; // ignore sockets
+            
             NearFarInteractor interactor = arg0.interactorObject as NearFarInteractor;
             InteractorHandedness handedness = interactor.handedness;
             HandAnimator handAnimator = interactor.transform.GetComponentInParent<HandInteractableChecker>().GetHandAnimator();
@@ -248,6 +254,9 @@ namespace Items
         /// <param name="arg0"></param>
         private void OnGrab(SelectEnterEventArgs arg0)
         {
+            if (arg0.interactorObject is XRSocketInteractor)
+                return; // ignore sockets
+            
             NearFarInteractor interactor = arg0.interactorObject as NearFarInteractor;
             InteractorHandedness handedness = interactor.handedness;
             HandAnimator handAnimator = interactor.transform.GetComponentInParent<HandInteractableChecker>().GetHandAnimator();

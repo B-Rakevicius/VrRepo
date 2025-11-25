@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifetime: 5
-  damage: 10
+  damage: 20
   knockbackForce: 15
   hitEffect: {fileID: 4809171458859421548, guid: f221432c307f5ab478633169acd436d5, type: 3}
 --- !u!1 &2874011848925427730
