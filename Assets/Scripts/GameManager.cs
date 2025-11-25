@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
     public event EventHandler<bool> OnInbetweenWavesStateChange;
     public GameObject inbetweenWaves;
     private bool isBetweenWaves = false;
+
+    [Header("Game Over UI")]
+    [SerializeField] private GameObject gameOverCanvas;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -48,14 +51,20 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void Start()
     {
+        currentWave++;
+
         if (inbetweenWaves != null)
             inbetweenWaves.SetActive(false);
     }
     public void StartRound()
     {
-        currentWave++;
         SetInbetweenWavesState(false);
         OnRoundStarted?.Invoke(this, EventArgs.Empty);
+    }
+    private void UI()
+    {
+        WaveUI.Instance.ShowMessage("Sheep are coming!");
+        //WaveUI.Instance.Hide();
     }
     /// <summary>
     ///  Ends current round.
