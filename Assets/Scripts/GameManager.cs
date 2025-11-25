@@ -9,16 +9,13 @@ public class GameManager : MonoBehaviour
     public int currentRound { get; private set; }
 
     public bool IsGameStarted { get; private set; }
-    
-    public int currentWave { get; private set; }
+
+    public int currentWave;
     public event EventHandler OnRoundStarted;
     public event EventHandler OnRoundEnded;
     public event EventHandler<bool> OnInbetweenWavesStateChange;
     public GameObject inbetweenWaves;
     private bool isBetweenWaves = false;
-
-    [Header("Game Over UI")]
-    [SerializeField] private GameObject gameOverCanvas;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -31,7 +28,6 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(this);
         }
-        
         // Event to trigger a confirmation window when player tries to exit the game.
         Application.wantsToQuit += Application_WantsToQuit;
     }
@@ -51,29 +47,46 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        currentWave++;
-
         if (inbetweenWaves != null)
             inbetweenWaves.SetActive(false);
     }
     public void StartRound()
     {
+        currentWave++;
+        if (currentWave % 5 == 1)
+            WaveUI.Instance.WaveShortMessage("Sheep are coming!");
         SetInbetweenWavesState(false);
         OnRoundStarted?.Invoke(this, EventArgs.Empty);
-    }
-    private void UI()
-    {
-        WaveUI.Instance.ShowMessage("Sheep are coming!");
-        //WaveUI.Instance.Hide();
     }
     /// <summary>
     ///  Ends current round.
     /// </summary>
     public void EndRound()
     {
+        WaveUI.Instance.WaveShortMessage(RandomMessage());
         OnRoundEnded?.Invoke(this, EventArgs.Empty);
     }
-
+    /// <summary>
+    /// 
+    /// </summary>
+    private string RandomMessage()
+    {
+        System.Random random = new System.Random();
+        int randChoice = random.Next(1, 5);
+        switch (randChoice)
+        {
+            case 1:
+                return "Wool done! They stood no chance.";
+            case 2:
+                return "Those sheep just got sheared!";
+            case 3:
+                return "Fluffy invasion stopped!";
+            case 4:
+                return "Not a single baa left alive.";
+            default:
+                return "Null null bug bug";
+        }
+    }
     /// <summary>
     /// Sets IsGameStarted to true, which allows game loop to run.
     /// </summary>
