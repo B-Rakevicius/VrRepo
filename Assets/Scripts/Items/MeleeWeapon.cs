@@ -21,6 +21,9 @@ namespace Items
         [SerializeField] private float minVelocityThreshold = 1f;
         [Tooltip("Reference to weapon's part, that will do damage")] 
         [SerializeField] private Transform damagePart;
+
+        [Header("Particle Settings")] 
+        [SerializeField] private GameObject hitParticleFx;
         
         private Vector3 m_LastPos;
         private float m_Velocity;
@@ -141,8 +144,20 @@ namespace Items
                 if (other.TryGetComponent(out IDamageable damageable))
                 {
                     damageable.TakeDamage(damage, m_Direction, knockback);
+                    
+                    // Play particles at hit point
+                    Vector3 hitPoint = other.ClosestPoint(transform.position);
+                    SpawnHitParticles(hitPoint);
                 }
             }
+        }
+
+        private void SpawnHitParticles(Vector3 hitPoint)
+        {
+            GameObject particleObject = Instantiate(hitParticleFx, hitPoint, Quaternion.identity);
+            ParticleSystem particle = particleObject.GetComponent<ParticleSystem>();
+            
+            particle.Play();
         }
 
         /// <summary>
