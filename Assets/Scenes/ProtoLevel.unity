@@ -88232,6 +88232,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1293790762374742323, guid: d05d1b9f2a8a4f14aaa77f5e0cd569ac, type: 3}
+      propertyPath: shootSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 25114ac4a229eeb42ac1ac1f2bdb8f53, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -92240,6 +92244,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 78104288122037075, guid: 0fe33ff8d3e3346448d9a8e1abcc812f, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 78104288122037075, guid: 0fe33ff8d3e3346448d9a8e1abcc812f, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 277455246643173344, guid: 0fe33ff8d3e3346448d9a8e1abcc812f, type: 3}
+      propertyPath: audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: d41407a0b55a2d448b17a00cda186097, type: 3}
     - target: {fileID: 3191958400685209672, guid: 0fe33ff8d3e3346448d9a8e1abcc812f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.314478
@@ -92284,7 +92300,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Radio Tower
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7072287480420980557, guid: 0fe33ff8d3e3346448d9a8e1abcc812f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:

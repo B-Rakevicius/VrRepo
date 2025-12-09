@@ -33,7 +33,7 @@ public class SirenSound : MonoBehaviour
 
     private async void PlaySirenSound()
     {
-        _audioSource.PlayOneShot(audioClip);
+        _audioSource.PlayOneShot(audioClip, 10f);
         
         m_activeTill = Time.time + activeDuration;
         
