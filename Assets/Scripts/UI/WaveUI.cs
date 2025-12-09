@@ -5,7 +5,7 @@ using System.Collections;
 public class WaveUI : MonoBehaviour
 {
     public static WaveUI Instance;
-    public GameObject canvasObject;
+    public GameObject canvasObject, canvasObject2;
     public TextMeshProUGUI frontText;
     public TextMeshProUGUI leftText;
     public TextMeshProUGUI rightText;
@@ -14,10 +14,12 @@ public class WaveUI : MonoBehaviour
     {
         Instance = this;
         canvasObject.SetActive(false);
+        canvasObject2.SetActive(false);
     }
     public void WaveShortMessage(string msg)
     {
         canvasObject.SetActive(true);
+        canvasObject2.SetActive(true);
 
         frontText.text = msg;
         leftText.text = msg;
@@ -33,5 +35,6 @@ public class WaveUI : MonoBehaviour
     public void Hide()
     {
         canvasObject.SetActive(false);
+        canvasObject2.SetActive(false);
     }
 }
