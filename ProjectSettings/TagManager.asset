@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Hay
   - Arrow
+  - WoolDropDirection
   layers:
   - Default
   - TransparentFX

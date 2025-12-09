@@ -7,7 +7,7 @@ public class EnemySpawnConfig
 {
     public GameObject enemyPrefab;
     public int cost = 1;
-    public int minWave = 1;
+    public int minRound = 1;
     [Tooltip("Weight for random selection (higher = more likely to spawn)")]
     public float spawnWeight = 1f;
 }
@@ -171,7 +171,7 @@ public class EnemySpawner : MonoBehaviour
 
         foreach (var config in enemyConfigs)
         {
-            if (config.enemyPrefab != null && currentWave >= config.minWave)
+            if (config.enemyPrefab != null && currentWave >= config.minRound)
             {
                 available.Add(config);
             }
@@ -292,13 +292,18 @@ public class EnemySpawner : MonoBehaviour
             {
                 Bounds randomBounds = spawnBounds[Random.Range(0, spawnBounds.Count)];
                 Vector3 boundsPosition = GetRandomPositionInBounds(randomBounds);
-                if (boundsPosition != Vector3.zero && IsPositionValid(boundsPosition))
+
+                if (Physics.Raycast(boundsPosition, Vector3.down, out RaycastHit hit, 1f, groundLayer))
                 {
-                    return boundsPosition;
+                    Vector3 groundPosition = hit.point;
+                    if (IsPositionValid(groundPosition))
+                    {
+                        return groundPosition;
+                    }
                 }
             }
         }
-
+        /*
         for (int i = 0; i < 5; i++)
         {
             Vector3 randomOffset = Random.insideUnitSphere * spawnRadius;
@@ -314,9 +319,9 @@ public class EnemySpawner : MonoBehaviour
                 }
             }
         }
+        */
         return Vector3.zero;
     }
-
     private Vector3 GetRandomPositionInBounds(Bounds bounds)
     {
         Vector3 randomPoint = new Vector3(
@@ -324,11 +329,9 @@ public class EnemySpawner : MonoBehaviour
             bounds.max.y + 10f,
             Random.Range(bounds.min.z, bounds.max.z)
         );
-
-        if (Physics.Raycast(randomPoint, Vector3.down, out RaycastHit hit, 30f, groundLayer))
+        if (Physics.Raycast(randomPoint, Vector3.down, out RaycastHit hit, 99f, groundLayer))
         {
             Vector3 groundPosition = hit.point;
-
             if (bounds.Contains(new Vector3(groundPosition.x, bounds.center.y, groundPosition.z)))
             {
                 return groundPosition;
@@ -336,22 +339,18 @@ public class EnemySpawner : MonoBehaviour
         }
         return Vector3.zero;
     }
-
     private bool IsPositionValid(Vector3 position)
     {
         if (!Physics.Raycast(position + Vector3.up * 2f, Vector3.down, 5f, groundLayer))
         {
             return false;
         }
-
         if (Vector3.Distance(position, player.position) < 5f)
         {
             return false;
         }
-
         return true;
     }
-
     private float GetSpawnRateMultiplier()
     {
         int currentWave = GameManager.Instance.currentWave;
@@ -365,7 +364,6 @@ public class EnemySpawner : MonoBehaviour
         else
             return 6.0f;
     }
-
     public void PauseSpawning()
     {
         if (!isPaused)
@@ -374,7 +372,6 @@ public class EnemySpawner : MonoBehaviour
             Debug.Log("Enemy spawning paused");
         }
     }
-
     public void ResumeSpawning()
     {
         if (isPaused)
@@ -383,13 +380,11 @@ public class EnemySpawner : MonoBehaviour
             Debug.Log("Enemy spawning resumed");
         }
     }
-
     public void TogglePauseSpawning()
     {
         isPaused = !isPaused;
         Debug.Log($"Enemy spawning {(isPaused ? "paused" : "resumed")}");
     }
-
     public void SetSpawningPaused(bool pause)
     {
         if (isPaused && !pause)
@@ -403,12 +398,10 @@ public class EnemySpawner : MonoBehaviour
             Debug.Log("Enemy spawning paused");
         }
     }
-
     public bool IsSpawningPaused()
     {
         return isPaused;
     }
-
     private void CheckAndUpdateInbetweenWaves()
     {
         if (GameManager.Instance == null) return;
@@ -416,7 +409,6 @@ public class EnemySpawner : MonoBehaviour
         bool shouldShowInbetween = IsSpawningPaused() && activeEnemies.Count == 0;
         GameManager.Instance.SetInbetweenWavesState(shouldShowInbetween);
     }
-
     public void OnEnemyDestroyed(GameObject enemy)
     {
         if (activeEnemies.Contains(enemy))
@@ -425,7 +417,6 @@ public class EnemySpawner : MonoBehaviour
         }
         CheckAndUpdateInbetweenWaves();
     }
-
     private void OnDrawGizmosSelected()
     {
         if (useSpawnBounds)
@@ -436,27 +427,23 @@ public class EnemySpawner : MonoBehaviour
                 Gizmos.DrawWireCube(bounds.center, bounds.size);
             }
         }
-
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(player != null ? player.position : transform.position, spawnRadius);
     }
-
     public void AddEnemyConfig(GameObject prefab, int cost = 1, int minWave = 1, float weight = 1f)
     {
         enemyConfigs.Add(new EnemySpawnConfig
         {
             enemyPrefab = prefab,
             cost = cost,
-            minWave = minWave,
+            minRound = minWave,
             spawnWeight = weight
         });
     }
-
     public void RemoveEnemyConfig(GameObject prefab)
     {
         enemyConfigs.RemoveAll(config => config.enemyPrefab == prefab);
     }
-
     public void ClearEnemyConfigs()
     {
         enemyConfigs.Clear();

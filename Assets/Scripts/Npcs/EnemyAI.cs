@@ -240,6 +240,9 @@ public class EnemyAI : MonoBehaviour, IDamageable
         }
         isDying = true;
         LootManager.Instance.TryDropLoot(transform.position);
+        LootManager.Instance.TryDropLoot(transform.position + new Vector3(0,0.3f,0));
+        LootManager.Instance.TryDropLoot(transform.position + new Vector3(0,0.6f,0));
+        LootManager.Instance.TryDropLoot(transform.position + new Vector3(0,0.9f,0));
         Destroy(this.gameObject);
         //PointManager.Instance.addSlain();
     }
