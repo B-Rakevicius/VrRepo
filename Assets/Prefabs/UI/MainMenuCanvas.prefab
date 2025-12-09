@@ -336,6 +336,9 @@ MonoBehaviour:
   startButton: {fileID: 6373348928858541644}
   optionsButton: {fileID: 4243099252403706287}
   quitButton: {fileID: 1801302666025904442}
+  animDuration: 0.2
+  animStartScale: 0
+  animEndScale: 1
 --- !u!1 &4420941746653127165
 GameObject:
   m_ObjectHideFlags: 0

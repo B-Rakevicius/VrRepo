@@ -1,6 +1,9 @@
 using Shop;
 using System;
+using Player;
 using UnityEngine;
+using UnityEngine.Serialization;
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
@@ -12,6 +15,15 @@ public class GameManager : MonoBehaviour
     public event EventHandler<bool> OnInbetweenWavesStateChange;
     public GameObject inbetweenWaves;
     private bool isBetweenWaves = false;
+
+    public string DiedTo { get; private set; }   // To whom did the player die?
+    private bool m_isGameOver;
+    
+    [Tooltip("Reference to the game over canvas")]
+    [SerializeField] private GameObject gameOverCanvas;
+    [Tooltip("How far from player should the UI spawn?")]
+    [SerializeField] private float uiDistance = 5f;
+    
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -26,6 +38,7 @@ public class GameManager : MonoBehaviour
         }
         // Event to trigger a confirmation window when player tries to exit the game.
         Application.wantsToQuit += Application_WantsToQuit;
+        m_isGameOver = false;
     }
     private void Update()
     {
@@ -88,10 +101,24 @@ public class GameManager : MonoBehaviour
         IsGameStarted = true;
         StartRound();
     }
-    public void GameOver()
+    public void GameOver(string diedTo)
     {
-        Debug.Log(" Implement game over here ");
-        // send call to UI Manager here to end game
+        
+        // Spawn game over canvas
+        if (gameOverCanvas != null && !m_isGameOver)
+        {
+            DiedTo = diedTo;
+            m_isGameOver = true;
+            
+            // Get player's position from PlayerManager and spawn canvas in front of him
+            Transform playerHeadPos = PlayerManager.Instance.GetHeadPosition();
+            Transform playerPos = PlayerManager.Instance.GetPlayerPosition();
+            
+            Vector3 spawnPos = playerHeadPos.position + playerPos.forward * uiDistance;
+
+            Debug.Log("Instantiating canvas");
+            Instantiate(gameOverCanvas, spawnPos, gameOverCanvas.transform.rotation);
+        }
     }
     /// <summary>
     /// Gets called from EnemySpawner when conditions are met.

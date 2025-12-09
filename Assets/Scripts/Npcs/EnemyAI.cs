@@ -208,16 +208,16 @@ public class EnemyAI : MonoBehaviour, IDamageable
             else
             {
                 Debug.Log($"{this.name} has eaten the player. gg ez no re.");
-                EndGame();
+                EndGame("Sheep");
             }
         }
         lastEatTime = Time.time;
         isEating = false;
         currentHayTarget = null;
     }
-    private void EndGame()
+    private void EndGame(string diedTo)
     {
-        GameManager.Instance.GameOver();
+        GameManager.Instance.GameOver(diedTo);
         // Destroy(HayTarget.gameObject);
     }
     private void Update()

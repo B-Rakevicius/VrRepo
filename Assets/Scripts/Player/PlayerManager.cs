@@ -14,6 +14,7 @@ namespace Player
         public int CurrentMoney => currentMoney;
         public int MaxMoney => maxMoney;
 
+        public event EventHandler OnPlayerDied;
         public event EventHandler<OnMoneyChangedEventArgs> OnMoneyChanged;
         public class OnMoneyChangedEventArgs : EventArgs
         {
@@ -66,6 +67,25 @@ namespace Player
         public bool HasEnoughMoney(int amount)
         {
             return amount <= currentMoney;
+        }
+
+        public Transform GetHeadPosition()
+        {
+            return Camera.main.transform;
+        }
+
+        /// <summary>
+        /// Returns player position
+        /// </summary>
+        /// <returns>Player's position</returns>
+        public Transform GetPlayerPosition()
+        {
+            return transform;
+        }
+
+        public Vector3 GetPlayerForwardDirection()
+        {
+            return transform.forward;
         }
     }
 
