@@ -10,6 +10,7 @@ using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 namespace Items
 {
+    [RequireComponent(typeof(AudioSource))]
     public class MeleeWeapon : MonoBehaviour
     {
         [Header("Weapon Settings")] 
@@ -24,6 +25,12 @@ namespace Items
 
         [Header("Particle Settings")] 
         [SerializeField] private GameObject hitParticleFx;
+        
+        [Header("Sound Settings")]
+        [Tooltip("What sound should sword play when it hits?")]
+        [SerializeField] private AudioClip audioClip;
+        
+        private AudioSource audioSource;
         
         private Vector3 m_LastPos;
         private float m_Velocity;
@@ -45,6 +52,11 @@ namespace Items
         // Identify hand grab points between main and secondary
         private AttachPointType _leftHandAttachPointType = AttachPointType.None;
         private AttachPointType _rightHandAttachPointType = AttachPointType.None;
+
+        private void Awake()
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
         
         private void Start()
         {
@@ -143,12 +155,28 @@ namespace Items
             {
                 if (other.TryGetComponent(out IDamageable damageable))
                 {
+                    // Damage Damageable
                     damageable.TakeDamage(damage, m_Direction, knockback);
                     
                     // Play particles at hit point
                     Vector3 hitPoint = other.ClosestPoint(transform.position);
                     SpawnHitParticles(hitPoint);
+                    
+                    // Play hit sound
+                    PlayHitSound();
                 }
+            }
+        }
+
+        private void PlayHitSound()
+        {
+            if (audioClip != null)
+            {
+                audioSource.PlayOneShot(audioClip);
+            }
+            else
+            {
+                Debug.LogError("No audio clip has been attached to melee weapon!");
             }
         }
 

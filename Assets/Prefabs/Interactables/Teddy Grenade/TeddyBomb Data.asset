@@ -16,6 +16,6 @@ MonoBehaviour:
   itemDescription: A powerful Teddy Bear. Your childhood nightmare.
   itemPrice: 10
   unlocksAt: 5
-  spawnChance: 100
+  spawnChance: 80
   isBought: 0
   itemPrefab: {fileID: 7644083621880544771, guid: fff164b2c164f8c4ca490b29aa9e98b3, type: 3}
