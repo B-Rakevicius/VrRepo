@@ -509,8 +509,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1728342023413408074}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.70710677, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.5000087, y: 0.50000876, z: -0.49999124, w: 0.4999914}
+  m_LocalPosition: {x: -0.21464677, y: 0.000018186867, z: 0.11425957}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -521,7 +521,7 @@ Transform:
   - {fileID: 3295235257640214516}
   - {fileID: 8030002119653403911}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: -90}
 --- !u!54 &6849840449915755202
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -584,10 +584,34 @@ MonoBehaviour:
       m_Calls: []
   m_HoverEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -3234886422029883753}
+        m_TargetAssemblyTypeName: UI.ItemUI, Assembly-CSharp
+        m_MethodName: ShowUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_HoverExited:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -3234886422029883753}
+        m_TargetAssemblyTypeName: UI.ItemUI, Assembly-CSharp
+        m_MethodName: HideUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_FirstSelectEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -1505,8 +1529,8 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7043765399659590834}
-  m_LocalRotation: {x: -0.4999997, y: 0.49999884, z: -0.49999973, w: 0.5000018}
-  m_LocalPosition: {x: 0, y: 0, z: -0.132}
+  m_LocalRotation: {x: -0.4999995, y: 0.49999896, z: -0.49999988, w: 0.5000017}
+  m_LocalPosition: {x: 0, y: 0, z: -0.13199899}
   m_LocalScale: {x: 0.00018999999, y: 0.00018999999, z: 0.00018999999}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -1515,7 +1539,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: -90}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.0044, y: -0.328}
+  m_AnchoredPosition: {x: 0.0043984624, y: -0.3280089}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &3374729766682170267
