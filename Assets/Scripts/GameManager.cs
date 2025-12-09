@@ -120,5 +120,19 @@ public class GameManager : MonoBehaviour
             OnInbetweenWavesStateChange?.Invoke(this, shouldBeActive);
         }
     }
+
+    #region Debug
+    public void StartRound_DEBUG()
+    {
+        currentWave++;
+        SetInbetweenWavesState(false);
+        OnRoundStarted?.Invoke(this, EventArgs.Empty);
+    }
+
+    public void EndRound_DEBUG()
+    {
+        OnRoundEnded?.Invoke(this, EventArgs.Empty);
+    }
+    #endregion
 }
 
