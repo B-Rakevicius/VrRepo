@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 1713611759381160540}
   - component: {fileID: 277455246643173344}
   - component: {fileID: 78104288122037075}
-  - component: {fileID: 7072287480420980557}
   m_Layer: 0
   m_Name: Siren Without Stand (1)
   m_TagString: Untagged
@@ -201,7 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c0dbdd6defe8d342bbe48cf6a9a415d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: 1ea2e027315a0a64baca70130baa7da5, type: 3}
+  audioClip: {fileID: 8300000, guid: d41407a0b55a2d448b17a00cda186097, type: 3}
   activeDuration: 8.5
 --- !u!82 &78104288122037075
 AudioSource:
@@ -215,10 +214,10 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -227,7 +226,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -300,20 +299,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &7072287480420980557
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 154244595458063993}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c0dbdd6defe8d342bbe48cf6a9a415d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: 1ea2e027315a0a64baca70130baa7da5, type: 3}
-  activeDuration: 8.5
 --- !u!1 &275150246569273773
 GameObject:
   m_ObjectHideFlags: 0
@@ -1397,6 +1382,7 @@ GameObject:
   - component: {fileID: 4145795790234614900}
   - component: {fileID: 7289902166377369320}
   - component: {fileID: 7902600520912183632}
+  - component: {fileID: 7463408405013152468}
   m_Layer: 0
   m_Name: Tower.005
   m_TagString: Untagged
@@ -1472,6 +1458,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &7463408405013152468
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3224770508405708494}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 1
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3896834602047901977, guid: f42f05f3de77db642bb5f627ea058457, type: 3}
 --- !u!1 &3240943297540107090
 GameObject:
   m_ObjectHideFlags: 0
@@ -2640,6 +2648,7 @@ GameObject:
   - component: {fileID: 3417942440749927032}
   - component: {fileID: 7936492841232711813}
   - component: {fileID: 5506020135856824731}
+  - component: {fileID: 8749144332363090707}
   m_Layer: 0
   m_Name: Tower.001
   m_TagString: Untagged
@@ -2715,6 +2724,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &8749144332363090707
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5785359939269748463}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 1
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3220580364028687465, guid: f42f05f3de77db642bb5f627ea058457, type: 3}
 --- !u!1 &5887252865399549661
 GameObject:
   m_ObjectHideFlags: 0
@@ -2812,6 +2843,7 @@ GameObject:
   - component: {fileID: 4590654981429530596}
   - component: {fileID: 6727367487960455844}
   - component: {fileID: 4937843716300446441}
+  - component: {fileID: 688704291089252090}
   m_Layer: 0
   m_Name: Base
   m_TagString: Untagged
@@ -2887,6 +2919,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &688704291089252090
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6166235188891217236}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 150, y: 33.273834, z: 150}
+  m_Center: {x: -43.327686, y: -15.925603, z: -41.0819}
 --- !u!1 &6622642801878887664
 GameObject:
   m_ObjectHideFlags: 0
@@ -3643,6 +3696,7 @@ GameObject:
   - component: {fileID: 349950568271233370}
   - component: {fileID: 9150884920502439936}
   - component: {fileID: 6175276861332925547}
+  - component: {fileID: 3051878480749617574}
   m_Layer: 0
   m_Name: Tower
   m_TagString: Untagged
@@ -3718,6 +3772,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &3051878480749617574
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7544391046534548286}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 1
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -1277366460620338370, guid: f42f05f3de77db642bb5f627ea058457, type: 3}
 --- !u!1 &7602574599960616568
 GameObject:
   m_ObjectHideFlags: 0
@@ -4346,6 +4422,7 @@ GameObject:
   - component: {fileID: 3855083695362594080}
   - component: {fileID: 2585946495025577489}
   - component: {fileID: 5876741440110623728}
+  - component: {fileID: 3037126218361863815}
   m_Layer: 0
   m_Name: Tower.002
   m_TagString: Untagged
@@ -4421,6 +4498,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &3037126218361863815
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9025183146960657419}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 1
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1818928053381763980, guid: f42f05f3de77db642bb5f627ea058457, type: 3}
 --- !u!1 &9036729498208207750
 GameObject:
   m_ObjectHideFlags: 0

@@ -31,7 +31,7 @@ namespace Player
             else
             {
                 Instance = this;
-                DontDestroyOnLoad(this);
+                //DontDestroyOnLoad(this);
             }
             FindHaySetHealth();
         }

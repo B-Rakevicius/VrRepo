@@ -1,5 +1,7 @@
 using System.Threading.Tasks;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace UI
@@ -13,9 +15,11 @@ namespace UI
     
         [Tooltip("A reference to the DiedToPanel object")]
         [SerializeField] private RectTransform diedToPanel;
+        [SerializeField] private TextMeshProUGUI diedToTextMesh;
     
         [Tooltip("A reference to the FinalScorePanel object")]
         [SerializeField] private RectTransform finalScorePanel;
+        [SerializeField] private TextMeshProUGUI finalScoreTextMesh;
 
         [Header("Buttons")]
         [Tooltip("A reference to RetryButton")]
@@ -70,7 +74,7 @@ namespace UI
         private void OnRetryButtonClicked()
         {
             // Restart the game
-            throw new System.NotImplementedException();
+            SceneManager.LoadSceneAsync(0);
         }
 
         /// <summary>
@@ -121,11 +125,13 @@ namespace UI
 
         private void ShowDiedToPanel()
         {
+            diedToTextMesh.text = GameManager.Instance.DiedTo;
             diedToPanel.gameObject.SetActive(true);
         }
 
         private void ShowFinalScorePanel()
         {
+            //GameManager.Instance.FinalScore;
             finalScorePanel.gameObject.SetActive(true);
         }
 

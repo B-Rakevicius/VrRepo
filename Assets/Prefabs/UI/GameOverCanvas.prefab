@@ -1478,7 +1478,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOverHeader: {fileID: 481885717370802424}
   diedToPanel: {fileID: 3513044968758662609}
+  diedToTextMesh: {fileID: 8788919247321634457}
   finalScorePanel: {fileID: 169512072628233048}
+  finalScoreTextMesh: {fileID: 708613822998939621}
   retryButton: {fileID: 9220297564277832482}
   quitButton: {fileID: 8423017194845881099}
   gameOverHeaderRevealTiming: 1

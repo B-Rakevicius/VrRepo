@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
         else
         {
             Instance = this;
-            DontDestroyOnLoad(this);
+            //DontDestroyOnLoad(this);
         }
         // Event to trigger a confirmation window when player tries to exit the game.
         Application.wantsToQuit += Application_WantsToQuit;

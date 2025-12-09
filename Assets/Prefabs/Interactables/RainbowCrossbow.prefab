@@ -866,6 +866,7 @@ MonoBehaviour:
   rightHandTriggerAttach: {fileID: 7786448377571719162}
   leftHandHandleAttach: {fileID: 6186740520255418655}
   rightHandHandleAttach: {fileID: 3946357560711222916}
+  shootSound: {fileID: 8300000, guid: 25114ac4a229eeb42ac1ac1f2bdb8f53, type: 3}
 --- !u!4 &762292122904530555 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400012, guid: 4a332f70083450d449b1f0e2b247591c, type: 3}
