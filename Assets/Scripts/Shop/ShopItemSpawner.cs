@@ -52,7 +52,7 @@ namespace Shop
             if (itemPrefab != null)
             {
                 Debug.Log("Spawning item...");
-                GameObject item = Instantiate(itemPrefab, spawnPoint.position, spawnPoint.rotation);
+                GameObject item = Instantiate(itemPrefab, spawnPoint.position, itemPrefab.transform.rotation);
                 
                 // Send this item to shop manager's list to be able to destroy it later if not bought
                 ShopManager.Instance.AddSpawnedShopItem(item);
