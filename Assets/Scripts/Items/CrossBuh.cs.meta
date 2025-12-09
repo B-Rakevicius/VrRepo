@@ -1,2 +1,21 @@
 fileFormatVersion: 2
 guid: 8ba7024d2083c2349b32c22e980b2f23
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - shootPoint: {instanceID: 0}
+  - arrowInsertPoint: {instanceID: 0}
+  - arrowPrefab: {instanceID: 0}
+  - arrowPrefabVisuals: {instanceID: 0}
+  - interactable: {instanceID: 0}
+  - leftHandTriggerAttach: {instanceID: 0}
+  - rightHandTriggerAttach: {instanceID: 0}
+  - leftHandHandleAttach: {instanceID: 0}
+  - rightHandHandleAttach: {instanceID: 0}
+  - shootSound: {fileID: 8300000, guid: 25114ac4a229eeb42ac1ac1f2bdb8f53, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

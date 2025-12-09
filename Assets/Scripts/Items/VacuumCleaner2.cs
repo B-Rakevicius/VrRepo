@@ -46,7 +46,9 @@ namespace Items
         // Interactors to keep track of which are active for this object, a.k.a which hands are holding the object
         private IXRSelectInteractor _leftHandInteractor;
         private IXRSelectInteractor _rightHandInteractor;
-        
+
+        [SerializeField] private AudioClip vacuumOrbTakeSound, vacuumBRRRRRSound;
+        private AudioSource _audioSource;
         private void Start()
         {
             if (interactable == null)
@@ -58,6 +60,15 @@ namespace Items
             interactable.hoverEntered.AddListener(OnHover);
             
             PlayerManager.Instance.OnMoneyChanged += PlayerManager_MoneyChanged;
+        }
+        private void Awake()
+        {
+            _audioSource = GetComponent<AudioSource>();
+            if (_audioSource == null)
+            {
+                _audioSource = gameObject.AddComponent<AudioSource>();
+                _audioSource.spatialBlend = 1f;
+            }
         }
         private void OnDestroy()
         {
@@ -169,7 +180,7 @@ namespace Items
         public void ActivateTool()
         {
             Collider[] colliders = Physics.OverlapSphere(suctionPoint.position, suctionRange, orbLayer);
-
+            shouldPlayVacuumingNoise(true);
             foreach (Collider collider in colliders)
             {
                 Orb orb = collider.GetComponent<Orb>();
@@ -206,8 +217,34 @@ namespace Items
                     {
                         affectedOrbs.Remove(rb);
                         orb.Collect();
+                        orbCollectSound();
                     }
                 }
+            }
+        }
+        private void shouldPlayVacuumingNoise(bool booleanMoment)
+        {
+            if (booleanMoment)
+            {
+                if (vacuumBRRRRRSound != null)
+                {
+                    _audioSource.clip = vacuumBRRRRRSound;
+                    _audioSource.loop = true;
+                    _audioSource.Play();
+                }
+            }
+            else
+            {
+                _audioSource.Stop();
+            }
+        }
+        private void orbCollectSound()
+        {
+            if (vacuumOrbTakeSound != null)
+            {
+                _audioSource.clip = vacuumOrbTakeSound;
+                _audioSource.loop = false;
+                _audioSource.Play();
             }
         }
         private bool IsInCone(Vector3 orbPosition)
@@ -225,6 +262,7 @@ namespace Items
         }
         public void DeactivateTool()
         {
+            shouldPlayVacuumingNoise(false);
             foreach (Rigidbody rb in affectedOrbs.ToList())
             {
                 if (rb != null)

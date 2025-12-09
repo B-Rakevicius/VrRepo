@@ -4730,6 +4730,10 @@ PrefabInstance:
       propertyPath: shootForce
       value: 35
       objectReference: {fileID: 0}
+    - target: {fileID: 1293790762374742323, guid: d05d1b9f2a8a4f14aaa77f5e0cd569ac, type: 3}
+      propertyPath: shootSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 25114ac4a229eeb42ac1ac1f2bdb8f53, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12301,6 +12305,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1687854146496114040, guid: ab2bfb5dd57a55142b533ce9272fdee1, type: 3}
+      propertyPath: vacuumBRRRRRSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 200176571266607428e9f16a04eef29e, type: 3}
+    - target: {fileID: 1687854146496114040, guid: ab2bfb5dd57a55142b533ce9272fdee1, type: 3}
+      propertyPath: vacuumOrbTakeSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 4704df6380f0e5047832a0f9376b8f52, type: 3}
     - target: {fileID: 2359834440933827928, guid: ab2bfb5dd57a55142b533ce9272fdee1, type: 3}
       propertyPath: m_Name
       value: PetalShotgun

@@ -4911,6 +4911,13 @@ MonoBehaviour:
   hitFlashDuration: 0.2
   knockbackResistance: 0.5
   eatingRange: 1.5
+  eatingSound: {fileID: 8300000, guid: ca07994600bea114ebe0dad164919b78, type: 3}
+  BaaSound1: {fileID: 8300000, guid: 35728d08da5cbe240a7b099be124da77, type: 3}
+  BaaSound2: {fileID: 8300000, guid: 87561194cb27297498840ebec5728b24, type: 3}
+  BaaSound3: {fileID: 8300000, guid: 7fe8ff776ea1993409ceec53a7669b68, type: 3}
+  BaaSound4: {fileID: 8300000, guid: 9f871c770dbc83f4ba23d71b4d2ebc96, type: 3}
+  damageTakenSound: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: 8e4d654d7b5f3b445867dbd288922d43, type: 3}
 --- !u!143 &4777872531695475722
 CharacterController:
   m_ObjectHideFlags: 0

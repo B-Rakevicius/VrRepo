@@ -40,6 +40,10 @@ public class EnemyAI : MonoBehaviour, IDamageable
     private bool isEating = false;
     private GameObject currentHayTarget;
     private bool isTargetingPlayer = false;
+    private AudioSource _audioSource;
+    [SerializeField] private AudioClip eatingSound, BaaSound1, BaaSound2, BaaSound3, BaaSound4, damageTakenSound, deathSound;
+    private float lastBaaTime;
+    private float baaCooldown = 1.0f;
     private void Start()
     {
         FindTarget();
@@ -51,6 +55,15 @@ public class EnemyAI : MonoBehaviour, IDamageable
             Debug.LogError("CharacterController is missing on enemy!");
         }
         spawnTime = Time.time;
+    }
+    private void Awake()
+    {
+        _audioSource = GetComponent<AudioSource>();
+        if (_audioSource == null)
+        {
+            _audioSource = gameObject.AddComponent<AudioSource>();
+            _audioSource.spatialBlend = 1f;
+        }
     }
     private void FindTarget()
     {
@@ -106,14 +119,57 @@ public class EnemyAI : MonoBehaviour, IDamageable
             StartCoroutine(EatWithDelay(HayTarget.gameObject));
         }
     }
+    private void TrySayBaa()
+    {
+        if (Time.time - lastBaaTime < baaCooldown) return;
+        System.Random random = new System.Random();
+        lastBaaTime = Time.time;
+        double randChoice2 = Random.value;
+        if (randChoice2 > 0.1f) return;
+        int randChoice = random.Next(1, 5);
+        switch (randChoice)
+        {
+            case 1:
+                if (BaaSound1 != null)
+                {
+                    _audioSource.clip = BaaSound1;
+                    _audioSource.loop = false;
+                    _audioSource.Play();
+                }
+                return;
+            case 2:
+                if (BaaSound2 != null)
+                {
+                    _audioSource.clip = BaaSound2;
+                    _audioSource.loop = false;
+                    _audioSource.Play();
+                }
+                return;
+            case 3:
+                if (BaaSound3 != null)
+                {
+                    _audioSource.clip = BaaSound3;
+                    _audioSource.loop = false;
+                    _audioSource.Play();
+                }
+                return;
+            case 4:
+                if (BaaSound4 != null)
+                {
+                    _audioSource.clip = BaaSound4;
+                    _audioSource.loop = false;
+                    _audioSource.Play();
+                }
+                return;
+            default:
+                return;
+        }
+    }
     private IEnumerator EatWithDelay(GameObject target)
     {
         isEating = true;
         currentHayTarget = target;
-        // Play preparation animations/sounds immediately
-        PlayEatingAnimation();
         PlayEatingSound();
-        PlayEatingVFX();
         yield return new WaitForSeconds(0.5f);
         if (target != null)
         {
@@ -170,7 +226,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
         {
             CheckFallenOffMap();
         }
-
+        TrySayBaa();
         TryEatHay();
         if (HayTarget == null || isEating || isRespawning) return;
         Vector3 direction = (HayTarget.position - transform.position).normalized;
@@ -212,12 +268,26 @@ public class EnemyAI : MonoBehaviour, IDamageable
             Debug.Log($"Hit by {source} for {damage} damage!");
         if (knockbackStrength > 0)
         {
+            if (damageTakenSound != null)
+            {
+                _audioSource.clip = damageTakenSound;
+                _audioSource.loop = false;
+                _audioSource.Play();
+            }
             ApplyKnockback(hitDirection, knockbackStrength);
         }
         if (currentHealth <= 0)
         {
             if (!isDying)
+            {
+                if (deathSound != null)
+                {
+                    _audioSource.clip = deathSound;
+                    _audioSource.loop = false;
+                    _audioSource.Play();
+                }
                 Die();
+            }
         }
         else
         {
@@ -270,17 +340,14 @@ public class EnemyAI : MonoBehaviour, IDamageable
         isTargetingPlayer = false;
         Invoke(nameof(FindTarget), duration);
     }
-    private void PlayEatingAnimation()
-    {
-
-    }
     private void PlayEatingSound()
     {
-
-    }
-    private void PlayEatingVFX()
-    {
-
+        if (eatingSound != null)
+        {
+            _audioSource.clip = eatingSound;
+            _audioSource.loop = false;
+            _audioSource.Play();
+        }
     }
     private void CheckFallenOffMap()
     {

@@ -1,15 +1,11 @@
 using Shop;
 using System;
 using UnityEngine;
-
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-
     public int currentRound { get; private set; }
-
     public bool IsGameStarted { get; private set; }
-
     public int currentWave;
     public event EventHandler OnRoundStarted;
     public event EventHandler OnRoundEnded;
@@ -31,17 +27,14 @@ public class GameManager : MonoBehaviour
         // Event to trigger a confirmation window when player tries to exit the game.
         Application.wantsToQuit += Application_WantsToQuit;
     }
-
     private void Update()
     {
     }
-
     private bool Application_WantsToQuit()
     {
         Debug.Log("Quitting...");
         return true;
     }
-
     /// <summary>
     /// Starts the next round of the game.
     /// </summary>
@@ -120,7 +113,6 @@ public class GameManager : MonoBehaviour
             OnInbetweenWavesStateChange?.Invoke(this, shouldBeActive);
         }
     }
-
     #region Debug
     public void StartRound_DEBUG()
     {

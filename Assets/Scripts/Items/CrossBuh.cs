@@ -71,10 +71,11 @@ namespace Items
         // Identify hand grab points between main and secondary
         private AttachPointType _leftHandAttachPointType = AttachPointType.None;
         private AttachPointType _rightHandAttachPointType = AttachPointType.None;
-        
         // Interactors to keep track of which are active for this object, a.k.a which hands are holding the object
         private IXRSelectInteractor _leftHandInteractor;
         private IXRSelectInteractor _rightHandInteractor;
+        [SerializeField] private AudioClip shootSound;
+        private AudioSource _audioSource;
 
         private void Start()
         {
@@ -86,7 +87,15 @@ namespace Items
             interactable.selectExited.AddListener(OnRelease);
             interactable.hoverEntered.AddListener(OnHover);
         }
-
+        private void Awake()
+        {
+            _audioSource = GetComponent<AudioSource>();
+            if (_audioSource == null)
+            {
+                _audioSource = gameObject.AddComponent<AudioSource>();
+                _audioSource.spatialBlend = 1f;
+            }
+        }
         /// <summary>
         /// Sets attach points prior to grabbing actual object.
         /// </summary>
@@ -220,7 +229,7 @@ namespace Items
             GameObject arrow = Instantiate(arrowPrefab, shootPoint.position, Quaternion.LookRotation(shootDirection));
 
             arrow.GetComponent<Arrow>().Shoot(shootDirection, shootForce);
-
+            PlayShootAudio();
             m_currentArrows--;
 
             // If we ran out of arrows, destroy arrow visual and mark crossbow as unloaded.
@@ -231,7 +240,16 @@ namespace Items
                 IsCrossbowLoaded = false;
             }
         }
-
+        private void PlayShootAudio()
+        {
+            if (shootSound != null)
+            {
+                _audioSource.clip = shootSound;
+                _audioSource.loop = false;
+                _audioSource.Play();
+            }
+            
+        }
         public bool TryReload()
         {
             // Check if crossbow is already reloaded

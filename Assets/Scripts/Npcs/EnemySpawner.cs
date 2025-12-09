@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 [System.Serializable]
 public class EnemySpawnConfig
 {
@@ -11,54 +10,44 @@ public class EnemySpawnConfig
     [Tooltip("Weight for random selection (higher = more likely to spawn)")]
     public float spawnWeight = 1f;
 }
-
 public class EnemySpawner : MonoBehaviour
 {
     [Header("Enemy Configuration")]
     public List<EnemySpawnConfig> enemyConfigs = new List<EnemySpawnConfig>();
-
     [Header("Spawn Settings")]
     public Transform player;
     public float spawnRadius = 50f, waveInterval = 5f, spawnBuffer = 0f;
     public int maxEnemiesPerWave = 25, totalEnemies = 0;
     public LayerMask groundLayer;
     public bool isPaused = false;
-
     [Header("Spawn Bounds")]
     public List<Bounds> spawnBounds = new List<Bounds>();
     public bool useSpawnBounds = true;
-
-    private float timeTotal = 0f, timeDuringWaves = 0f;
+    private float timeTotal = 0f, timeDuringWaves = 0f; // TIME DURING WAVES SHOWN AS POINTS / SOMETHING WHEN GAME OVER
     private Coroutine waveCoroutine;
     public List<GameObject> activeEnemies = new List<GameObject>();
     private int wavesSpawnedInCurrentRound = 0; // Track waves in current 5-wave cycle
-
     private void Start()
     {
         if (player == null)
         {
             player = GameObject.FindGameObjectWithTag("Player").transform;
         }
-
         ValidateEnemyConfigs();
         isPaused = true;
         waveCoroutine = StartCoroutine(WaveSpawner());
-
         if (GameManager.Instance != null)
         {
             GameManager.Instance.OnRoundStarted += OnRoundStarted;
         }
     }
-
     private void ValidateEnemyConfigs()
     {
         if (enemyConfigs.Count == 0)
         {
             Debug.LogWarning("No enemy configurations found! Please add at least one enemy to the enemyConfigs list.");
         }
-
         enemyConfigs.RemoveAll(config => config.enemyPrefab == null);
-
         foreach (var config in enemyConfigs)
         {
             if (config.spawnWeight <= 0)
@@ -68,7 +57,6 @@ public class EnemySpawner : MonoBehaviour
             }
         }
     }
-
     private void OnDestroy()
     {
         if (GameManager.Instance != null)
@@ -76,7 +64,6 @@ public class EnemySpawner : MonoBehaviour
             GameManager.Instance.OnRoundStarted -= OnRoundStarted;
         }
     }
-
     private void OnRoundStarted(object sender, System.EventArgs e)
     {
         // When a new round starts, resume spawning
@@ -85,7 +72,6 @@ public class EnemySpawner : MonoBehaviour
         ResumeSpawning();
         Debug.Log($"Wave {GameManager.Instance.currentWave} started - resuming spawner (counter reset to 0)");
     }
-
     private void Update()
     {
         if (!isPaused)
@@ -95,7 +81,6 @@ public class EnemySpawner : MonoBehaviour
         }
         timeTotal += Time.deltaTime;
     }
-
     private IEnumerator WaveSpawner()
     {
         while (true)
@@ -108,17 +93,14 @@ public class EnemySpawner : MonoBehaviour
             }
         }
     }
-
     private void SpawnWave()
     {
         // Increment waves spawned BEFORE spawning
         wavesSpawnedInCurrentRound++;
         Debug.Log($"Starting wave spawn {wavesSpawnedInCurrentRound}/5 for wave {GameManager.Instance.currentWave}");
-
         float availableBuffer = spawnBuffer;
         int enemiesSpawned = 0;
         int currentWave = GameManager.Instance.currentWave;
-
         while (availableBuffer > 0 && enemiesSpawned < maxEnemiesPerWave && totalEnemies < 100)
         {
             availableBuffer = spawnBuffer;
@@ -129,9 +111,7 @@ public class EnemySpawner : MonoBehaviour
                 Debug.LogWarning("No enemies available to spawn at wave " + currentWave);
                 break;
             }
-
             EnemySpawnConfig selectedConfig = SelectRandomEnemy(availableEnemies);
-
             if (selectedConfig != null && availableBuffer >= selectedConfig.cost)
             {
                 SpawnEnemy(selectedConfig);
@@ -151,9 +131,7 @@ public class EnemySpawner : MonoBehaviour
                 }
             }
         }
-
         Debug.Log($"Wave spawn complete. Total waves in current cycle: {wavesSpawnedInCurrentRound}/5");
-
         // Check if we've completed 5 waves - if so, pause spawning
         if (wavesSpawnedInCurrentRound >= 5)
         {
@@ -164,7 +142,6 @@ public class EnemySpawner : MonoBehaviour
             CheckAndUpdateInbetweenWaves();
         }
     }
-
     private List<EnemySpawnConfig> GetAvailableEnemies(int currentWave)
     {
         List<EnemySpawnConfig> available = new List<EnemySpawnConfig>();
@@ -178,7 +155,6 @@ public class EnemySpawner : MonoBehaviour
         }
         return available;
     }
-
     private EnemySpawnConfig SelectRandomEnemy(List<EnemySpawnConfig> availableEnemies)
     {
         if (availableEnemies.Count == 0) return null;
@@ -188,10 +164,8 @@ public class EnemySpawner : MonoBehaviour
         {
             totalWeight += enemy.spawnWeight;
         }
-
         float randomValue = Random.Range(0f, totalWeight);
         float currentWeight = 0f;
-
         foreach (var enemy in availableEnemies)
         {
             currentWeight += enemy.spawnWeight;
@@ -200,14 +174,11 @@ public class EnemySpawner : MonoBehaviour
                 return enemy;
             }
         }
-
         return availableEnemies[0];
     }
-
     private EnemySpawnConfig FindCheapestAvailableEnemy(List<EnemySpawnConfig> availableEnemies)
     {
         if (availableEnemies.Count == 0) return null;
-
         EnemySpawnConfig cheapest = availableEnemies[0];
         foreach (var enemy in availableEnemies)
         {
@@ -218,12 +189,10 @@ public class EnemySpawner : MonoBehaviour
         }
         return cheapest;
     }
-
     private void SpawnEnemy(EnemySpawnConfig config)
     {
         int attempts = 0;
         bool spawned = false;
-
         while (attempts < 10 && !spawned)
         {
             Vector3 spawnPosition = GetSpawnPosition();
@@ -232,7 +201,6 @@ public class EnemySpawner : MonoBehaviour
                 float enemyRadius = 1.5f;
                 Collider[] colliders = Physics.OverlapSphere(spawnPosition, enemyRadius);
                 bool positionClear = true;
-
                 foreach (Collider col in colliders)
                 {
                     if (col.CompareTag("Enemy"))
@@ -241,18 +209,15 @@ public class EnemySpawner : MonoBehaviour
                         break;
                     }
                 }
-
                 if (positionClear)
                 {
                     GameObject newEnemy = Instantiate(config.enemyPrefab, spawnPosition, Quaternion.identity);
-
                     EnemyAI enemyAI = newEnemy.GetComponentInChildren<EnemyAI>();
                     if (enemyAI != null)
                     {
                         enemyAI.speed += timeTotal * 0.001f;
                         AdjustEnemyStats(enemyAI, config);
                     }
-
                     activeEnemies.Add(newEnemy);
                     spawnBuffer -= config.cost;
                     totalEnemies++;
@@ -262,28 +227,23 @@ public class EnemySpawner : MonoBehaviour
             }
             attempts++;
         }
-
         if (!spawned)
         {
             Debug.LogWarning($"Failed to find clear space to spawn {config.enemyPrefab.name} after multiple attempts.");
         }
     }
-
     private void AdjustEnemyStats(EnemyAI enemyAI, EnemySpawnConfig config)
     {
         int currentWave = GameManager.Instance.currentWave;
         int baseMultiplier = Mathf.Max(1, config.cost);
-
         if (currentWave <= 10)
             enemyAI.maxHealth = enemyAI.maxHealth - 2 + baseMultiplier * (1 + (int)(currentWave * 0.2));
         else if (currentWave <= 20)
             enemyAI.maxHealth = enemyAI.maxHealth - 2 + baseMultiplier * (1 + (int)(currentWave * 0.3));
         else
             enemyAI.maxHealth = enemyAI.maxHealth - 2 + baseMultiplier * (1 + (int)(currentWave * 0.4));
-
         enemyAI.currentHealth = enemyAI.maxHealth;
     }
-
     private Vector3 GetSpawnPosition()
     {
         if (useSpawnBounds && spawnBounds.Count > 0)
@@ -292,7 +252,6 @@ public class EnemySpawner : MonoBehaviour
             {
                 Bounds randomBounds = spawnBounds[Random.Range(0, spawnBounds.Count)];
                 Vector3 boundsPosition = GetRandomPositionInBounds(randomBounds);
-
                 if (Physics.Raycast(boundsPosition, Vector3.down, out RaycastHit hit, 1f, groundLayer))
                 {
                     Vector3 groundPosition = hit.point;
