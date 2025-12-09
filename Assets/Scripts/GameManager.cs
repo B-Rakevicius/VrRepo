@@ -1,11 +1,15 @@
 using Shop;
 using System;
 using UnityEngine;
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+
     public int currentRound { get; private set; }
+
     public bool IsGameStarted { get; private set; }
+
     public int currentWave;
     public event EventHandler OnRoundStarted;
     public event EventHandler OnRoundEnded;
@@ -27,14 +31,17 @@ public class GameManager : MonoBehaviour
         // Event to trigger a confirmation window when player tries to exit the game.
         Application.wantsToQuit += Application_WantsToQuit;
     }
+
     private void Update()
     {
     }
+
     private bool Application_WantsToQuit()
     {
         Debug.Log("Quitting...");
         return true;
     }
+
     /// <summary>
     /// Starts the next round of the game.
     /// </summary>
@@ -46,16 +53,13 @@ public class GameManager : MonoBehaviour
     public void StartRound()
     {
         currentWave++;
-
-        // Show message at the start of every 5-wave cycle (waves 1, 6, 11, etc.)
-        if ((currentWave - 1) % 5 == 0)
+        if (currentWave % 5 == 1)
             WaveUI.Instance.WaveShortMessage("Sheep are coming!");
-
         SetInbetweenWavesState(false);
         OnRoundStarted?.Invoke(this, EventArgs.Empty);
     }
     /// <summary>
-    /// Ends current round.
+    ///  Ends current round.
     /// </summary>
     public void EndRound()
     {
@@ -63,7 +67,7 @@ public class GameManager : MonoBehaviour
         OnRoundEnded?.Invoke(this, EventArgs.Empty);
     }
     /// <summary>
-    /// Picks a random message
+    /// 
     /// </summary>
     private string RandomMessage()
     {
@@ -106,16 +110,29 @@ public class GameManager : MonoBehaviour
         if (isBetweenWaves != shouldBeActive)
         {
             isBetweenWaves = shouldBeActive;
+
             if (inbetweenWaves != null)
             {
                 inbetweenWaves.SetActive(shouldBeActive);
-                if (shouldBeActive) // Only call EndRound when entering the between-waves state
-                {
-                    EndRound();
-                }
+                EndRound();
             }
-
+            
             OnInbetweenWavesStateChange?.Invoke(this, shouldBeActive);
         }
     }
+
+    #region Debug
+    public void StartRound_DEBUG()
+    {
+        currentWave++;
+        SetInbetweenWavesState(false);
+        OnRoundStarted?.Invoke(this, EventArgs.Empty);
+    }
+
+    public void EndRound_DEBUG()
+    {
+        OnRoundEnded?.Invoke(this, EventArgs.Empty);
+    }
+    #endregion
 }
+
