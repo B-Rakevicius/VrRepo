@@ -509,7 +509,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1728342023413408074}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5000087, y: 0.50000876, z: -0.49999124, w: 0.4999914}
+  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
   m_LocalPosition: {x: -0.21464677, y: 0.000018186867, z: 0.11425957}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -739,6 +739,7 @@ MonoBehaviour:
   knockback: 5
   minVelocityThreshold: 1
   damagePart: {fileID: 2692266553809426252}
+  hitParticleFx: {fileID: 4809171458859421548, guid: 7d6f4553d538b7f42889306ecf05ad3f, type: 3}
   handlePoseID: 4
   leftHandGrabPointLower: {fileID: 1381745719996481046}
   leftHandGrabPointUpper: {fileID: 690167076392048294}
