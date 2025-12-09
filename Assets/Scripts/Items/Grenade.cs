@@ -250,7 +250,6 @@ namespace Items
                     fuseLightEffect.SetActive(false);
                 }
                 SetArmedVisuals(false);
-                Debug.Log("grenade disarm 11111111111111111111");
             }
         }
         /// <summary>
@@ -334,7 +333,7 @@ namespace Items
                     float calculatedDamage = baseDamage * distanceFactor;
                     float calculatedKnockback = knockbackForce * distanceFactor;
                     damageable.TakeDamage(calculatedDamage, explosionDirection, calculatedKnockback, _damageSource);
-                    Debug.Log($"grenade explosion damaged {hitCollider} object 22222222");
+                    Debug.Log($"grenade explosion damaged {hitCollider} object");
                 }
                 Rigidbody hitRb = hitCollider.GetComponent<Rigidbody>();
                 /*

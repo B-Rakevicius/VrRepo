@@ -788,8 +788,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd05d942801a0bc499c940a5a2b4bcc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentWave: 0
   inbetweenWaves: {fileID: 158986033}
-  gameOverCanvas: {fileID: 0}
 --- !u!4 &94352350
 Transform:
   m_ObjectHideFlags: 0
@@ -13988,9 +13988,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1483844419}
     m_Modifications:
+    - target: {fileID: 648581710186068268, guid: 4b21e533c871dba4bb5c56ba22947be8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3797195075684179860, guid: 4b21e533c871dba4bb5c56ba22947be8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5157409133979067158, guid: 4b21e533c871dba4bb5c56ba22947be8, type: 3}
       propertyPath: m_Name
       value: Log
+      objectReference: {fileID: 0}
+    - target: {fileID: 7419743618382359309, guid: 4b21e533c871dba4bb5c56ba22947be8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7746422789797657583, guid: 4b21e533c871dba4bb5c56ba22947be8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8199249045260833029, guid: 4b21e533c871dba4bb5c56ba22947be8, type: 3}
       propertyPath: m_LocalScale.x
