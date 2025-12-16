@@ -13,6 +13,7 @@ namespace Player
         
         public int CurrentMoney => currentMoney;
         public int MaxMoney => maxMoney;
+        public int Health => health;
 
         public event EventHandler OnPlayerDied;
         public event EventHandler<OnMoneyChangedEventArgs> OnMoneyChanged;
@@ -33,7 +34,7 @@ namespace Player
                 Instance = this;
                 //DontDestroyOnLoad(this);
             }
-            FindHaySetHealth();
+            //FindHaySetHealth();
         }
 
         private void Start()
@@ -86,6 +87,10 @@ namespace Player
         public Vector3 GetPlayerForwardDirection()
         {
             return transform.forward;
+        }
+        public void takeDamage(int damageAmount)
+        {
+            health -= damageAmount;   
         }
     }
 

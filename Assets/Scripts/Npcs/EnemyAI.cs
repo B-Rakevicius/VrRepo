@@ -4,6 +4,8 @@ using System.Linq;
 using System.Collections.Generic;
 using Unity.VRTemplate;
 using Items;
+using System.Runtime.Serialization.Formatters;
+using Player;
 
 public class EnemyAI : MonoBehaviour, IDamageable
 {
@@ -88,13 +90,13 @@ public class EnemyAI : MonoBehaviour, IDamageable
         }
         else
         {
-            // If no hay found, target the player
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             if (player != null)
             {
                 HayTarget = player.transform;
                 isTargetingPlayer = true;
-                Debug.Log($"{this.name} is now targeting the player.");
+                EndGame("Sheep");
+                Debug.Log($"{name} is now targeting the player.");
             }
             else
             {
@@ -102,6 +104,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
                 Debug.LogWarning("No hay and no player found.");
             }
         }
+        
     }
     private void TryEatHay()
     {
@@ -207,6 +210,11 @@ public class EnemyAI : MonoBehaviour, IDamageable
             }
             else
             {
+                GameObject player = GameObject.FindGameObjectWithTag("Player");
+                if (player != null)
+                {
+                    player.GetComponent<PlayerManager>().takeDamage(999);
+                }
                 Debug.Log($"{this.name} has eaten the player. gg ez no re.");
                 EndGame("Sheep");
             }
@@ -229,8 +237,20 @@ public class EnemyAI : MonoBehaviour, IDamageable
         TrySayBaa();
         TryEatHay();
         if (HayTarget == null || isEating || isRespawning) return;
+        Vector3 direction;
+        if (isTargetingPlayer && HayTarget != null)
+        {
+            direction = (transform.position - HayTarget.position).normalized;
+        }
+        else
+        {
+            direction = (HayTarget.position - transform.position).normalized;
+        }
+        direction.y = 0;
+        /*
         Vector3 direction = (HayTarget.position - transform.position).normalized;
         direction.y = 0;
+        */
         if (knockbackForce.magnitude > 0.1f)
         {
             controller.Move(knockbackForce * Time.deltaTime);

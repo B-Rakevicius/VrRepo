@@ -103,7 +103,6 @@ public class GameManager : MonoBehaviour
     }
     public void GameOver(string diedTo)
     {
-        
         // Spawn game over canvas
         if (gameOverCanvas != null && !m_isGameOver)
         {
