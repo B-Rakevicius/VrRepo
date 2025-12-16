@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Fortress Defense
   itemDescription: Adds a new hay block to your fortress.
-  itemPrice: 50
+  itemPrice: 1
   unlocksAt: 1
-  spawnChance: 50
+  spawnChance: 40
   isBought: 0
   itemPrefab: {fileID: 413126605898263460, guid: 0e1b2265dd6cd0a40a77724720367735, type: 3}

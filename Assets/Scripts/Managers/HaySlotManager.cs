@@ -45,6 +45,7 @@ public class HaySlotManager : MonoBehaviour
 
         GameObject hay = Instantiate(hayPrefab, slot.position, slot.rotation);
         slotOccupancy[slot] = hay;
+        Debug.LogWarning("Placing hay in slot!");
     }
     public Transform GetFreeSlot()
     {

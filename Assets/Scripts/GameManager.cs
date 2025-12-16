@@ -18,6 +18,11 @@ public class GameManager : MonoBehaviour
 
     public string DiedTo { get; private set; }   // To whom did the player die?
     private bool m_isGameOver;
+
+    // A timer for adding score at the game end
+    public float RoundScore { get; set; }   // Other various score sources, e.g. sheep
+    public float ScoreTimer { get; private set; } = 0f;  // How many seconds the player was alive for
+    private bool m_isTimerActive = false;
     
     [Tooltip("Reference to the game over canvas")]
     [SerializeField] private GameObject gameOverCanvas;
@@ -42,6 +47,10 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
+        if (m_isTimerActive)
+        {
+            ScoreTimer += Time.deltaTime;
+        }
     }
     private bool Application_WantsToQuit()
     {
@@ -62,6 +71,7 @@ public class GameManager : MonoBehaviour
         // if (currentWave % 5 == 1)
         //     WaveUI.Instance.WaveShortMessage("Sheep are coming!");
         SetInbetweenWavesState(false);
+        m_isTimerActive = true;
         OnRoundStarted?.Invoke(this, EventArgs.Empty);
     }
     /// <summary>
@@ -70,6 +80,7 @@ public class GameManager : MonoBehaviour
     public void EndRound()
     {
         //WaveUI.Instance.WaveShortMessage(RandomMessage());
+        m_isTimerActive = false;
         OnRoundEnded?.Invoke(this, EventArgs.Empty);
     }
     /// <summary>

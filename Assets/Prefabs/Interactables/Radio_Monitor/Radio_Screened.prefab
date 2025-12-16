@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33988382911159956}
   - component: {fileID: 23954761077042806}
   - component: {fileID: 5503364711256747737}
+  - component: {fileID: 6081596633610143237}
   - component: {fileID: 1720026050266331971}
   - component: {fileID: 8787092459106336950}
   - component: {fileID: 4680979943045865868}
@@ -122,6 +123,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6081596633610143237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1033809707241254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e64d107d8a780b04e9536e806ebdd918, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positionCheckInterval: 5
+  movementThreshold: 1
+  maxDistanceFromOrigin: 2
+  resetDelay: 8
+  resetAudioClip: {fileID: 8300000, guid: f2525322547f57546b2668f83a2653fb, type: 3}
 --- !u!114 &1720026050266331971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,8 +158,8 @@ MonoBehaviour:
   textTR: {fileID: 6626298295705699011}
   textBR: {fileID: 3535914781930576034}
   enemySpawner: {fileID: 0}
-  textFieldCount: 5
-  usableTextFieldsInfo: TL, BL, TMid, TR, BR
+  textFieldCount: 3
+  usableTextFieldsInfo: TL, TMid, TR
 --- !u!114 &8787092459106336950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -475,14 +493,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
-    Sheep
-    left:
-
-    Hay left:
-
-    \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
+  m_text: 'Game Time:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 33e212bb9771bbc4b8110769f82f5f19, type: 2}
   m_sharedMaterial: {fileID: -42395288391226878, guid: 33e212bb9771bbc4b8110769f82f5f19, type: 2}
@@ -649,7 +660,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Sheep left: \nHay left:\n"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 33e212bb9771bbc4b8110769f82f5f19, type: 2}
   m_sharedMaterial: {fileID: -42395288391226878, guid: 33e212bb9771bbc4b8110769f82f5f19, type: 2}
@@ -860,9 +871,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Sheep left:
-
-    Hay left:'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 33e212bb9771bbc4b8110769f82f5f19, type: 2}
   m_sharedMaterial: {fileID: -42395288391226878, guid: 33e212bb9771bbc4b8110769f82f5f19, type: 2}
@@ -1105,14 +1114,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
-    Sheep
-    left:
-
-    Hay left:
-
-    \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
+  m_text: 'Hay left:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 33e212bb9771bbc4b8110769f82f5f19, type: 2}
   m_sharedMaterial: {fileID: -42395288391226878, guid: 33e212bb9771bbc4b8110769f82f5f19, type: 2}
@@ -1248,14 +1250,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
-    Sheep
-    left:
-
-    Hay left:61342
-
-    \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
+  m_text: 'Sheep left:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 33e212bb9771bbc4b8110769f82f5f19, type: 2}
   m_sharedMaterial: {fileID: -42395288391226878, guid: 33e212bb9771bbc4b8110769f82f5f19, type: 2}

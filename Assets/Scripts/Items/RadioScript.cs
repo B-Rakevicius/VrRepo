@@ -1,5 +1,4 @@
 using TMPro;
-using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using static UnityEngine.XR.Interaction.Toolkit.Inputs.Haptics.HapticsUtility;
@@ -229,8 +228,8 @@ public class RadioScript : MonoBehaviour
     }
     private void updateTexts()
     {
-        textTL.text = "Game Time: " + enemySpawner.timeDuringWaves.ToString("F1");
-        textTMid.text = "Shepe Left " + enemySpawner.activeEnemies.Count;
+        textTL.text = $"GAME TIME: {Mathf.RoundToInt(GameManager.Instance.ScoreTimer)}";
+        textTMid.text = "Sheep Left " + enemySpawner.activeEnemies.Count;
         textTR.text = "Hay Left " + FindObjectsByType<HayScript>(FindObjectsSortMode.None).Length;
     }
     public void onPickUp()

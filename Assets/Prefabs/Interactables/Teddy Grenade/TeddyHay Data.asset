@@ -16,6 +16,6 @@ MonoBehaviour:
   itemDescription: A Teddy Bear decoy. Lures other sheep.
   itemPrice: 20
   unlocksAt: 1
-  spawnChance: 30
+  spawnChance: 31
   isBought: 0
   itemPrefab: {fileID: 7644083621880544771, guid: 47b682e1c58967d4cb2f25a94bb04c16, type: 3}

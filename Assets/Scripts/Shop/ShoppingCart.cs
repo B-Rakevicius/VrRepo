@@ -143,6 +143,7 @@ namespace Shop
                 foreach (Item item in cartItems)
                 {
                     // This is a hay block - don't add it to bought items list
+                    //NOTE: THIS BROKE ENTIRE SHOP AND ENEMY SPAWNING
                     if (item.GetItemData().itemName.Equals("Fortress Defense"))
                     {
                         continue;
@@ -161,11 +162,18 @@ namespace Shop
                 
                 await Task.Delay(2000);
 
+                // There were pickable items left in the cart after purchase
                 if (cartItemsBought.Count != 0)
                 {
                     checkoutDisplayText.fontSize = 0.04f;
                     checkoutDisplayText.color = Color.green;
                     checkoutDisplayText.text = "Take Items";
+                }
+                else // It was probably hay block that gets deleted. Show "Place items" text
+                {
+                    checkoutDisplayText.fontSize = 0.05f;
+                    checkoutDisplayText.color = Color.red;
+                    checkoutDisplayText.text = "No Items";
                 }
             }
         }

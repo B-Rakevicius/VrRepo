@@ -21,7 +21,7 @@ namespace Shop
         [Header("HayManager")]
         [SerializeField] private HaySlotManager haySlotManager;
         private Transform _spawnedShop; // Keep the reference to be able to destroy the shop.
-        private List<GameObject> spawnedShopItems = new List<GameObject>(); // A list of currently spawned items. Is used to be able to destroy not bought items after round starts.
+        private List<GameObject> spawnedShopItems = new(); // A list of currently spawned items. Is used to be able to destroy not bought items after round starts.
         
         [Header("Sound Settings")]
         [Tooltip("What sound should shop play when item is bought?")]
@@ -139,10 +139,6 @@ namespace Shop
                             Debug.LogError("No free hay slots available!");
                         }
                     }
-                    else
-                    {
-                        Debug.LogError("Item Name in Item Data scriptable object is different than in code!");
-                    }
                 }
                 
                 PlayerManager.Instance.DeductMoney(totalPrice);
@@ -169,8 +165,18 @@ namespace Shop
         /// </summary>
         private void DestroyNotBoughtItems()
         {
+            if (spawnedShopItems.Count == 0)
+            {
+                Debug.LogWarning("No items to destroy"); 
+                return;
+                
+            }
+            
             foreach (GameObject itemObject in spawnedShopItems)
             {
+                // Object might be destroyed
+                if(itemObject == null) { continue; }
+                
                 if (itemObject.TryGetComponent(out Item item))
                 {
                     if (!item.isBought)

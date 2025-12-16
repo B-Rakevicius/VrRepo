@@ -16,6 +16,6 @@ MonoBehaviour:
   itemDescription: A very sharp Japanese sword. Its curved shape sure can slice.
   itemPrice: 10
   unlocksAt: 1
-  spawnChance: 40
+  spawnChance: 35
   isBought: 0
   itemPrefab: {fileID: 1728342023413408074, guid: b770f130b4d212a4897613771c315eff, type: 3}

@@ -131,7 +131,12 @@ namespace UI
 
         private void ShowFinalScorePanel()
         {
-            //GameManager.Instance.FinalScore;
+            // Get total score
+            int roundScore = Mathf.RoundToInt(GameManager.Instance.RoundScore);
+            int roundTimer = Mathf.RoundToInt(GameManager.Instance.ScoreTimer);
+            int totalScore = roundScore + roundTimer;
+            finalScoreTextMesh.text = $"{totalScore}";
+            
             finalScorePanel.gameObject.SetActive(true);
         }
 
