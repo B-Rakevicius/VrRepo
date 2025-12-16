@@ -59,8 +59,8 @@ public class GameManager : MonoBehaviour
     public void StartRound()
     {
         currentWave++;
-        if (currentWave % 5 == 1)
-            WaveUI.Instance.WaveShortMessage("Sheep are coming!");
+        // if (currentWave % 5 == 1)
+        //     WaveUI.Instance.WaveShortMessage("Sheep are coming!");
         SetInbetweenWavesState(false);
         OnRoundStarted?.Invoke(this, EventArgs.Empty);
     }
@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void EndRound()
     {
-        WaveUI.Instance.WaveShortMessage(RandomMessage());
+        //WaveUI.Instance.WaveShortMessage(RandomMessage());
         OnRoundEnded?.Invoke(this, EventArgs.Empty);
     }
     /// <summary>

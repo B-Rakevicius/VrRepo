@@ -110,7 +110,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.5
-  m_Center: {x: 0, y: -2, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &6961076795750387018
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -120,8 +120,8 @@ Rigidbody:
   m_GameObject: {fileID: 5278065114983270743}
   serializedVersion: 5
   m_Mass: 1
-  m_LinearDamping: 0.2
-  m_AngularDamping: 0.5
+  m_LinearDamping: 1
+  m_AngularDamping: 500
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebc186d16e0d1124dbb68e9c4a83e5c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 8
+  value: 12
 --- !u!114 &6578817836171678882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,12 +158,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5278065114983270743}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1520cad70c4b8843a515896f37d9be4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minHeight: 0.3
+  minHeight: 0.67
   groundLayer:
     serializedVersion: 2
     m_Bits: 256

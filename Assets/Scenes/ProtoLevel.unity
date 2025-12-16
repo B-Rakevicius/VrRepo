@@ -1409,14 +1409,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 568683967420644389, guid: fff164b2c164f8c4ca490b29aa9e98b3, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 568683967420644389, guid: fff164b2c164f8c4ca490b29aa9e98b3, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2822835123339290559, guid: fff164b2c164f8c4ca490b29aa9e98b3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.4203825
@@ -1460,22 +1452,6 @@ PrefabInstance:
     - target: {fileID: 7644083621880544771, guid: fff164b2c164f8c4ca490b29aa9e98b3, type: 3}
       propertyPath: m_Name
       value: Teddy Bomb
-      objectReference: {fileID: 0}
-    - target: {fileID: 8189741607140192776, guid: fff164b2c164f8c4ca490b29aa9e98b3, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8189741607140192776, guid: fff164b2c164f8c4ca490b29aa9e98b3, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8189741607140192776, guid: fff164b2c164f8c4ca490b29aa9e98b3, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8189741607140192776, guid: fff164b2c164f8c4ca490b29aa9e98b3, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1884,6 +1860,7 @@ GameObject:
   m_Component:
   - component: {fileID: 346715445}
   - component: {fileID: 346715446}
+  - component: {fileID: 346715447}
   m_Layer: 0
   m_Name: ShopManager
   m_TagString: Untagged
@@ -1927,6 +1904,104 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 25486f55f12315645a7a0c8284c017ce, type: 2}
   shopPrefab: {fileID: 6357142663728154981, guid: a7b416c223771c24aabd479b88580483, type: 3}
   haySlotManager: {fileID: 0}
+  audioClip: {fileID: 8300000, guid: 9af6b41a7b19137478a7200fc50074d2, type: 3}
+--- !u!82 &346715447
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 346715444}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &380196791 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8132946823983714778, guid: 28f8f3900ee9c554db9be29f0ceaa5dd, type: 3}
@@ -2928,6 +3003,30 @@ PrefabInstance:
     - target: {fileID: 1728342023413408074, guid: b770f130b4d212a4897613771c315eff, type: 3}
       propertyPath: m_Name
       value: Katana
+      objectReference: {fileID: 0}
+    - target: {fileID: 2552627452137971169, guid: b770f130b4d212a4897613771c315eff, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2552627452137971169, guid: b770f130b4d212a4897613771c315eff, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682969477284589575, guid: b770f130b4d212a4897613771c315eff, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682969477284589575, guid: b770f130b4d212a4897613771c315eff, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682969477284589575, guid: b770f130b4d212a4897613771c315eff, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682969477284589575, guid: b770f130b4d212a4897613771c315eff, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7173199145772586537, guid: b770f130b4d212a4897613771c315eff, type: 3}
       propertyPath: m_LocalPosition.x
@@ -84762,33 +84861,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3360337413526843740, guid: 47b682e1c58967d4cb2f25a94bb04c16, type: 3}
-      propertyPath: m_AnchorMax.y
+    - target: {fileID: 3491255496721614876, guid: 47b682e1c58967d4cb2f25a94bb04c16, type: 3}
+      propertyPath: m_LocalScale.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3360337413526843740, guid: 47b682e1c58967d4cb2f25a94bb04c16, type: 3}
-      propertyPath: m_AnchorMin.y
+    - target: {fileID: 3491255496721614876, guid: 47b682e1c58967d4cb2f25a94bb04c16, type: 3}
+      propertyPath: m_LocalScale.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3360337413526843740, guid: 47b682e1c58967d4cb2f25a94bb04c16, type: 3}
-      propertyPath: m_AnchoredPosition.x
+    - target: {fileID: 3491255496721614876, guid: 47b682e1c58967d4cb2f25a94bb04c16, type: 3}
+      propertyPath: m_LocalScale.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3360337413526843740, guid: 47b682e1c58967d4cb2f25a94bb04c16, type: 3}
-      propertyPath: m_AnchoredPosition.y
+    - target: {fileID: 5337442755719998974, guid: 47b682e1c58967d4cb2f25a94bb04c16, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7644083621880544771, guid: 47b682e1c58967d4cb2f25a94bb04c16, type: 3}
       propertyPath: m_Name
       value: Teddy Hay
-      objectReference: {fileID: 0}
-    - target: {fileID: 7782509730315919027, guid: 47b682e1c58967d4cb2f25a94bb04c16, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7782509730315919027, guid: 47b682e1c58967d4cb2f25a94bb04c16, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

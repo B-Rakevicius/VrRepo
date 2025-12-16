@@ -1,14 +1,23 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Items;
+using Player;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Shop
 {
     public class ShoppingCart : MonoBehaviour
     {
+        [Tooltip("Displays shopping cart's total price")]
         [SerializeField] private TextMeshProUGUI checkoutDisplayText;
+        [Tooltip("Displays player's current money")]
+        [SerializeField] private TextMeshProUGUI moneyText;
+        [Tooltip("Audio Source from root object")]
+        [SerializeField] private AudioSource audioSource;
+        [Tooltip("Audio clip to play")]
+        [SerializeField] private AudioClip audioClip;
 
         private List<Item> cartItems;
         private int _totalPrice;
@@ -17,6 +26,13 @@ namespace Shop
 
         private void Start()
         {
+            // Subscribe to OnMoneyChanged event so that "CurrentBalance" text could be updated
+            PlayerManager.Instance.OnMoneyChanged += PlayerManager_OnMoneyChanged;
+
+            audioSource = GetComponentInParent<AudioSource>();
+            audioSource.loop = true;
+            audioSource.PlayOneShot(audioClip);
+            
             cartItems = new List<Item>();
             cartItemsBought = new List<Item>();
             
@@ -24,8 +40,17 @@ namespace Shop
             checkoutDisplayText.fontSize = 0.05f;
             checkoutDisplayText.color = Color.red;
             checkoutDisplayText.text = "No Items";
+            
+            // Display current money on start
+            moneyText.text = $"${PlayerManager.Instance.CurrentMoney}";
+            
         }
-        
+
+        private void PlayerManager_OnMoneyChanged(object sender, PlayerManager.OnMoneyChangedEventArgs e)
+        {
+            moneyText.text = "$" + e.Money;
+        }
+
         private void OnTriggerEnter(Collider other)
         {
             // Is object an interactable item?
