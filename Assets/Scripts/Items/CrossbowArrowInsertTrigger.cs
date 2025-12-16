@@ -15,10 +15,15 @@ public class CrossbowArrowInsertTrigger : MonoBehaviour
     {
         if (other.CompareTag("Arrow"))
         {
-            if (crossBuh.TryReload())
+            other.TryGetComponent(out Item item);
+
+            if (item != null)
             {
-                // Deattach arrow from the player. Maybe just destroy that arrow and instantiate anew?
-                Destroy(other.gameObject);
+                if (item.isBought && crossBuh.TryReload())
+                {
+                    // Deattach arrow from the player. Maybe just destroy that arrow and instantiate anew?
+                    Destroy(other.gameObject);
+                }
             }
         }
     }

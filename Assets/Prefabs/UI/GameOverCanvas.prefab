@@ -827,7 +827,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'YOU DIED TO:'
+  m_text: 'YOU LOST TO:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dfd5981aceff9814688bf6e11138693c, type: 2}
   m_sharedMaterial: {fileID: -4821612879344442023, guid: dfd5981aceff9814688bf6e11138693c, type: 2}

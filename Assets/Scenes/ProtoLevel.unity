@@ -457,6 +457,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 823624203}
     m_Modifications:
+    - target: {fileID: 4175198496074683409, guid: 2ca767861259fd94f994579019e739bf, type: 3}
+      propertyPath: value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5278065114983270743, guid: 2ca767861259fd94f994579019e739bf, type: 3}
       propertyPath: m_Name
       value: Orb (23)
@@ -956,6 +960,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 823624203}
     m_Modifications:
+    - target: {fileID: 4175198496074683409, guid: 2ca767861259fd94f994579019e739bf, type: 3}
+      propertyPath: value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5278065114983270743, guid: 2ca767861259fd94f994579019e739bf, type: 3}
       propertyPath: m_Name
       value: Orb (5)
@@ -1018,6 +1026,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 823624203}
     m_Modifications:
+    - target: {fileID: 4175198496074683409, guid: 2ca767861259fd94f994579019e739bf, type: 3}
+      propertyPath: value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5278065114983270743, guid: 2ca767861259fd94f994579019e739bf, type: 3}
       propertyPath: m_Name
       value: Orb (1)
@@ -1080,6 +1092,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 823624203}
     m_Modifications:
+    - target: {fileID: 4175198496074683409, guid: 2ca767861259fd94f994579019e739bf, type: 3}
+      propertyPath: value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5278065114983270743, guid: 2ca767861259fd94f994579019e739bf, type: 3}
       propertyPath: m_Name
       value: Orb (25)
@@ -1457,6 +1473,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3629647024851796336, guid: fff164b2c164f8c4ca490b29aa9e98b3, type: 3}
+      propertyPath: isBought
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7644083621880544771, guid: fff164b2c164f8c4ca490b29aa9e98b3, type: 3}
       propertyPath: m_Name
       value: Teddy Bomb
@@ -1490,6 +1510,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 823624203}
     m_Modifications:
+    - target: {fileID: 4175198496074683409, guid: 2ca767861259fd94f994579019e739bf, type: 3}
+      propertyPath: value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5278065114983270743, guid: 2ca767861259fd94f994579019e739bf, type: 3}
       propertyPath: m_Name
       value: Orb (27)
@@ -1920,8 +1944,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items:
-  - {fileID: 11400000, guid: 2e49e54016550704aaffa1cc2ed4f31b, type: 2}
-  - {fileID: 11400000, guid: 66df33bbe2ffdb64a95e677dacf6e2ac, type: 2}
+  - {fileID: 11400000, guid: f582441cffd7d404a9b67d97b0cbf229, type: 2}
   - {fileID: 11400000, guid: bd3c2f9bebd6c3c4995b907a7453e157, type: 2}
   - {fileID: 11400000, guid: c05f60c9222937244be61eaaa9768d27, type: 2}
   - {fileID: 11400000, guid: cb19cbc8e48f0674d943915baa7e0bc3, type: 2}
@@ -2306,6 +2329,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 823624203}
     m_Modifications:
+    - target: {fileID: 4175198496074683409, guid: 2ca767861259fd94f994579019e739bf, type: 3}
+      propertyPath: value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5278065114983270743, guid: 2ca767861259fd94f994579019e739bf, type: 3}
       propertyPath: m_Name
       value: Orb (11)
@@ -2666,6 +2693,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 823624203}
     m_Modifications:
+    - target: {fileID: 4175198496074683409, guid: 2ca767861259fd94f994579019e739bf, type: 3}
+      propertyPath: value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5278065114983270743, guid: 2ca767861259fd94f994579019e739bf, type: 3}
       propertyPath: m_Name
       value: Orb (4)
@@ -2845,6 +2876,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 823624203}
     m_Modifications:
+    - target: {fileID: 4175198496074683409, guid: 2ca767861259fd94f994579019e739bf, type: 3}
+      propertyPath: value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5278065114983270743, guid: 2ca767861259fd94f994579019e739bf, type: 3}
       propertyPath: m_Name
       value: Orb (10)
@@ -3024,6 +3059,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3582000605013284011, guid: b770f130b4d212a4897613771c315eff, type: 3}
+      propertyPath: isBought
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1728342023413408074, guid: b770f130b4d212a4897613771c315eff, type: 3}
       propertyPath: m_Name
       value: Katana
@@ -81834,6 +81873,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 823624203}
     m_Modifications:
+    - target: {fileID: 4175198496074683409, guid: 2ca767861259fd94f994579019e739bf, type: 3}
+      propertyPath: value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5278065114983270743, guid: 2ca767861259fd94f994579019e739bf, type: 3}
       propertyPath: m_Name
       value: Orb (7)
@@ -82013,6 +82056,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1687854146496114040, guid: ab2bfb5dd57a55142b533ce9272fdee1, type: 3}
+      propertyPath: orbCollectThreshold
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2359834440933827928, guid: ab2bfb5dd57a55142b533ce9272fdee1, type: 3}
       propertyPath: m_Name
       value: PetalShotgun
@@ -82070,6 +82117,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 823624203}
     m_Modifications:
+    - target: {fileID: 4175198496074683409, guid: 2ca767861259fd94f994579019e739bf, type: 3}
+      propertyPath: value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5278065114983270743, guid: 2ca767861259fd94f994579019e739bf, type: 3}
       propertyPath: m_Name
       value: Orb (21)
@@ -83223,6 +83274,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 823624203}
     m_Modifications:
+    - target: {fileID: 4175198496074683409, guid: 2ca767861259fd94f994579019e739bf, type: 3}
+      propertyPath: value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5278065114983270743, guid: 2ca767861259fd94f994579019e739bf, type: 3}
       propertyPath: m_Name
       value: Orb (12)
@@ -83450,6 +83505,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 823624203}
     m_Modifications:
+    - target: {fileID: 4175198496074683409, guid: 2ca767861259fd94f994579019e739bf, type: 3}
+      propertyPath: value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5278065114983270743, guid: 2ca767861259fd94f994579019e739bf, type: 3}
       propertyPath: m_Name
       value: Orb (8)
@@ -84194,6 +84253,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 823624203}
     m_Modifications:
+    - target: {fileID: 4175198496074683409, guid: 2ca767861259fd94f994579019e739bf, type: 3}
+      propertyPath: value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5278065114983270743, guid: 2ca767861259fd94f994579019e739bf, type: 3}
       propertyPath: m_Name
       value: Orb (19)
@@ -84697,6 +84760,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1562859710425026741, guid: 6aae66389618d304080e8cb93af7644b, type: 3}
+      propertyPath: isBought
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 717046321790258427, guid: 6aae66389618d304080e8cb93af7644b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.711
@@ -84783,6 +84850,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 823624203}
     m_Modifications:
+    - target: {fileID: 4175198496074683409, guid: 2ca767861259fd94f994579019e739bf, type: 3}
+      propertyPath: value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5278065114983270743, guid: 2ca767861259fd94f994579019e739bf, type: 3}
       propertyPath: m_Name
       value: Orb (20)
@@ -84896,6 +84967,10 @@ PrefabInstance:
     - target: {fileID: 3491255496721614876, guid: 47b682e1c58967d4cb2f25a94bb04c16, type: 3}
       propertyPath: m_LocalScale.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3629647024851796336, guid: 47b682e1c58967d4cb2f25a94bb04c16, type: 3}
+      propertyPath: isBought
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5337442755719998974, guid: 47b682e1c58967d4cb2f25a94bb04c16, type: 3}
       propertyPath: m_IsActive
@@ -85083,6 +85158,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 823624203}
     m_Modifications:
+    - target: {fileID: 4175198496074683409, guid: 2ca767861259fd94f994579019e739bf, type: 3}
+      propertyPath: value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5278065114983270743, guid: 2ca767861259fd94f994579019e739bf, type: 3}
       propertyPath: m_Name
       value: Orb (17)
@@ -85475,33 +85554,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3325226854019162143, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
-      propertyPath: m_GripTransform
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3325226854019162143, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
-      propertyPath: m_TriggerTransform
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3325226854019162143, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
-      propertyPath: m_ThumbstickTransform
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 3765267098368964698, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6387318401906081087, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
-      propertyPath: m_GripTransform
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6387318401906081087, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
-      propertyPath: m_TriggerTransform
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6387318401906081087, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
-      propertyPath: m_ThumbstickTransform
-      value: 
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 8806329115733545877, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
       propertyPath: m_Name
@@ -85882,6 +85937,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 823624203}
     m_Modifications:
+    - target: {fileID: 4175198496074683409, guid: 2ca767861259fd94f994579019e739bf, type: 3}
+      propertyPath: value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5278065114983270743, guid: 2ca767861259fd94f994579019e739bf, type: 3}
       propertyPath: m_Name
       value: Orb (14)
@@ -86036,6 +86095,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 823624203}
     m_Modifications:
+    - target: {fileID: 4175198496074683409, guid: 2ca767861259fd94f994579019e739bf, type: 3}
+      propertyPath: value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5278065114983270743, guid: 2ca767861259fd94f994579019e739bf, type: 3}
       propertyPath: m_Name
       value: Orb (16)
@@ -86098,6 +86161,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 823624203}
     m_Modifications:
+    - target: {fileID: 4175198496074683409, guid: 2ca767861259fd94f994579019e739bf, type: 3}
+      propertyPath: value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5278065114983270743, guid: 2ca767861259fd94f994579019e739bf, type: 3}
       propertyPath: m_Name
       value: Orb (9)
@@ -87034,6 +87101,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1562859710425026741, guid: 6aae66389618d304080e8cb93af7644b, type: 3}
+      propertyPath: isBought
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 717046321790258427, guid: 6aae66389618d304080e8cb93af7644b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.710999
@@ -87660,6 +87731,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 823624203}
     m_Modifications:
+    - target: {fileID: 4175198496074683409, guid: 2ca767861259fd94f994579019e739bf, type: 3}
+      propertyPath: value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5278065114983270743, guid: 2ca767861259fd94f994579019e739bf, type: 3}
       propertyPath: m_Name
       value: Orb (3)
@@ -87738,6 +87813,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 823624203}
     m_Modifications:
+    - target: {fileID: 4175198496074683409, guid: 2ca767861259fd94f994579019e739bf, type: 3}
+      propertyPath: value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5278065114983270743, guid: 2ca767861259fd94f994579019e739bf, type: 3}
       propertyPath: m_Name
       value: Orb (26)
@@ -87965,6 +88044,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 823624203}
     m_Modifications:
+    - target: {fileID: 4175198496074683409, guid: 2ca767861259fd94f994579019e739bf, type: 3}
+      propertyPath: value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5278065114983270743, guid: 2ca767861259fd94f994579019e739bf, type: 3}
       propertyPath: m_Name
       value: Orb (18)
@@ -88058,6 +88141,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 823624203}
     m_Modifications:
+    - target: {fileID: 4175198496074683409, guid: 2ca767861259fd94f994579019e739bf, type: 3}
+      propertyPath: value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5278065114983270743, guid: 2ca767861259fd94f994579019e739bf, type: 3}
       propertyPath: m_Name
       value: Orb (13)
@@ -89719,6 +89806,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 823624203}
     m_Modifications:
+    - target: {fileID: 4175198496074683409, guid: 2ca767861259fd94f994579019e739bf, type: 3}
+      propertyPath: value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5278065114983270743, guid: 2ca767861259fd94f994579019e739bf, type: 3}
       propertyPath: m_Name
       value: Orb (22)
@@ -90111,6 +90202,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 823624203}
     m_Modifications:
+    - target: {fileID: 4175198496074683409, guid: 2ca767861259fd94f994579019e739bf, type: 3}
+      propertyPath: value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5278065114983270743, guid: 2ca767861259fd94f994579019e739bf, type: 3}
       propertyPath: m_Name
       value: Orb (24)
@@ -90219,6 +90314,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 823624203}
     m_Modifications:
+    - target: {fileID: 4175198496074683409, guid: 2ca767861259fd94f994579019e739bf, type: 3}
+      propertyPath: value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5278065114983270743, guid: 2ca767861259fd94f994579019e739bf, type: 3}
       propertyPath: m_Name
       value: Orb (15)
@@ -90281,6 +90380,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3582000605013284011, guid: b770f130b4d212a4897613771c315eff, type: 3}
+      propertyPath: isBought
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 594736917038445040, guid: b770f130b4d212a4897613771c315eff, type: 3}
       propertyPath: audioClip
       value: 
@@ -90625,6 +90728,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 823624203}
     m_Modifications:
+    - target: {fileID: 4175198496074683409, guid: 2ca767861259fd94f994579019e739bf, type: 3}
+      propertyPath: value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5278065114983270743, guid: 2ca767861259fd94f994579019e739bf, type: 3}
       propertyPath: m_Name
       value: Orb (2)
@@ -90695,6 +90802,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 823624203}
     m_Modifications:
+    - target: {fileID: 4175198496074683409, guid: 2ca767861259fd94f994579019e739bf, type: 3}
+      propertyPath: value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5278065114983270743, guid: 2ca767861259fd94f994579019e739bf, type: 3}
       propertyPath: m_Name
       value: Orb (6)
@@ -92095,6 +92206,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1562859710425026741, guid: 6aae66389618d304080e8cb93af7644b, type: 3}
+      propertyPath: isBought
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 717046321790258427, guid: 6aae66389618d304080e8cb93af7644b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.689
@@ -92418,6 +92533,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 823624203}
     m_Modifications:
+    - target: {fileID: 4175198496074683409, guid: 2ca767861259fd94f994579019e739bf, type: 3}
+      propertyPath: value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5278065114983270743, guid: 2ca767861259fd94f994579019e739bf, type: 3}
       propertyPath: m_Name
       value: Orb

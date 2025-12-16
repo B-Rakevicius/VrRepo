@@ -73,7 +73,7 @@ namespace Shop
             if (item != null && cartItemsBought.Count == 0)
             {
                 // Item hasn't been bought before and is inserted in the cart before. Allow to buy.
-                if (!item.IsBought)
+                if (!item.isBought)
                 {
                     ItemData itemData = item.GetItemData();
                     if (cartItems.Add(item))
@@ -110,7 +110,7 @@ namespace Shop
                     return;
                 }
                 
-                if (!item.IsBought && cartItems.Contains(item))
+                if (!item.isBought && cartItems.Contains(item))
                 {
                     ItemData itemData = item.GetItemData();
                     if (cartItems.Remove(item))
@@ -142,6 +142,13 @@ namespace Shop
                 // Add cart items to a new list (to keep track when all items had been taken from cart after purchase)
                 foreach (Item item in cartItems)
                 {
+                    // This is a hay block - don't add it to bought items list
+                    if (item.GetItemData().itemName.Equals("Fortress Defense"))
+                    {
+                        continue;
+                    }
+                    
+                    // Add every other item
                     cartItemsBought.Add(item);
                 }
                 cartItems.Clear();

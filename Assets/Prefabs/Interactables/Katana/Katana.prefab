@@ -741,7 +741,7 @@ MonoBehaviour:
   minVelocityThreshold: 1
   damagePart: {fileID: 2692266553809426252}
   hitParticleFx: {fileID: 4809171458859421548, guid: 7d6f4553d538b7f42889306ecf05ad3f, type: 3}
-  audioClip: {fileID: 8300000, guid: 6bfe1ec256449944c8b30fb447653678, type: 3}
+  audioClip: {fileID: 8300000, guid: 3522f6714f6cbab48b93b793dc1747ae, type: 3}
   handlePoseID: 4
   leftHandGrabPointLower: {fileID: 1381745719996481046}
   leftHandGrabPointUpper: {fileID: 690167076392048294}
