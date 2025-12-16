@@ -857,7 +857,7 @@ MonoBehaviour:
   suctionRange: 30
   suctionRadius: 4.93
   suctionStrength: 20
-  orbCollectThreshold: 0.2
+  orbCollectThreshold: 0.5
   orbLayer:
     serializedVersion: 2
     m_Bits: 512

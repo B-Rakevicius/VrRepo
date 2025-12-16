@@ -66,7 +66,7 @@ namespace UI
         /// </summary>
         public async void ToggleUI()
         {
-            bool isBought = _item.IsBought;
+            bool isBought = _item.isBought;
 
             if (isBought) // Activate UI panel which contains item info without its price
             {
@@ -109,7 +109,7 @@ namespace UI
         {
             if(m_isUIOpen) { return; }
             
-            bool isBought = _item.IsBought;
+            bool isBought = _item.isBought;
 
             if (!isBought) // Activate UI panel which contains item info without its price
             {
@@ -126,7 +126,7 @@ namespace UI
         {
             if(!m_isUIOpen) { return; }
             
-            bool isBought = _item.IsBought;
+            bool isBought = _item.isBought;
 
             if (!isBought) // Activate UI panel which contains item info without its price
             {

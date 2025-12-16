@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: KatanaData
   m_EditorClassIdentifier: 
   itemName: Katana
-  itemDescription: A very sharp Japanese sword. Its curved shape sure does slice.
+  itemDescription: A very sharp Japanese sword. Its curved shape sure can slice.
   itemPrice: 10
   unlocksAt: 1
   spawnChance: 40

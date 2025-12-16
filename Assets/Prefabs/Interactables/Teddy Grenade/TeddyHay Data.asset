@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57da5c17dff04b24fadd3851700f5b81, type: 3}
   m_Name: TeddyHay Data
   m_EditorClassIdentifier: 
-  itemName: Teddy Grenade
-  itemDescription: A powerful Teddy Bear. Your childhood nightmare.
-  itemPrice: 10
+  itemName: Teddy Decoy
+  itemDescription: A Teddy Bear decoy. Lures other sheep.
+  itemPrice: 20
   unlocksAt: 1
-  spawnChance: 20
+  spawnChance: 30
   isBought: 0
   itemPrefab: {fileID: 7644083621880544771, guid: 47b682e1c58967d4cb2f25a94bb04c16, type: 3}

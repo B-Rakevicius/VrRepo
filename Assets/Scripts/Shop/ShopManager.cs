@@ -113,8 +113,8 @@ namespace Shop
         public bool TryPurchase(HashSet<Item> shoppingCartItems)
         {
             int totalPrice = shoppingCartItems.Sum(x => x.GetItemData().itemPrice);
+            
             // Check if player has enough money
-            Debug.Log("Has enough money: " + PlayerManager.Instance.HasEnoughMoney(totalPrice));
             if (PlayerManager.Instance.HasEnoughMoney(totalPrice))
             {
                 // Loop through all items and buy them. Also mark them as bought
@@ -123,14 +123,16 @@ namespace Shop
                     // Disable shop item UI
                     item.GetComponent<ItemUI>().HideUI();
                     
-                    item.IsBought = true;
+                    item.isBought = true;
 
-                    if (item.GetItemData().itemName == "HayItem")
+                    // Special case for Hay block item
+                    if (item.GetItemData().itemName == "Fortress Defense")
                     {
                         Transform freeSlot = HaySlotManager.Instance.GetFreeSlot();
                         if (freeSlot != null)
                         {
                             HaySlotManager.Instance.PlaceHayInSlot(freeSlot);
+                            Destroy(item.gameObject);
                         }
                         else
                         {
@@ -139,7 +141,7 @@ namespace Shop
                     }
                     else
                     {
-                        Debug.LogError("nohaye!");
+                        Debug.LogError("Item Name in Item Data scriptable object is different than in code!");
                     }
                 }
                 
@@ -171,7 +173,7 @@ namespace Shop
             {
                 if (itemObject.TryGetComponent(out Item item))
                 {
-                    if (!item.IsBought)
+                    if (!item.isBought)
                     {
                         Destroy(itemObject);
                     }

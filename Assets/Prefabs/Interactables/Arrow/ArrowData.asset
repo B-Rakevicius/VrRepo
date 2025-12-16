@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 57da5c17dff04b24fadd3851700f5b81, type: 3}
-  m_Name: TeddyBomb Data
+  m_Name: ArrowData
   m_EditorClassIdentifier: 
-  itemName: Teddy Grenade
-  itemDescription: A powerful Teddy Bear. Deals explosive damage around it.
-  itemPrice: 20
-  unlocksAt: 1
-  spawnChance: 30
+  itemName: Arrow
+  itemDescription: Metal arrow, dealing insane damage to the enemies
+  itemPrice: 1
+  unlocksAt: 0
+  spawnChance: 90
   isBought: 0
-  itemPrefab: {fileID: 7644083621880544771, guid: fff164b2c164f8c4ca490b29aa9e98b3, type: 3}
+  itemPrefab: {fileID: 1813917790458350144, guid: 6aae66389618d304080e8cb93af7644b, type: 3}
