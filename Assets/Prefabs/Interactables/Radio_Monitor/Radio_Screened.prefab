@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1720026050266331971}
   - component: {fileID: 8787092459106336950}
   - component: {fileID: 4680979943045865868}
+  - component: {fileID: 3344846465968419587}
   m_Layer: 0
   m_Name: Radio_Screened
   m_TagString: Untagged
@@ -339,6 +340,23 @@ MonoBehaviour:
   m_MinimumScaleRatio: 0.25
   m_MaximumScaleRatio: 2
   m_ScaleMultiplier: 0.25
+--- !u!114 &3344846465968419587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1033809707241254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e64d107d8a780b04e9536e806ebdd918, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positionCheckInterval: 5
+  movementThreshold: 1
+  maxDistanceFromOrigin: 2
+  resetDelay: 8
+  resetAudioClip: {fileID: 8300000, guid: f2525322547f57546b2668f83a2653fb, type: 3}
 --- !u!1 &172031750831476087
 GameObject:
   m_ObjectHideFlags: 0
