@@ -1,9 +1,12 @@
 using TMPro;
+using Unity.Android.Gradle.Manifest;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
+using static UnityEngine.XR.Interaction.Toolkit.Inputs.Haptics.HapticsUtility;
 public class RadioScript : MonoBehaviour
 {
     public TextMeshProUGUI textTL, textBL, textTMid, textTR, textBR;
-
+    [SerializeField] private EnemySpawner enemySpawner;
     [Header("Text Field Configuration")]
     [SerializeField] private TextFieldCount textFieldCount = TextFieldCount.Five;
     public enum TextFieldCount
@@ -36,6 +39,7 @@ public class RadioScript : MonoBehaviour
         SetTextsEnabled(false);
         UpdateUsableTextFieldsInfo();
     }
+
     [Header("Usable Text Fields")]
     [SerializeField, TextArea(1, 3)] private string usableTextFieldsInfo = "";
     private void OnValidate()
@@ -225,7 +229,9 @@ public class RadioScript : MonoBehaviour
     }
     private void updateTexts()
     {
-
+        textTL.text = "Game Time: " + enemySpawner.timeDuringWaves.ToString("F1");
+        textTMid.text = "Shepe Left " + enemySpawner.activeEnemies.Count;
+        textTR.text = "Hay Left " + FindObjectsByType<HayScript>(FindObjectsSortMode.None).Length;
     }
     public void onPickUp()
     {

@@ -23,7 +23,7 @@ public class EnemySpawner : MonoBehaviour
     [Header("Spawn Bounds")]
     public List<Bounds> spawnBounds = new List<Bounds>();
     public bool useSpawnBounds = true;
-    private float timeTotal = 0f, timeDuringWaves = 0f; // TIME DURING WAVES SHOWN AS POINTS / SOMETHING WHEN GAME OVER
+    public float timeTotal = 0f, timeDuringWaves = 0f; // TIME DURING WAVES SHOWN AS POINTS / SOMETHING WHEN GAME OVER
     private Coroutine waveCoroutine;
     public List<GameObject> activeEnemies = new List<GameObject>();
     private int wavesSpawnedInCurrentRound = 0; // Track waves in current 5-wave cycle

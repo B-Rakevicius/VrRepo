@@ -105,7 +105,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
             }
         }
         
-    }
+    }   
     private void TryEatHay()
     {
         if (isEating) return;
