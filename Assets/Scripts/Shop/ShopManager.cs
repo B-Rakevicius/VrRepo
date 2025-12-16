@@ -110,7 +110,7 @@ namespace Shop
                 grenade.SetShopState(false);
             }
         }
-        public bool TryPurchase(List<Item> shoppingCartItems)
+        public bool TryPurchase(HashSet<Item> shoppingCartItems)
         {
             int totalPrice = shoppingCartItems.Sum(x => x.GetItemData().itemPrice);
             // Check if player has enough money
