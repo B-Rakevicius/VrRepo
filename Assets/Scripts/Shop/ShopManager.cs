@@ -22,6 +22,13 @@ namespace Shop
         [SerializeField] private HaySlotManager haySlotManager;
         private Transform _spawnedShop; // Keep the reference to be able to destroy the shop.
         private List<GameObject> spawnedShopItems = new List<GameObject>(); // A list of currently spawned items. Is used to be able to destroy not bought items after round starts.
+        
+        [Header("Sound Settings")]
+        [Tooltip("What sound should shop play when item is bought?")]
+        [SerializeField] private AudioClip audioClip;
+        
+        private AudioSource audioSource;
+        
         public event EventHandler<OnItemPoolReceivedEventArgs> OnItemPoolReceived;
         public class OnItemPoolReceivedEventArgs : EventArgs {
             public List<ItemData> items { get; set; }
@@ -37,6 +44,7 @@ namespace Shop
             else
             {
                 Instance = this;
+                audioSource = GetComponent<AudioSource>();
                 //DontDestroyOnLoad(this);
             }
         }
@@ -99,10 +107,10 @@ namespace Shop
             DecoyGrenade[] grenades2 = FindObjectsOfType<DecoyGrenade>();
             foreach (DecoyGrenade grenade in grenades2)
             {
-                grenade.SetShopState(false);
+                grenade.SetShopState(true);
             }
         }
-        public bool TryPurchase(List<Item> shoppingCartItems)
+        public bool TryPurchase(HashSet<Item> shoppingCartItems)
         {
             int totalPrice = shoppingCartItems.Sum(x => x.GetItemData().itemPrice);
             // Check if player has enough money
@@ -136,12 +144,21 @@ namespace Shop
                 }
                 
                 PlayerManager.Instance.DeductMoney(totalPrice);
+                PlayShopSound();
                 
                 return true;
             }
             else
             {
                 return false;
+            }
+        }
+
+        private void PlayShopSound()
+        {
+            if (audioClip != null)
+            {
+                audioSource.PlayOneShot(audioClip);
             }
         }
         

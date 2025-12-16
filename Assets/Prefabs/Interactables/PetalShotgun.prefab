@@ -854,8 +854,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   suctionPoint: {fileID: 7108354167638843599}
-  suctionRange: 10
-  suctionRadius: 3
+  suctionRange: 30
+  suctionRadius: 4.93
   suctionStrength: 20
   orbCollectThreshold: 0.2
   orbLayer:
@@ -870,6 +870,8 @@ MonoBehaviour:
   interactable: {fileID: 0}
   leftHandTriggerAttach: {fileID: 9092553279918368234}
   rightHandTriggerAttach: {fileID: 4730151267567530571}
+  vacuumOrbTakeSound: {fileID: 8300000, guid: 4704df6380f0e5047832a0f9376b8f52, type: 3}
+  vacuumBRRRRRSound: {fileID: 8300000, guid: 200176571266607428e9f16a04eef29e, type: 3}
 --- !u!1 &2576145892101267862
 GameObject:
   m_ObjectHideFlags: 0

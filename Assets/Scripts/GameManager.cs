@@ -59,8 +59,8 @@ public class GameManager : MonoBehaviour
     public void StartRound()
     {
         currentWave++;
-        if (currentWave % 5 == 1)
-            WaveUI.Instance.WaveShortMessage("Sheep are coming!");
+        // if (currentWave % 5 == 1)
+        //     WaveUI.Instance.WaveShortMessage("Sheep are coming!");
         SetInbetweenWavesState(false);
         OnRoundStarted?.Invoke(this, EventArgs.Empty);
     }
@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void EndRound()
     {
-        WaveUI.Instance.WaveShortMessage(RandomMessage());
+        //WaveUI.Instance.WaveShortMessage(RandomMessage());
         OnRoundEnded?.Invoke(this, EventArgs.Empty);
     }
     /// <summary>
@@ -114,9 +114,9 @@ public class GameManager : MonoBehaviour
             Transform playerPos = PlayerManager.Instance.GetPlayerPosition();
             
             Vector3 spawnPos = playerHeadPos.position + playerPos.forward * uiDistance;
-
-            Debug.Log("Instantiating canvas");
-            Instantiate(gameOverCanvas, spawnPos, gameOverCanvas.transform.rotation);
+            Quaternion spawnRot = Quaternion.LookRotation(spawnPos - playerHeadPos.position, Vector3.up);
+            
+            Instantiate(gameOverCanvas, spawnPos, spawnRot);
         }
     }
     /// <summary>

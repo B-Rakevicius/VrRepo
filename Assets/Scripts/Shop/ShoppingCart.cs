@@ -1,48 +1,90 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Items;
+using Player;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Shop
 {
     public class ShoppingCart : MonoBehaviour
     {
+        [Tooltip("Displays shopping cart's total price")]
         [SerializeField] private TextMeshProUGUI checkoutDisplayText;
+        [Tooltip("Displays player's current money")]
+        [SerializeField] private TextMeshProUGUI moneyText;
+        [Tooltip("Audio Source from radio object")]
+        [SerializeField] private AudioSource audioSource;
+        [Tooltip("Audio clip to play")]
+        [SerializeField] private AudioClip audioClip;
 
-        private List<Item> cartItems;
+        //private List<Item> cartItems;
+        private HashSet<Item> cartItems;
         private int _totalPrice;
 
         private List<Item> cartItemsBought; // Used to check if the cart has been emptied after purchase.
 
         private void Start()
         {
-            cartItems = new List<Item>();
+            // Subscribe to OnMoneyChanged event so that "CurrentBalance" text could be updated
+            PlayerManager.Instance.OnMoneyChanged += PlayerManager_OnMoneyChanged;
+
+            // Play shop music as soon as it spawns
+            if (audioSource == null)
+            {
+                audioSource = GetComponentInParent<AudioSource>();
+            }
+            audioSource.clip = audioClip;
+            audioSource.loop = true;
+            audioSource.spatialize = true;
+            audioSource.spatialBlend = 1f;
+            audioSource.Play();
+            
+            cartItems = new HashSet<Item>();
             cartItemsBought = new List<Item>();
             
             // Reset the text to default
             checkoutDisplayText.fontSize = 0.05f;
             checkoutDisplayText.color = Color.red;
             checkoutDisplayText.text = "No Items";
+            
+            // Display current money on start
+            moneyText.text = $"${PlayerManager.Instance.CurrentMoney}";
+            
         }
-        
+
+        private void OnDestroy()
+        {
+            PlayerManager.Instance.OnMoneyChanged -= PlayerManager_OnMoneyChanged;
+        }
+
+        private void PlayerManager_OnMoneyChanged(object sender, PlayerManager.OnMoneyChangedEventArgs e)
+        {
+            moneyText.text = "$" + e.Money;
+        }
+
         private void OnTriggerEnter(Collider other)
         {
             // Is object an interactable item?
             Item item = other.GetComponentInParent<Item>();
+            
+            // Check if bought items have been removed from the cart
             if (item != null && cartItemsBought.Count == 0)
             {
-                // Item hasn't been bought before. Allow to buy.
+                // Item hasn't been bought before and is inserted in the cart before. Allow to buy.
                 if (!item.IsBought)
                 {
                     ItemData itemData = item.GetItemData();
-                    cartItems.Add(item);
-                    _totalPrice += itemData.itemPrice;
-                    
-                    // Update checkout display text
-                    checkoutDisplayText.fontSize = 0.08f;
-                    checkoutDisplayText.color = Color.green;
-                    checkoutDisplayText.text = "$" + _totalPrice;
+                    if (cartItems.Add(item))
+                    {
+                        _totalPrice += itemData.itemPrice;
+                        
+                        // Update checkout display text
+                        checkoutDisplayText.fontSize = 0.08f;
+                        checkoutDisplayText.color = Color.green;
+                        checkoutDisplayText.text = "$" + _totalPrice;
+                    }
                 }
             }
         }
@@ -71,19 +113,21 @@ namespace Shop
                 if (!item.IsBought && cartItems.Contains(item))
                 {
                     ItemData itemData = item.GetItemData();
-                    cartItems.Remove(item);
-                    _totalPrice -= itemData.itemPrice;
-                    
-                    // Update checkout display text
-                    checkoutDisplayText.fontSize = 0.08f;
-                    checkoutDisplayText.color = Color.green;
-                    checkoutDisplayText.text = "$" + _totalPrice;
-
-                    if (cartItems.Count == 0)
+                    if (cartItems.Remove(item))
                     {
-                        checkoutDisplayText.fontSize = 0.05f;
-                        checkoutDisplayText.color = Color.red;
-                        checkoutDisplayText.text = "No Items";
+                        _totalPrice -= itemData.itemPrice;
+                        
+                        // Update checkout display text
+                        checkoutDisplayText.fontSize = 0.08f;
+                        checkoutDisplayText.color = Color.green;
+                        checkoutDisplayText.text = "$" + _totalPrice;
+
+                        if (cartItems.Count == 0)
+                        {
+                            checkoutDisplayText.fontSize = 0.05f;
+                            checkoutDisplayText.color = Color.red;
+                            checkoutDisplayText.text = "No Items";
+                        }
                     }
                 }
             }
