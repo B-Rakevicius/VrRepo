@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Threading.Tasks;
+using Sound;
 
 namespace Shop
 {
@@ -12,6 +13,13 @@ namespace Shop
         
         [SerializeField] private ParticleSystem smokeParticles;
         
+        // Sound player to play fall sound from
+        private SoundPlayer _soundPlayer;
+
+        private void Awake()
+        {
+            _soundPlayer = GetComponent<SoundPlayer>();
+        }
         
         public async Task<bool> AnimateShopFall()
         {
@@ -33,6 +41,9 @@ namespace Shop
             
             // Activate dust particles
             smokeParticles.Play();
+            
+            // Play fall sound
+            _soundPlayer.PlaySound();
             
             return true;
         }

@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 9142066733929325075}
   - component: {fileID: 5178192112945364837}
   m_Layer: 5
-  m_Name: CurrentBalanceText
+  m_Name: BuyText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105,8 +105,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278779858
-  m_fontColor: {r: 0.8216427, g: 1, b: 0.033018887, a: 1}
+    rgba: 4285587711
+  m_fontColor: {r: 1, g: 0.87866664, b: 0.44, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -513,6 +513,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6357142663728154981}
   - component: {fileID: 5411828160987828898}
+  - component: {fileID: 8721395254114551363}
+  - component: {fileID: 307434808691404932}
   m_Layer: 0
   m_Name: Shop
   m_TagString: Untagged
@@ -560,6 +562,116 @@ MonoBehaviour:
   shopLandingSpot: {fileID: 1676197189515692741}
   animDuration: 0.3
   smokeParticles: {fileID: 5203622610069053331}
+--- !u!114 &8721395254114551363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105430999457703147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6527c71bd9c405f4291b102b80a55221, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundClip: {fileID: 8300000, guid: e53010e3358334a4db2021ae32da8701, type: 3}
+--- !u!82 &307434808691404932
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105430999457703147}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &2198946615251791444
 GameObject:
   m_ObjectHideFlags: 0
@@ -6244,7 +6356,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3b3170712486ef04ca33832c7e039a03, type: 3}
-  m_Color: {r: 0.8235294, g: 1, b: 0.03529412, a: 1}
+  m_Color: {r: 1, g: 0.88235295, b: 0.44313726, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -6379,7 +6491,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3b3170712486ef04ca33832c7e039a03, type: 3}
-  m_Color: {r: 0.8235294, g: 1, b: 0.03529412, a: 1}
+  m_Color: {r: 1, g: 0.88235295, b: 0.44313726, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -6579,7 +6691,7 @@ GameObject:
   - component: {fileID: 1873577323141303994}
   - component: {fileID: 7968551822901003821}
   m_Layer: 5
-  m_Name: CurrentBalanceText (1)
+  m_Name: BuyText (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6641,8 +6753,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278779858
-  m_fontColor: {r: 0.8216427, g: 1, b: 0.033018887, a: 1}
+    rgba: 4285653503
+  m_fontColor: {r: 1, g: 0.88235295, b: 0.44313726, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

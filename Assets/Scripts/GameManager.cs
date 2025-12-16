@@ -115,9 +115,9 @@ public class GameManager : MonoBehaviour
             Transform playerPos = PlayerManager.Instance.GetPlayerPosition();
             
             Vector3 spawnPos = playerHeadPos.position + playerPos.forward * uiDistance;
-
-            Debug.Log("Instantiating canvas");
-            Instantiate(gameOverCanvas, spawnPos, gameOverCanvas.transform.rotation);
+            Quaternion spawnRot = Quaternion.LookRotation(spawnPos - playerHeadPos.position, Vector3.up);
+            
+            Instantiate(gameOverCanvas, spawnPos, spawnRot);
         }
     }
     /// <summary>

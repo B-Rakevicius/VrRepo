@@ -107,7 +107,7 @@ namespace Shop
             DecoyGrenade[] grenades2 = FindObjectsOfType<DecoyGrenade>();
             foreach (DecoyGrenade grenade in grenades2)
             {
-                grenade.SetShopState(false);
+                grenade.SetShopState(true);
             }
         }
         public bool TryPurchase(HashSet<Item> shoppingCartItems)
